@@ -122,6 +122,9 @@ img { max-width: 100%; }
   right: 24px;
   transition: top .35s ease, background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
+/* Jumping to a section (products.html#atlas-studio) lands below the fixed bar. */
+.wl-js section[id] { scroll-margin-top: 90px; }
+
 .wl-js .wl-nav.is-scrolled {
   top: 12px;
   background: rgba(12, 12, 12, .88) !important;
