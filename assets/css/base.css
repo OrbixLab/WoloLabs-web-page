@@ -1,0 +1,379 @@
+/* Wolo Labs — base styles
+   Palette and type come from the Wolo Labs brand manual.
+   Layout lives in inline styles on the markup (exported from the design canvas);
+   this file holds the page basics plus the behaviour that needs real CSS. */
+
+/* ---- Brand tokens -------------------------------------------------------- */
+:root {
+  /* Greys — Wolo Labs */
+  --authentic-black: #080808;
+  --carbon:          #232323;
+  --basalt:          #4b4b4b;
+  --zen-gray:        #737373;
+  --super-grey:      #999999;
+  --chinese-silver:  #c2c2c2;
+  --wild-sand:       #f4f4f4;
+  --full-white:      #ffffff;
+
+  /* Accents — Wolo Labs */
+  --spring-bud:      #90D700;
+  --daintree:        #072834;
+  --bahama-blue:     #00638e;
+  --spindrift:       #8bd4df;
+
+  /* Atlas product brand */
+  --atlas-amber:     #F1BA42;
+  --atlas-navy:      #031526;
+}
+
+/* ---- Page basics --------------------------------------------------------- */
+body {
+  margin: 0;
+  background: var(--authentic-black);
+  color: var(--wild-sand);
+  font-family: 'Archivo', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--spring-bud); }
+a:hover { color: #b6ef3f; }
+
+h1, h2, h3 { margin: 0; }
+p { margin: 0; }
+
+img { max-width: 100%; }
+
+/* ---- Home: interlocking product panels ----------------------------------- */
+.wl-prod { transition: flex-grow .5s cubic-bezier(.2,.7,.3,1); }
+.wl-prod:hover,
+.wl-prod:focus-visible { flex-grow: 1.9; outline: none; }
+.wl-prod:focus-visible { box-shadow: inset 0 0 0 2px var(--spring-bud); }
+
+.wl-shot { transition: transform .7s cubic-bezier(.2,.7,.3,1); }
+.wl-prod:hover .wl-shot,
+.wl-prod:focus-visible .wl-shot { transform: scale(1.07); }
+
+/* Photo carousel inside a panel: images stack and crossfade; main.js advances it
+   and adds the dots. Without JS the first (`is-active`) image simply stays. */
+.wl-slides > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.wl-slides > img.is-active { opacity: 1; }
+
+/* Wide art that must stay whole: sits at the top at its own ratio and fades
+   into the panel's background, where the copy goes. */
+.wl-shot--wide {
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+}
+
+.wl-dots {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 6px;
+  padding: 7px 9px;
+  border-radius: 999px;
+  background: rgba(8, 8, 8, .55);
+}
+.wl-dots > i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(244, 244, 244, .45);
+  transition: width .4s ease, background-color .4s ease;
+}
+.wl-dots > i.is-active { width: 18px; background: var(--spring-bud); }
+
+.wl-scrim { transition: opacity .4s ease; }
+.wl-prod:hover .wl-scrim,
+.wl-prod:focus-visible .wl-scrim { opacity: 1; }
+
+.wl-prod-copy { transition: font-size .4s ease, color .4s ease; }
+.wl-prod:hover .wl-prod-copy,
+.wl-prod:focus-visible .wl-prod-copy { font-size: 19px; color: var(--full-white); }
+
+.wl-prod-more {
+  opacity: .45;
+  transform: translateX(-8px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.wl-prod:hover .wl-prod-more,
+.wl-prod:focus-visible .wl-prod-more { opacity: 1; transform: none; }
+
+/* ---- Fixed nav ----------------------------------------------------------- */
+/* With JS the bar is pinned to the top and follows the scroll; the spacer holds
+   its old place so the page doesn't jump. Without JS it stays in the flow. */
+.wl-nav-spacer { display: none; }
+.wl-js .wl-nav-spacer { display: block; height: 66px; }
+.wl-js .wl-nav {
+  position: fixed !important;
+  z-index: 100 !important;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  transition: top .35s ease, background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.wl-js .wl-nav.is-scrolled {
+  top: 12px;
+  background: rgba(12, 12, 12, .88) !important;
+  border-color: var(--basalt) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+}
+
+/* ---- Products: Atlas 64 photo gallery ------------------------------------ */
+.wl-gallery-main { transition: opacity .25s ease; }
+.wl-gallery-main.is-swapping { opacity: 0; }
+.wl-thumb {
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 1px solid var(--carbon);
+  background: #0f0f0f;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .25s ease;
+}
+.wl-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .55;
+  transition: opacity .25s ease;
+}
+.wl-thumb:hover img,
+.wl-thumb.is-active img { opacity: 1; }
+.wl-thumb.is-active { border-color: var(--spring-bud); }
+.wl-thumb:focus-visible { outline: 2px solid var(--spring-bud); outline-offset: 2px; }
+
+/* ---- Guides: Atlas Studio night sky ("el mapa de mundos") ---------------- */
+/* Colours sampled from the Atlas Studio key art: navy sky, the planet's lit
+   edge, and the amber of the horizon. */
+.wl-worlds-sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 90% at 0% 115%, rgba(241, 186, 66, .16) 0%, transparent 60%),
+    radial-gradient(80% 100% at 20% -30%, #0b2a45 0%, transparent 65%),
+    linear-gradient(180deg, #02121d 0%, var(--atlas-navy) 55%, #06213a 100%);
+}
+/* Star field: a few tiled layers of 1px dots at different scales. */
+.wl-worlds-sky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .7;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 68% 14%, #cfe3f5 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 38% 64%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 84% 78%, #cfe3f5 50%, transparent 51%),
+    radial-gradient(1px 1px at 52% 40%, #fff 50%, transparent 51%);
+  background-size: 260px 260px, 340px 340px, 420px 420px, 300px 300px, 520px 520px;
+}
+.wl-planet {
+  position: absolute;
+  top: -30%;
+  right: -8%;
+  width: min(46vw, 640px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 28% 72%, #49688b 0%, #1d3a58 30%, #0a2238 55%, var(--atlas-navy) 75%);
+  box-shadow: 0 0 140px rgba(73, 104, 139, .35), inset 24px -24px 60px rgba(139, 212, 223, .12);
+}
+.wl-orbit {
+  position: absolute;
+  top: -42%;
+  right: -22%;
+  width: min(70vw, 980px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(139, 212, 223, .16);
+  border-radius: 50%;
+  animation: wl-orbit 90s linear infinite;
+}
+/* A small moon riding the orbit. */
+.wl-orbit::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--atlas-amber);
+  box-shadow: 0 0 18px rgba(241, 186, 66, .8);
+}
+@keyframes wl-orbit { to { rotate: 360deg; } }
+
+/* Animated variant (tutorials): two star layers drift at different speeds and
+   twinkle; now and then a shooting star crosses. Each drift moves a layer by
+   exactly one tile, so the loop is seamless. */
+.wl-space-sky::before {
+  animation: wl-drift-a 160s linear infinite, wl-twinkle 5s ease-in-out infinite alternate;
+}
+.wl-space-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .9;
+  background-image:
+    radial-gradient(2px 2px at 30% 40%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 75% 60%, #8bd4df 50%, transparent 51%),
+    radial-gradient(2px 2px at 55% 85%, #fff 50%, transparent 51%);
+  background-size: 480px 480px, 380px 380px, 620px 620px;
+  animation: wl-drift-b 90s linear infinite, wl-twinkle 3.2s ease-in-out 1s infinite alternate;
+}
+@keyframes wl-drift-a {
+  to { background-position: -260px 0, -340px 0, -420px 0, -300px 0, -520px 0; }
+}
+@keyframes wl-drift-b {
+  to { background-position: -480px 0, -380px 0, -620px 0; }
+}
+@keyframes wl-twinkle { from { opacity: .35; } to { opacity: .9; } }
+
+.wl-comet {
+  position: absolute;
+  top: 12%;
+  left: 0;
+  width: 160px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(139, 212, 223, .5) 60%, #fff);
+  rotate: 18deg;
+  opacity: 0;
+  animation: wl-comet 9s ease-in 2s infinite;
+}
+.wl-comet + .wl-comet { top: 46%; animation-delay: 6.5s; animation-duration: 11s; }
+@keyframes wl-comet {
+  0%   { opacity: 0; translate: -10vw 0; }
+  2%   { opacity: 1; }
+  11%  { opacity: 0; translate: 70vw 24vw; }
+  100% { opacity: 0; translate: 70vw 24vw; }
+}
+
+@media (max-width: 900px) {
+  .wl-planet { top: auto; bottom: -18%; right: -30%; width: 80vw; }
+  .wl-orbit  { top: auto; bottom: -45%; right: -60%; width: 140vw; }
+}
+
+/* ---- Home: "and many more" strip under the store cards ------------------- */
+.wl-more { transition: border-color .3s ease, background-color .3s ease; }
+.wl-more:hover,
+.wl-more:focus-visible { border-color: var(--spring-bud) !important; background: rgba(144, 215, 0, .05); }
+
+/* ---- Mobile menu (button only shows under 900px, see below) -------------- */
+.wl-menu-btn { display: none; }
+.wl-menu-btn span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--wild-sand);
+  transition: translate .3s ease, rotate .3s ease;
+}
+.wl-nav.is-open .wl-menu-btn span:first-child { translate: 0 3.75px; rotate: 45deg; }
+.wl-nav.is-open .wl-menu-btn span:last-child  { translate: 0 -3.75px; rotate: -45deg; }
+
+/* ---- Responsive ---------------------------------------------------------- */
+/* Layout is inline (canvas export), so overrides here need !important. */
+@media (max-width: 900px) {
+  .wl-piece { display: none; }
+  .wl-stage {
+    margin-top: 56px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Nav: logo + burger; the links drop down inside the pill. Without JS the
+     links stay visible and simply wrap. */
+  .wl-js .wl-nav { border-radius: 26px !important; padding: 6px 6px 6px 22px !important; gap: 0 !important; }
+  .wl-js .wl-nav-spacer { height: 58px; }
+  .wl-js .wl-menu-btn {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .wl-js .wl-menu {
+    display: none !important;
+    flex: 1 0 100%;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 6px 16px 10px 0;
+  }
+  .wl-js .wl-nav.is-open .wl-menu { display: flex !important; }
+  .wl-menu a + a { border-top: 1px solid var(--carbon); }
+
+  /* Product panels become cards: photo on top, copy below on a dark ground,
+     so the copy no longer sits on the key art. */
+  .wl-prods { gap: 20px !important; }
+  .wl-prod {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column;
+    background: #0f0f0f;
+  }
+  .wl-shot {
+    position: relative !important;
+    inset: auto !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3;
+  }
+  .wl-shot--wide { aspect-ratio: auto; }
+  .wl-scrim { display: none; }
+  .wl-prod-body { position: relative !important; padding: 28px 24px 32px !important; }
+  .wl-prod:hover,
+  .wl-prod:focus-visible { flex-grow: 1; }
+  .wl-prod:hover .wl-prod-copy,
+  .wl-prod:focus-visible .wl-prod-copy { font-size: 16px; }
+  .wl-prod-more { opacity: 1; transform: none; }
+
+  /* System: the >>> between stacked cards point down. */
+  .wl-chev { flex: 1 0 100%; flex-direction: column; line-height: .55; }
+  .wl-chev > span { rotate: 90deg; }
+
+  .wl-store-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+  .wl-video-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+  .wl-path-grid  { grid-template-columns: minmax(0, 1fr) !important; }
+
+  /* Manifesto axis turns vertical: video games / line / W / line / board games. */
+  .wl-axis-row { flex-direction: column; flex-wrap: nowrap !important; gap: 12px !important; }
+  .wl-axis-line { flex: 0 0 40px !important; width: 1px; min-width: 0 !important; }
+}
+
+@media (max-width: 600px) {
+  :is(.wl-home, .wl-page) > :is(section, footer):not(.wl-hero, .wl-ticker) {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  :is(.wl-home, .wl-page) > section:not(.wl-hero, .wl-ticker) {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wl-prod, .wl-shot, .wl-prod-copy, .wl-prod-more, .wl-scrim, .wl-menu-btn span, .wl-js .wl-nav, .wl-more { transition: none; }
+  .wl-orbit, .wl-space-sky::before, .wl-space-sky::after { animation: none; }
+  .wl-comet { display: none; }
+}

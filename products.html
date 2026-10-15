@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Products — Wolo Labs</title>
+<meta name="description" content="Atlas 64, the tabletop game console, and Atlas Studio, the creator platform behind it.">
+<link rel="icon" href="assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Pirata+One&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="assets/css/base.css">
+<script>
+  // `wl-js` enables the fixed, collapsible nav. `wl-motion` is opt-in: content is only
+  // hidden-then-revealed when the visitor has not asked for reduced motion.
+  // If main.js never runs, drop both so nothing stays hidden.
+  // The hero starts as soon as its fonts are in (or after 700 ms) without waiting
+  // for main.js, so a slow connection never leaves the first screen blank.
+  (function (d) {
+    d.classList.add('wl-js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('wl-motion');
+    var ready = function () { d.classList.add('is-ready'); };
+    setTimeout(ready, 700);
+    if (document.fonts && document.fonts.load) {
+      Promise.all([document.fonts.load('600 1em Archivo'), document.fonts.load('italic 400 1em "Playfair Display"')]).then(ready, ready);
+    }
+    // Deferred scripts always run before DOMContentLoaded: if main.js has not run
+    // by then it failed to load, so un-hide everything.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<div style="background: #080808; color: #f4f4f4; font-family: 'Archivo', system-ui, sans-serif">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="products.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="guides.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="https://atlas-64.com/" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Store</a>
+        <a href="about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- INTRO -->
+  <section style="padding: 88px 40px 64px; border-bottom: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">Products</span>
+      <h1 style="font-size: clamp(42px, 6.4vw, 104px); line-height: 0.92; letter-spacing: -0.035em; font-weight: 600; text-transform: uppercase; max-width: 16ch">The hardware and the platform</h1>
+      <p style="max-width: 58ch; font-size: 19px; line-height: 1.55; color: #c2c2c2">
+        Atlas 64 is the console you play on. Atlas Studio is the program you create in.
+        They are the same system: one makes no sense without the other.
+      </p>
+    </div>
+  </section>
+
+  <!-- ATLAS 64 -->
+  <section style="padding: 96px 40px; border-bottom: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px">
+      <div class="wl-gallery" style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <div style="border: 1px solid #232323; background: #0f0f0f; overflow: hidden; aspect-ratio: 4 / 3">
+          <img class="wl-gallery-main" src="assets/img/Products/Atlas64/Atlas2.webp" alt="Atlas 64 open in its box, with the pieces beside the board" style="display: block; width: 100%; height: 100%; object-fit: cover">
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+          <button class="wl-thumb is-active" type="button" aria-pressed="true" aria-label="Show photo 1 of 4" data-src="assets/img/Products/Atlas64/Atlas2.webp" data-alt="Atlas 64 open in its box, with the pieces beside the board"><img src="assets/img/Products/Atlas64/Atlas2.webp" alt="" loading="lazy"></button>
+          <button class="wl-thumb" type="button" aria-pressed="false" aria-label="Show photo 2 of 4" data-src="assets/img/Products/Atlas64/atlas-in-play.webp" data-alt="A hand moving a piece across the lit Atlas 64 board"><img src="assets/img/Products/Atlas64/atlas-in-play.webp" alt="" loading="lazy"></button>
+          <button class="wl-thumb" type="button" aria-pressed="false" aria-label="Show photo 3 of 4" data-src="assets/img/Products/Atlas64/Atlas1.webp" data-alt="Atlas 64 board glowing yellow and magenta under the pieces"><img src="assets/img/Products/Atlas64/Atlas1.webp" alt="" loading="lazy"></button>
+          <button class="wl-thumb" type="button" aria-pressed="false" aria-label="Show photo 4 of 4" data-src="assets/img/Products/Atlas64/Atlas3.webp" data-alt="The Atlas 64 box"><img src="assets/img/Products/Atlas64/Atlas3.webp" alt="" loading="lazy"></button>
+        </div>
+      </div>
+      <div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">Flagship product</span>
+        <img src="assets/img/atlas64-logo-840.webp" alt="Atlas 64 — El mapa de mundos" style="width: 100%; max-width: 420px; height: auto">
+        <p style="font-size: 18px; line-height: 1.6; color: #c2c2c2; max-width: 52ch">
+          The first tabletop game console. It brings together the best of board games and the best of video games:
+          a board designed to bring hundreds of games to life in one place, without losing the essence of what
+          brings us together around a table.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px">
+          <a href="https://atlas-64.com/" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 30px; background: #90D700; color: #080808; text-decoration: none; font-size: 15px; font-weight: 700; border-radius: 999px">Learn More!</a>
+          <a href="contact.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 30px; border: 1px solid #4b4b4b; color: #f4f4f4; text-decoration: none; font-size: 15px; font-weight: 600; border-radius: 999px">Notify me on Kickstarter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATLAS STUDIO -->
+  <section style="background: #031526; color: #ffffff; padding: 96px 40px; border-top: 1px solid #F1BA42">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px">
+      <div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #F1BA42">Creator platform</span>
+        <h2 style="font-size: clamp(38px, 5vw, 72px); line-height: 0.95; letter-spacing: -0.03em; font-weight: 600; text-transform: uppercase">Atlas Studio</h2>
+        <p style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: #ffffff">Play <span style="color: #F1BA42">·</span> Create <span style="color: #F1BA42">·</span> Connect</p>
+        <p style="font-size: 18px; line-height: 1.6; color: #a8bfd0; max-width: 52ch">
+          A free PC program. You design the rules, draw how every cell behaves, test live on your
+          Atlas 64 and publish to the store. Without asking anyone for permission.
+        </p>
+        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0">
+          <li style="border-top: 1px solid #1b3a52; padding: 18px 0; display: flex; gap: 18px; align-items: baseline"><span style="font-family: 'Space Mono', monospace; font-size: 12px; color: #F1BA42">01</span><span style="font-size: 17px">Visual editor: no code required</span></li>
+          <li style="border-top: 1px solid #1b3a52; padding: 18px 0; display: flex; gap: 18px; align-items: baseline"><span style="font-family: 'Space Mono', monospace; font-size: 12px; color: #F1BA42">02</span><span style="font-size: 17px">Board simulator to iterate fast</span></li>
+          <li style="border-top: 1px solid #1b3a52; padding: 18px 0; display: flex; gap: 18px; align-items: baseline"><span style="font-family: 'Space Mono', monospace; font-size: 12px; color: #F1BA42">03</span><span style="font-size: 17px">One click to publish to the store</span></li>
+          <li style="border-top: 1px solid #1b3a52; border-bottom: 1px solid #1b3a52; padding: 18px 0; display: flex; gap: 18px; align-items: baseline"><span style="font-family: 'Space Mono', monospace; font-size: 12px; color: #F1BA42">04</span><span style="font-size: 17px">Stats for every game you publish</span></li>
+        </ul>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px">
+          <a href="guides.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 30px; background: #F1BA42; color: #031526; text-decoration: none; font-size: 15px; font-weight: 700; border-radius: 999px">See the guides</a>
+          <a href="contact.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 30px; border: 1px solid #F1BA42; color: #F1BA42; text-decoration: none; font-size: 15px; font-weight: 600; border-radius: 999px">Join the beta</a>
+        </div>
+      </div>
+      <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <div style="border: 1px solid #1b3a52; overflow: hidden">
+          <img src="assets/img/atlas-studio-keyart.webp" alt="Atlas Studio — play, create, connect" style="width: 100%; height: auto; display: block">
+        </div>
+        <p style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #7e9ab0">Available for Windows · [MAC / LINUX TBC]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW THEY CONNECT -->
+  <section style="padding: 96px 40px; border-bottom: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
+      <h2 style="font-size: clamp(30px, 3.6vw, 48px); line-height: 1; letter-spacing: -0.02em; font-weight: 600; text-transform: uppercase">How they connect</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px">
+        <div style="flex: 1 1 300px; min-width: 0; border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">If you came to play</span>
+          <h3 style="font-size: 22px; font-weight: 600; text-transform: uppercase">Get Atlas 64</h3>
+          <p style="font-size: 15px; line-height: 1.6; color: #999999">The console ships with the base library. New games show up in the store every week.</p>
+          <a href="https://atlas-64.com/" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">See the console &gt;&gt;&gt;</a>
+        </div>
+        <div style="flex: 1 1 300px; min-width: 0; border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #8bd4df">If you came to create</span>
+          <h3 style="font-size: 22px; font-weight: 600; text-transform: uppercase">Download Studio</h3>
+          <p style="font-size: 15px; line-height: 1.6; color: #999999">Free, always. Build your game, test it and publish it for every console out there.</p>
+          <a href="guides.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Start to build &gt;&gt;&gt;</a>
+        </div>
+        <div style="flex: 1 1 300px; min-width: 0; border: 1px solid #232323; background: #072834; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">If you came for both</span>
+          <h3 style="font-size: 22px; font-weight: 600; text-transform: uppercase">Creator Pack</h3>
+          <p style="font-size: 15px; line-height: 1.6; color: #8bd4df">Console + early access to Studio + direct support from the team. Lands with the Kickstarter.</p>
+          <a href="contact.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Sign me up &gt;&gt;&gt;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding: 56px 40px">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

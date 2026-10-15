@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guides — Wolo Labs</title>
+<meta name="description" content="How to go from an idea to a game published in the Atlas 64 store.">
+<link rel="icon" href="assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Pirata+One&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="assets/css/base.css">
+<script>
+  // `wl-js` enables the fixed, collapsible nav. `wl-motion` is opt-in: content is only
+  // hidden-then-revealed when the visitor has not asked for reduced motion.
+  // If main.js never runs, drop both so nothing stays hidden.
+  // The hero starts as soon as its fonts are in (or after 700 ms) without waiting
+  // for main.js, so a slow connection never leaves the first screen blank.
+  (function (d) {
+    d.classList.add('wl-js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('wl-motion');
+    var ready = function () { d.classList.add('is-ready'); };
+    setTimeout(ready, 700);
+    if (document.fonts && document.fonts.load) {
+      Promise.all([document.fonts.load('600 1em Archivo'), document.fonts.load('italic 400 1em "Playfair Display"')]).then(ready, ready);
+    }
+    // Deferred scripts always run before DOMContentLoaded: if main.js has not run
+    // by then it failed to load, so un-hide everything.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<div class="wl-page" style="background: #080808; color: #f4f4f4; font-family: 'Archivo', system-ui, sans-serif">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="https://atlas-64.com/" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Store</a>
+        <a href="about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <section class="wl-worlds" style="position: relative; overflow: hidden; padding: 88px 40px 64px; background: #031526; border-bottom: 1px solid #0f2a40">
+    <div class="wl-worlds-sky" aria-hidden="true"><span class="wl-planet"></span><span class="wl-orbit"></span></div>
+    <div style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: space-between">
+      <div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+        <span style="font-family: 'Pirata One', serif; font-size: 36px; color: #90D700">Creator mindset</span>
+        <h1 style="font-size: clamp(40px, 5.6vw, 92px); line-height: 0.93; letter-spacing: -0.035em; font-weight: 600; text-transform: uppercase">How to build your game</h1>
+        <p style="max-width: 58ch; font-size: 18px; line-height: 1.55; color: #c2c2c2">
+          Everything you need to go from an idea to a game published in the Atlas 64 store.
+          Without knowing how to code and without asking anyone for permission.
+        </p>
+        <a href="products.html" style="display: inline-flex; align-items: center; align-self: flex-start; min-height: 56px; padding: 0 32px; background: #90D700; color: #080808; text-decoration: none; font-size: 16px; font-weight: 700; border-radius: 999px">Download Atlas Studio</a>
+      </div>
+      <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center">
+        <img src="assets/img/atlas-studio-title.webp" alt="Atlas Studio" style="display: block; width: 100%; max-width: 540px; height: auto; filter: drop-shadow(0 0 36px rgba(241, 186, 66, 0.28))">
+        <p style="margin: 0 -0.42em 0 0; font-size: clamp(10px, 3vw, 14px); letter-spacing: 0.42em; white-space: nowrap; text-transform: uppercase; color: #f4f4f4">Play <span aria-hidden="true" style="color: #F1BA42">&bull;</span> Create <span aria-hidden="true" style="color: #F1BA42">&bull;</span> Connect</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section style="padding: 88px 40px; border-bottom: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
+      <h2 style="font-size: clamp(28px, 3.4vw, 46px); line-height: 1; letter-spacing: -0.02em; font-weight: 600; text-transform: uppercase">The full path</h2>
+      <ol class="wl-path-grid" style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+        
+          <li style="border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #90D700">01</span>
+            <h3 style="font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1">Think the mechanic</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #999999">What a 64-cell board does that a cardboard board cannot. Start there, not with the story.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+              <span>6 min read</span><span>Beginner</span>
+            </div>
+            <a href="guides.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Read the guide &gt;&gt;&gt;</a>
+          </li>
+        
+          <li style="border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #90D700">02</span>
+            <h3 style="font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1">Design the board</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #999999">How to think zones, cell states and visual reading so it works from across the table.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+              <span>9 min read</span><span>Beginner</span>
+            </div>
+            <a href="guides.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Read the guide &gt;&gt;&gt;</a>
+          </li>
+        
+          <li style="border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #90D700">03</span>
+            <h3 style="font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1">Build it in Atlas Studio</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #999999">Rules, turns, win conditions and the behaviour of every cell, with the visual editor.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+              <span>14 min read</span><span>Intermediate</span>
+            </div>
+            <a href="guides.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Read the guide &gt;&gt;&gt;</a>
+          </li>
+        
+          <li style="border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #90D700">04</span>
+            <h3 style="font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1">Test it on the console</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #999999">Live testing on your Atlas 64. Get it wrong fast, fix it faster.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+              <span>8 min read</span><span>Intermediate</span>
+            </div>
+            <a href="guides.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Read the guide &gt;&gt;&gt;</a>
+          </li>
+        
+          <li style="border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #90D700">05</span>
+            <h3 style="font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1">Playtest with people</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #999999">What to watch in someone else&#39;s match and how to take notes without ruining the game for them.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+              <span>7 min read</span><span>Intermediate</span>
+            </div>
+            <a href="guides.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Read the guide &gt;&gt;&gt;</a>
+          </li>
+        
+          <li style="border: 1px solid #232323; background: #0f0f0f; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: #90D700">06</span>
+            <h3 style="font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1">Publish it to the store</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #999999">Requirements, cover art, description and the review process. From your PC to every table.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+              <span>10 min read</span><span>Advanced</span>
+            </div>
+            <a href="guides.html" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; margin-top: auto">Read the guide &gt;&gt;&gt;</a>
+          </li>
+        
+      </ol>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="wl-worlds" style="position: relative; overflow: hidden; background: #031526; padding: 88px 40px; border-top: 1px solid #0f2a40; border-bottom: 1px solid #0f2a40">
+    <div class="wl-worlds-sky wl-space-sky" aria-hidden="true"><span class="wl-comet"></span><span class="wl-comet"></span></div>
+    <div style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
+        <div style="display: flex; flex-direction: column; gap: 14px; max-width: 52ch">
+          <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">On video</span>
+          <h2 style="font-size: clamp(28px, 3.4vw, 46px); line-height: 1; letter-spacing: -0.02em; font-weight: 600; text-transform: uppercase">Atlas Studio tutorials</h2>
+          <p style="font-size: 16px; line-height: 1.6; color: #c2c2c2">The same path, explained step by step on the YouTube channel.</p>
+        </div>
+        <a href="https://www.youtube.com/@wololabs" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border: 1px solid #90D700; color: #90D700; text-decoration: none; font-size: 15px; font-weight: 600; border-radius: 999px">Watch the playlist</a>
+      </div>
+      <div class="wl-video-grid" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px">
+        <a href="https://www.youtube.com/@wololabs" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 16 / 9; border: 1px solid rgba(139, 212, 223, 0.22); background: rgba(2, 14, 24, 0.72); display: flex; align-items: center; justify-content: center">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: #90D700">
+              <svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true"><path d="M2 2 L16 10 L2 18 Z" fill="#080808"></path></svg>
+            </span>
+          </div>
+          <h3 style="font-size: 17px; font-weight: 600; line-height: 1.3">Install Studio and connect your Atlas</h3>
+          <p style="font-family: 'Space Mono', monospace; font-size: 12px; color: #999999">[DURATION]</p>
+        </a>
+        <a href="https://www.youtube.com/@wololabs" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 16 / 9; border: 1px solid rgba(139, 212, 223, 0.22); background: rgba(2, 14, 24, 0.72); display: flex; align-items: center; justify-content: center">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: #90D700">
+              <svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true"><path d="M2 2 L16 10 L2 18 Z" fill="#080808"></path></svg>
+            </span>
+          </div>
+          <h3 style="font-size: 17px; font-weight: 600; line-height: 1.3">Your first mechanic in 20 minutes</h3>
+          <p style="font-family: 'Space Mono', monospace; font-size: 12px; color: #999999">[DURATION]</p>
+        </a>
+        <a href="https://www.youtube.com/@wololabs" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 16 / 9; border: 1px solid rgba(139, 212, 223, 0.22); background: rgba(2, 14, 24, 0.72); display: flex; align-items: center; justify-content: center">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 999px; background: #90D700">
+              <svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true"><path d="M2 2 L16 10 L2 18 Z" fill="#080808"></path></svg>
+            </span>
+          </div>
+          <h3 style="font-size: 17px; font-weight: 600; line-height: 1.3">Publish and update your game</h3>
+          <p style="font-family: 'Space Mono', monospace; font-size: 12px; color: #999999">[DURATION]</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section style="background: #080808; color: #f4f4f4; padding: 88px 40px">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px">
+      <h2 style="font-size: clamp(28px, 3.4vw, 46px); line-height: 1; letter-spacing: -0.02em; font-weight: 600; text-transform: uppercase">Creator resources</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px">
+        <a href="guides.html" style="flex: 1 1 280px; min-width: 0; text-decoration: none; color: #f4f4f4; background: #0f0f0f; border: 1px solid #232323; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+          <h3 style="font-size: 20px; font-weight: 600; text-transform: uppercase">Documentation</h3>
+          <p style="font-size: 15px; line-height: 1.6; color: #999999">Full reference for cells, states, turns and events.</p>
+        </a>
+        <a href="guides.html" style="flex: 1 1 280px; min-width: 0; text-decoration: none; color: #f4f4f4; background: #0f0f0f; border: 1px solid #232323; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+          <h3 style="font-size: 20px; font-weight: 600; text-transform: uppercase">Templates</h3>
+          <p style="font-size: 15px; line-height: 1.6; color: #999999">Example projects ready to open and take apart.</p>
+        </a>
+        <a href="contact.html" style="flex: 1 1 280px; min-width: 0; text-decoration: none; color: #f4f4f4; background: #0f0f0f; border: 1px solid #232323; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+          <h3 style="font-size: 20px; font-weight: 600; text-transform: uppercase">Community</h3>
+          <p style="font-size: 15px; line-height: 1.6; color: #999999">Where creators show and break their prototypes.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding: 56px 40px">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

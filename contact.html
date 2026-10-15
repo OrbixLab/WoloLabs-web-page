@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Wolo Labs</title>
+<meta name="description" content="Get on the Atlas 64 Kickstarter waitlist, or write to the Wolo Labs team.">
+<link rel="icon" href="assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Pirata+One&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="assets/css/base.css">
+<script>
+  // `wl-js` enables the fixed, collapsible nav. `wl-motion` is opt-in: content is only
+  // hidden-then-revealed when the visitor has not asked for reduced motion.
+  // If main.js never runs, drop both so nothing stays hidden.
+  // The hero starts as soon as its fonts are in (or after 700 ms) without waiting
+  // for main.js, so a slow connection never leaves the first screen blank.
+  (function (d) {
+    d.classList.add('wl-js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('wl-motion');
+    var ready = function () { d.classList.add('is-ready'); };
+    setTimeout(ready, 700);
+    if (document.fonts && document.fonts.load) {
+      Promise.all([document.fonts.load('600 1em Archivo'), document.fonts.load('italic 400 1em "Playfair Display"')]).then(ready, ready);
+    }
+    // Deferred scripts always run before DOMContentLoaded: if main.js has not run
+    // by then it failed to load, so un-hide everything.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<div style="background: #080808; color: #f4f4f4; font-family: 'Archivo', system-ui, sans-serif">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="guides.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="https://atlas-64.com/" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Store</a>
+        <a href="about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="contact.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- WAITLIST -->
+  <section style="background: #072834; padding: 88px 40px">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: space-between">
+      <div style="flex: 999 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">Waitlist</span>
+        <h1 style="font-size: clamp(36px, 5vw, 76px); line-height: 0.95; letter-spacing: -0.03em; font-weight: 600; text-transform: uppercase; max-width: 16ch">Be first on Kickstarter</h1>
+        <p style="max-width: 50ch; font-size: 17px; line-height: 1.6; color: #8bd4df">
+          Everyone on the list gets into the campaign first, at early bird pricing.
+        </p>
+      </div>
+      <form style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px; background: #080808; border: 1px solid #2e2e2e; padding: 32px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <label for="ks-name" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c2c2c2">Name</label>
+          <input id="ks-name" type="text" style="min-height: 50px; padding: 0 16px; background: #0f0f0f; border: 1px solid #4b4b4b; color: #f4f4f4; font-family: 'Archivo', sans-serif; font-size: 15px; border-radius: 4px">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <label for="ks-email" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c2c2c2">Email</label>
+          <input id="ks-email" type="email" style="min-height: 50px; padding: 0 16px; background: #0f0f0f; border: 1px solid #4b4b4b; color: #f4f4f4; font-family: 'Archivo', sans-serif; font-size: 15px; border-radius: 4px">
+        </div>
+        <button type="button" style="min-height: 54px; margin-top: 8px; background: #90D700; color: #080808; border: 0; font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 700; border-radius: 999px; cursor: pointer">Sign me up</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section style="padding: 88px 40px; border-bottom: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px">
+      <div style="flex: 999 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+        <h2 style="font-size: clamp(32px, 4vw, 56px); line-height: 1; letter-spacing: -0.025em; font-weight: 600; text-transform: uppercase">Write to us</h2>
+        <p style="max-width: 50ch; font-size: 17px; line-height: 1.6; color: #c2c2c2">
+          Press, distribution, partnerships, or a game idea that will not let you sleep. We answer everything.
+        </p>
+        <form style="display: flex; flex-direction: column; gap: 18px; max-width: 640px">
+          <div style="display: flex; flex-wrap: wrap; gap: 18px">
+            <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+              <label for="c-name" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #999999">Name</label>
+              <input id="c-name" type="text" style="min-height: 50px; padding: 0 16px; background: #0f0f0f; border: 1px solid #4b4b4b; color: #f4f4f4; font-family: 'Archivo', sans-serif; font-size: 15px; border-radius: 4px">
+            </div>
+            <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+              <label for="c-email" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #999999">Email</label>
+              <input id="c-email" type="email" style="min-height: 50px; padding: 0 16px; background: #0f0f0f; border: 1px solid #4b4b4b; color: #f4f4f4; font-family: 'Archivo', sans-serif; font-size: 15px; border-radius: 4px">
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <label for="c-topic" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #999999">Topic</label>
+            <select id="c-topic" style="min-height: 50px; padding: 0 16px; background: #0f0f0f; border: 1px solid #4b4b4b; color: #f4f4f4; font-family: 'Archivo', sans-serif; font-size: 15px; border-radius: 4px">
+              <option>General enquiry</option>
+              <option>Press</option>
+              <option>Distribution and retail</option>
+              <option>Publish a game</option>
+              <option>Technical support</option>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <label for="c-msg" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #999999">Message</label>
+            <textarea id="c-msg" rows="6" style="padding: 14px 16px; background: #0f0f0f; border: 1px solid #4b4b4b; color: #f4f4f4; font-family: 'Archivo', sans-serif; font-size: 15px; border-radius: 4px; resize: vertical"></textarea>
+          </div>
+          <button type="button" style="min-height: 54px; align-self: flex-start; padding: 0 36px; background: #f4f4f4; color: #080808; border: 0; font-family: 'Archivo', sans-serif; font-size: 16px; font-weight: 700; border-radius: 999px; cursor: pointer">Send message</button>
+        </form>
+      </div>
+
+      <aside style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 0">
+        <div style="border-top: 1px solid #232323; padding: 22px 0; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #737373">Email</span>
+          <a href="mailto:atlas@wololabs.com" style="font-size: 18px; text-decoration: none">atlas@wololabs.com</a>
+        </div>
+        <div style="border-top: 1px solid #232323; padding: 22px 0; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #737373">Instagram</span>
+          <a href="https://www.instagram.com/atlas64_" style="font-size: 18px; text-decoration: none">@atlas64_</a>
+        </div>
+        <div style="border-top: 1px solid #232323; padding: 22px 0; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #737373">YouTube</span>
+          <a href="https://www.youtube.com/@wololabs" style="font-size: 18px; text-decoration: none">youtube.com/@wololabs</a>
+        </div>
+        <div style="border-top: 1px solid #232323; padding: 22px 0; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #737373">Atlas 64</span>
+          <a href="https://atlas-64.com/" style="font-size: 18px; text-decoration: none">atlas-64.com</a>
+        </div>
+        <div style="border-top: 1px solid #232323; border-bottom: 1px solid #232323; padding: 22px 0; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #737373">Based in</span>
+          <p style="font-size: 18px; color: #f4f4f4">Mendoza, Argentina</p>
+        </div>
+        <p style="margin-top: 26px; font-family: 'Pirata One', serif; font-size: 28px; color: #90D700">There is no set path.</p>
+      </aside>
+    </div>
+  </section>
+
+  <footer style="padding: 56px 40px">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · We only live once</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

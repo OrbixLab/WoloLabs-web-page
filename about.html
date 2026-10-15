@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Wolo Labs</title>
+<meta name="description" content="Wolo Labs: mission, vision and values. We are not here to follow instructions.">
+<link rel="icon" href="assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Pirata+One&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="assets/css/base.css">
+<script>
+  // `wl-js` enables the fixed, collapsible nav. `wl-motion` is opt-in: content is only
+  // hidden-then-revealed when the visitor has not asked for reduced motion.
+  // If main.js never runs, drop both so nothing stays hidden.
+  // The hero starts as soon as its fonts are in (or after 700 ms) without waiting
+  // for main.js, so a slow connection never leaves the first screen blank.
+  (function (d) {
+    d.classList.add('wl-js');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('wl-motion');
+    var ready = function () { d.classList.add('is-ready'); };
+    setTimeout(ready, 700);
+    if (document.fonts && document.fonts.load) {
+      Promise.all([document.fonts.load('600 1em Archivo'), document.fonts.load('italic 400 1em "Playfair Display"')]).then(ready, ready);
+    }
+    // Deferred scripts always run before DOMContentLoaded: if main.js has not run
+    // by then it failed to load, so un-hide everything.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<div style="background: #080808; color: #f4f4f4; font-family: 'Archivo', system-ui, sans-serif">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="guides.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="https://atlas-64.com/" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Store</a>
+        <a href="about.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section style="padding: 96px 40px 72px; border-bottom: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px">
+      <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">About us</span>
+      <h1 style="font-size: clamp(40px, 6vw, 100px); line-height: 0.93; letter-spacing: -0.035em; font-weight: 600; text-transform: uppercase; max-width: 18ch">
+        We are not here to follow <span style="font-family: 'Pirata One', serif; text-transform: none; color: #90D700; letter-spacing: 0">instructions</span>
+      </h1>
+      <div style="display: flex; flex-wrap: wrap; gap: 36px">
+        <p style="flex: 1 1 320px; min-width: 0; font-size: 17px; line-height: 1.65; color: #c2c2c2">
+          For a long time, playing meant picking a side. Either you opened a box and followed rules
+          already written, or you turned on a screen and walked into a closed world.
+          Two ways to play, two different sets of limits.
+        </p>
+        <p style="flex: 1 1 320px; min-width: 0; font-size: 17px; line-height: 1.65; color: #c2c2c2">
+          And in between, something was missing: more freedom, more control, more possibility.
+          WOLO was born in that space. Not as another game or another console, but as a hybrid zone
+          where the physical and the digital cross, interact and shift with what you do.
+        </p>
+        <p style="flex: 1 1 320px; min-width: 0; font-size: 17px; line-height: 1.65; color: #c2c2c2">
+          There is no single way to use it. You can try, mix, get it wrong, build it again.
+          And somewhere in that process something important changes: you are no longer just playing.
+          You are creating.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION / VALUES -->
+  <section style="padding: 96px 40px; border-bottom: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px">
+      <article style="flex: 1 1 320px; min-width: 0; border: 1px solid #232323; background: #0f0f0f; padding: 36px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">/ Mission</span>
+        <p style="font-size: 17px; line-height: 1.6; color: #f4f4f4">
+          To build hybrid games and experiences that bring together the world of board games and video games,
+          simplifying the experience, driving innovation and opening new possibilities to play and to create.
+        </p>
+      </article>
+      <article style="flex: 1 1 320px; min-width: 0; border: 1px solid #232323; background: #0f0f0f; padding: 36px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #8bd4df">/ Vision</span>
+        <p style="font-size: 17px; line-height: 1.6; color: #f4f4f4">
+          To be the company that redefines the way people play, connecting the physical and the digital
+          through innovative products, and becoming a global reference inside a new culture of play and creation.
+        </p>
+      </article>
+      <article style="flex: 1 1 320px; min-width: 0; border: 1px solid #232323; background: #0f0f0f; padding: 36px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #c2c2c2">/ Values</span>
+        <p style="font-size: 17px; line-height: 1.6; color: #f4f4f4">
+          Innovation, professionalism, closeness and simplicity, to build play experiences that are modern,
+          accessible and in constant evolution.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section style="background: #072834; padding: 96px 40px">
+    <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+      <img src="assets/img/isotipo-w.svg" alt="" style="width: 48px; height: auto; filter: invert(1)">
+      <blockquote style="margin: 0; font-size: clamp(24px, 3.2vw, 42px); line-height: 1.25; font-weight: 500; font-style: italic; color: #ffffff">
+        « It does not need to raise its voice for you to trust it. It shows up, it listens, it puts the problem
+        in order and solves it without making noise. It does not promise miracles, it promises work done well.
+        And when things get hard, it does not hide: it stays until everything works again. »
+      </blockquote>
+      <p style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #90D700">Tone of voice — Wolo Labs brand manual</p>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section style="background: #f4f4f4; color: #080808; padding: 96px 40px">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px">
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
+        <h2 style="font-size: clamp(32px, 4vw, 56px); line-height: 1; letter-spacing: -0.025em; font-weight: 600; text-transform: uppercase">The team</h2>
+        <p style="max-width: 44ch; font-size: 16px; line-height: 1.6; color: #4b4b4b">A small team designing hardware, software and games in the same room.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 4 / 5; background: #ffffff; border: 1px solid #c2c2c2; overflow: hidden"><img src="assets/img/Founders/gonzalo.webp" alt="Gonzalo Lopez Di Paola" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 22%"></div>
+          <h3 style="font-size: 18px; font-weight: 600">Gonzalo Lopez Di Paola</h3>
+          <p style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #4b4b4b">CEO</p>
+          <p style="font-size: 15px; line-height: 1.55; color: #4b4b4b">Age of Empires fan. Settles every argument with a &ldquo;wololo&rdquo;.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 4 / 5; background: #ffffff; border: 1px solid #c2c2c2; overflow: hidden"><img src="assets/img/Founders/juan.webp" alt="Juan Gabriel Losada" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 22%"></div>
+          <h3 style="font-size: 18px; font-weight: 600">Juan Gabriel Losada</h3>
+          <p style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #4b4b4b">CTO</p>
+          <p style="font-size: 15px; line-height: 1.55; color: #4b4b4b">Plays D&amp;D for 12 hours straight every Friday.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 4 / 5; background: #ffffff; border: 1px solid #c2c2c2; overflow: hidden"><img src="assets/img/Founders/fernando.webp" alt="Fernando Coria" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"></div>
+          <h3 style="font-size: 18px; font-weight: 600">Fernando Coria</h3>
+          <p style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #4b4b4b">Game Designer</p>
+          <p style="font-size: 15px; line-height: 1.55; color: #4b4b4b">Forever rebalancing a board game collection that always has room for one more.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="aspect-ratio: 4 / 5; background: #ffffff; border: 1px solid #c2c2c2; overflow: hidden"><img src="assets/img/Founders/arturo.webp" alt="Arturo Pellicer" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"></div>
+          <h3 style="font-size: 18px; font-weight: 600">Arturo Pellicer</h3>
+          <p style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #4b4b4b">Designer</p>
+          <p style="font-size: 15px; line-height: 1.55; color: #4b4b4b">More hours logged in League of Legends than hours lived.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 88px 40px">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+      <h2 style="font-size: clamp(28px, 3.6vw, 50px); line-height: 1; letter-spacing: -0.02em; font-weight: 600; text-transform: uppercase; max-width: 20ch">Want to work with us?</h2>
+      <a href="contact.html" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 34px; background: #90D700; color: #080808; text-decoration: none; font-size: 16px; font-weight: 700; border-radius: 999px">Write to us</a>
+    </div>
+  </section>
+
+  <footer style="padding: 40px 40px 56px; border-top: 1px solid #232323">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
