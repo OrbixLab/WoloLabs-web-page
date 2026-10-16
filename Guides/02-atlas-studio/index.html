@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet Atlas Studio — Atlas Studio Guides — Wolo Labs</title>
+<meta name="description" content="Install it, find your way around the Simulator, talk to an AI agent and activate your Atlas Developer account.">
+<link rel="alternate" hreflang="es" href="es.html">
+<link rel="icon" href="../../assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script>
+  // Same boot as the other pages: `wl-js` pins the nav; if main.js never runs, drop it.
+  (function (d) {
+    d.classList.add('wl-js');
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
+</head>
+<body>
+<div class="wl-page">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="../../index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="../../assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="../../index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="../../products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="../../guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="../../about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="../../contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <header class="g-hero wl-worlds">
+    <div class="wl-worlds-sky" aria-hidden="true"></div>
+    <div class="g-hero-inner">
+      <div class="g-crumbs">
+        <span><a href="../../guides.html">Guides</a> / <span class="g-kicker">Guide 02 of 6</span></span>
+        <span class="g-lang"><span>EN</span><a href="es.html" hreflang="es" lang="es">ES</a></span>
+      </div>
+      <h1>Meet Atlas Studio</h1>
+      <p class="g-lede">Install it, find your way around the Simulator, talk to an AI agent and activate your Atlas Developer account.</p>
+      <div class="g-meta"><span>10 min read</span><span>Beginner</span><span>Atlas Studio 0.2</span></div>
+      <nav class="g-progress" aria-label="Guides">
+        <a href="../01-atlas-64/index.html" class="is-done" aria-label="Meet Atlas 64"></a>
+        <a href="../02-atlas-studio/index.html" class="is-current" aria-label="Meet Atlas Studio" aria-current="page"></a>
+        <a href="../03-first-game/index.html" class="" aria-label="Your first game"></a>
+        <a href="../04-testing-with-ai/index.html" class="" aria-label="Testing with AI"></a>
+        <a href="../05-test-on-your-phone/index.html" class="" aria-label="Test on your phone"></a>
+        <a href="../06-publish-to-the-store/index.html" class="" aria-label="Publish to the store"></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="g-layout">
+    <nav class="g-toc" aria-label="In this guide">
+      <span class="g-toc-title">In this guide</span>
+      <a href="#what">What Atlas Studio is</a>
+      <a href="#install">Install it</a>
+      <a href="#home">Your projects</a>
+      <a href="#simulator">The Simulator</a>
+      <a href="#panel">The Control Panel</a>
+      <a href="#agent">Talking to the agent</a>
+      <a href="#can">What the agent can and can’t do</a>
+      <a href="#account">Activate your Atlas Developer account</a>
+    </nav>
+
+    <article class="g-article">
+<section id="what">
+        <h2><span class="g-num">01</span>What Atlas Studio is</h2>
+        <p><strong>Atlas Studio</strong> is the free PC app where Atlas games are made. It does four things, in this order:</p>
+        <ol>
+          <li><strong>Create</strong> a game project that already follows every Atlas rule.</li>
+          <li><strong>Simulate</strong> the board and the phone, so you can play your game without any hardware.</li>
+          <li><strong>Check</strong> your game with the same rules the store will apply.</li>
+          <li><strong>Send</strong> it to your phone for real-board testing, and to the store when it’s ready.</li>
+        </ol>
+        <p>You don’t need to know how to program. You describe what you want to an <strong>AI agent</strong> inside Studio, and it writes and tests the game for you. Studio is built on the Godot game engine, so if you do know how to code, everything is there when you need it.</p>
+        <div class="g-callout">
+          <span class="g-callout-title">About the language</span>
+          <p>Studio’s interface is in Spanish today. In these guides every on-screen label appears exactly as you’ll see it, like <span class="g-ui">Simulador</span>, followed by its translation in <span class="g-tr">(italics)</span> the first time.</p>
+        </div>
+      </section>
+
+      <section id="install">
+        <h2><span class="g-num">02</span>Install it</h2>
+        <ol class="g-steps">
+          <li>
+            <h3>Download the installer</h3>
+            <p>Get <code>AtlasStudioSetup</code> from the <a href="../../products.html#atlas-studio">Atlas Studio page</a>. It’s for Windows; Mac and Linux are still to be confirmed.</p>
+          </li>
+          <li>
+            <h3>Run it</h3>
+            <p>It installs for your user only, without administrator rights, and adds Atlas Studio to the Start menu and the desktop. The installer isn’t signed yet, so the first time Windows may show <em>“Windows protected your PC”</em>: click <em>More info</em> → <em>Run anyway</em>.</p>
+          </li>
+          <li>
+            <h3>Open Atlas Studio</h3>
+            <p>The first launch takes a moment while it prepares itself. Updating later is just running a newer installer: your settings, session and projects stay.</p>
+          </li>
+        </ol>
+        <div class="g-callout g-callout--note">
+          <span class="g-callout-title">Tip</span>
+          <p>Keep your projects in a folder that <strong>isn’t synced by OneDrive</strong> or similar. Studio writes many small cache files while you work, and syncing them at the same time slows everything down.</p>
+        </div>
+      </section>
+
+      <section id="home">
+        <h2><span class="g-num">03</span>Your projects</h2>
+        <p>Studio opens on <strong>Gestión de proyectos</strong> <span class="g-tr">(project management)</span>, the list of your games. Every game is its own project, in its own folder.</p>
+        <figure class="g-shot">
+          <img src="Assets/home-projects.webp" alt="The Atlas Studio home screen: a table of projects with name, version, status, last update and the actions Abrir, Panel and delete." width="1600" height="502" loading="lazy">
+          <figcaption>Home: search, filter by store status, and open any of your games.</figcaption>
+        </figure>
+        <ul>
+          <li><span class="g-ui">Agregar proyecto</span> <span class="g-tr">(add project)</span> creates a new game, from scratch or from an example like <strong>Memoria</strong>, or adds one you already have.</li>
+          <li><span class="g-ui">Abrir</span> <span class="g-tr">(open)</span> opens a game. <span class="g-ui">Panel</span> shows how it’s doing in the store.</li>
+          <li>The <strong>Estado</strong> <span class="g-tr">(status)</span> column shows where each game is: not sent, in review, published or needing changes. It needs you to be signed in.</li>
+          <li>Deleting a project sends its folder to the Recycle Bin, so you can still get it back.</li>
+        </ul>
+      </section>
+
+      <section id="simulator">
+        <h2><span class="g-num">04</span>The Simulator</h2>
+        <p>When you open a game, Studio goes straight to the <span class="g-ui">Simulador</span> <span class="g-tr">(Simulator)</span> tab: a virtual Atlas 64 next to a virtual phone, with the AI agent on the right.</p>
+        <figure class="g-shot">
+          <div class="g-annot">
+            <img src="Assets/simulator-tour.webp" alt="The Simulator tab with a game running: a board with a red heart painted on it, the phone screen showing the same board and colour buttons, and the WOLO IA chat on the right." width="1600" height="825" loading="lazy">
+            <span class="g-pin" style="--x: 5.5%; --y: 30%">1</span>
+            <span class="g-pin" style="--x: 51%; --y: 20%">2</span>
+            <span class="g-pin" style="--x: 37.5%; --y: 84%">3</span>
+            <span class="g-pin" style="--x: 61.5%; --y: 40%">4</span>
+            <span class="g-pin" style="--x: 64%; --y: 95%">5</span>
+            <span class="g-pin" style="--x: 97%; --y: 16%">6</span>
+            <span class="g-pin" style="--x: 68.5%; --y: 4%">7</span>
+            <span class="g-pin" style="--x: 92%; --y: 10%">8</span>
+          </div>
+          <figcaption>Paint the Board, the game from guide 3, running in the Simulator.</figcaption>
+        </figure>
+        <ol class="g-legend">
+          <li><strong>Tool rail.</strong> <span class="g-ui">Ejecutar</span> / <span class="g-ui">Detener</span> <span class="g-tr">(run / stop)</span>, <span class="g-ui">Reiniciar</span> <span class="g-tr">(restart)</span>, <span class="g-ui">Fichas</span> <span class="g-tr">(pieces)</span>, <span class="g-ui">Añadir</span> / <span class="g-ui">Quitar</span> <span class="g-tr">(add / remove a module)</span>, <span class="g-ui">Ajustar</span> <span class="g-tr">(fit to view)</span> and, at the bottom, <span class="g-ui">Ajustes</span> <span class="g-tr">(settings)</span>.</li>
+          <li><strong>The board.</strong> Drag pieces onto cells, lift them off, drag a module to move it, right-click to rotate it, scroll to zoom.</li>
+          <li><strong>Atlas Core.</strong> Attached to module 0. Drop a piece on it and the game reads it, just like the real one.</li>
+          <li><strong>The phone.</strong> Your game’s screen, live. You can tap its buttons with the mouse.</li>
+          <li><span class="g-ui">Señalar</span> <span class="g-tr">(point)</span>. Click something on the phone or a cell on the board to show it to the agent.</li>
+          <li><strong>WOLO IA</strong>, the chat with your AI agent.</li>
+          <li><strong>Basic and advanced mode.</strong> Basic shows only what you need; advanced opens the full editor.</li>
+          <li><strong>Run controls</strong>: play, pause and stop the game.</li>
+        </ol>
+        <div class="g-pair">
+          <figure class="g-shot">
+            <img src="Assets/simulator-pieces.webp" alt="The Fichas palette open over the board: eight numbered pieces in different colours, tips, and an Administrar fichas button." width="860" height="720" loading="lazy">
+            <figcaption><span class="g-ui">Fichas</span>: drag a piece onto a cell or onto Atlas Core. <span class="g-ui">Administrar fichas</span> renames them, gives them pictures and shows each one’s NFC memory.</figcaption>
+          </figure>
+          <figure class="g-shot g-shot--narrow">
+            <img src="Assets/simulator-settings.webp" alt="The settings popover: Bluetooth típico (~30 ms) and Brillo 100%." width="354" height="228" loading="lazy">
+            <figcaption><span class="g-ui">Ajustes</span>: simulate a slower phone (Bluetooth delay) or a dimmed board (brightness), to see your game the way players will.</figcaption>
+          </figure>
+        </div>
+        <h3>Basic and advanced mode</h3>
+        <p>Projects open in <span class="g-ui">Modo base</span> <span class="g-tr">(basic mode)</span>: board, phone and chat. <span class="g-ui">Modo avanzado</span> <span class="g-tr">(advanced mode)</span> adds the scene tree, the files, the inspector, the log and the <strong>2D</strong> and <strong>Script</strong> tabs, for when you want to see or change what the agent built. You can switch at any time; nothing is lost.</p>
+        <figure class="g-shot">
+          <img src="Assets/advanced-mode.webp" alt="The same game in advanced mode: scene tree and file system on the left, the simulator in the middle, chat and inspector on the right, and a log of piece events below the board." width="1600" height="825" loading="lazy">
+          <figcaption>Advanced mode: the same Simulator, plus the editor around it.</figcaption>
+        </figure>
+      </section>
+
+      <section id="panel">
+        <h2><span class="g-num">05</span>The Control Panel</h2>
+        <p>The other tab, <span class="g-ui">Panel de Control</span> <span class="g-tr">(control panel)</span>, has everything about your game that isn’t playing it:</p>
+        <figure class="g-shot">
+          <img src="Assets/control-panel.webp" alt="The Panel de Control tab for Paint the Board, with the workflow cards: Ficha del Juego, Validar Proyecto, Probar en el teléfono, Enviar a revisión and Panel." width="1600" height="825" loading="lazy">
+          <figcaption>Each card is one step of the way from your PC to the store.</figcaption>
+        </figure>
+        <div class="g-table-wrap">
+          <table class="g-table">
+            <tbody>
+              <tr><td><span class="g-ui">Ficha del Juego</span><br><span class="g-tr">(game sheet)</span></td><td>Title, version, description, categories, number of boards and players, covers. What the store will show.</td></tr>
+              <tr><td><span class="g-ui">Validar Proyecto</span><br><span class="g-tr">(validate)</span></td><td>Checks the game against the platform rules. Covered in guide 4.</td></tr>
+              <tr><td><span class="g-ui">Probar en el teléfono</span><br><span class="g-tr">(test on phone)</span></td><td>Installs the game on your own phone to play it on a real board. Guide 5.</td></tr>
+              <tr><td><span class="g-ui">Enviar a revisión</span><br><span class="g-tr">(send for review)</span></td><td>Sends the game to the store. Guide 6.</td></tr>
+              <tr><td><span class="g-ui">Panel</span></td><td>After publishing: versions, installs, reports and review results.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="agent">
+        <h2><span class="g-num">06</span>Talking to the agent</h2>
+        <div class="g-pair">
+          <div>
+            <p>The chat on the right, <strong>WOLO IA</strong>, is where you make the game. You write what you want in plain words (“when a piece lands on a cell, paint it red”) and the agent changes the game, runs it in the Simulator and tells you how to try it.</p>
+            <p>Studio doesn’t come with its own AI. <strong>You bring the one you already use</strong>, and the account and its cost are yours:</p>
+            <ul>
+              <li><strong>Claude</strong>: a Claude Pro or Max account, with Claude Code.</li>
+              <li><strong>ChatGPT (Codex)</strong>: a ChatGPT account, with Codex.</li>
+              <li><strong>Gemini</strong>: a Gemini API key from Google AI Studio.</li>
+            </ul>
+          </div>
+          <figure class="g-shot g-shot--narrow">
+            <img src="Assets/agent-chat.webp" alt="The WOLO IA chat panel with Claude selected, a message box that says Describe una mecánica, un efecto o una idea, and the Conectar button." width="420" height="870" loading="lazy">
+            <figcaption>Pick the agent at the bottom left and press <span class="g-ui">Conectar</span>.</figcaption>
+          </figure>
+        </div>
+        <h3>The first time</h3>
+        <ol class="g-steps">
+          <li><p>Pick your agent in the list at the bottom of the chat.</p></li>
+          <li><p>If your PC doesn’t have <strong>Node.js</strong> (a free program agents need), the chat shows <span class="g-ui">Descargar Node.js</span>. Install it and come back.</p></li>
+          <li><p>Press <span class="g-ui">Instalar Claude</span> (or the agent you chose). It’s a one-time install shared by all your projects.</p></li>
+          <li><p>Press <span class="g-ui">Conectar</span> <span class="g-tr">(connect)</span> and sign in with your account, or paste your key for Gemini. Then choose a model if you want, and start writing.</p></li>
+        </ol>
+        <h3>How to ask well</h3>
+        <ul>
+          <li><strong>One change at a time.</strong> “Add a timer” works better than a page of rules. Build, try, then ask for the next thing.</li>
+          <li><strong>Say how you’ll know it works.</strong> “When I lift the piece, the cell should stay painted” gives the agent something to test.</li>
+          <li><strong>Point instead of describing.</strong> Press <span class="g-ui">Señalar</span>, click the button or cell you mean, then write “make this bigger” or “this cell should be blue”. The agent gets a picture with your selection marked in gold.</li>
+          <li><strong>Talk like a designer.</strong> You don’t need technical words. The agent is told that you design board games and to answer in plain language, without showing code unless you ask.</li>
+        </ul>
+        <p>Every conversation is saved with the project. The clock icon at the top of the chat reopens an earlier one; <span class="g-ui">Nueva conversación</span> starts fresh. <span class="g-ui">Uso del modelo</span> shows how much of your plan you’ve used.</p>
+      </section>
+
+      <section id="can">
+        <h2><span class="g-num">07</span>What the agent can and can’t do</h2>
+        <div class="g-pair">
+          <div class="g-callout">
+            <span class="g-callout-title">The agent can</span>
+            <ul>
+              <li>Create and change your game: rules, screens, colours, sounds.</li>
+              <li>Check it against the platform rules.</li>
+              <li>Run it in the Simulator and read its errors.</li>
+              <li>Place and lift pieces, use Atlas Core and add or move modules.</li>
+              <li>Read what every cell of the board is showing.</li>
+              <li>Look at the phone screen, take screenshots and tap buttons.</li>
+            </ul>
+          </div>
+          <div class="g-callout g-callout--note">
+            <span class="g-callout-title">Only you can</span>
+            <ul>
+              <li>Fill in and save the <span class="g-ui">Ficha del Juego</span>.</li>
+              <li>Test on your phone.</li>
+              <li>Send the game to the store.</li>
+              <li>Decide whether the game is fun.</li>
+            </ul>
+            <p>The first three need your Atlas account, so the agent will ask you to do them.</p>
+          </div>
+        </div>
+        <p>Actions on your Atlas game are allowed without asking. Anything else the agent wants to do on your PC asks for your permission first.</p>
+      </section>
+
+      <section id="account">
+        <h2><span class="g-num">08</span>Activate your Atlas Developer account</h2>
+        <p>You can make and simulate games without an account. To <strong>test on your phone</strong> and <strong>publish</strong>, you need an Atlas account with the creator option turned on. It’s activated from the <strong>AtlasHub</strong> app on your phone:</p>
+        <ol class="g-steps">
+          <li>
+            <h3>Sign in to AtlasHub with email and password</h3>
+            <p>An anonymous account on the device can’t become a creator account.</p>
+          </li>
+          <li>
+            <h3>Open the developer settings</h3>
+            <p><span class="g-ui g-path">Configuración → Configuración de desarrollador</span> <span class="g-tr">(Settings → Developer settings)</span>.</p>
+          </li>
+          <li>
+            <h3>Tap “Habilitar cuenta de creador”</h3>
+            <p><span class="g-ui">Habilitar cuenta de creador</span> <span class="g-tr">(enable creator account)</span>. If you haven’t entered your date of birth, AtlasHub asks for it first.</p>
+          </li>
+          <li>
+            <h3>Read and accept the agreement</h3>
+            <p>Tap <span class="g-ui">Acepto el acuerdo</span> <span class="g-tr">(I accept the agreement)</span>. If you’re under 18 you need the authorization of a parent or legal guardian, and you confirm it with <span class="g-ui">Tengo esa autorización</span> <span class="g-tr">(I have that authorization)</span>.</p>
+          </li>
+          <li>
+            <h3>Sign in to Studio with the same account</h3>
+            <p>Studio asks for it the first time you use <span class="g-ui">Probar en el teléfono</span>, <span class="g-ui">Enviar a revisión</span> or <span class="g-ui">Panel</span>. If the account isn’t a creator account, Studio tells you and points you back to AtlasHub.</p>
+          </li>
+        </ol>
+        <div class="g-pending"><strong>Screenshot pending</strong>AtlasHub · Configuración → Configuración de desarrollador → Habilitar cuenta de creador</div>
+        <p>Once it’s enabled, the same screen in AtlasHub shows <strong>Cuenta de creador</strong> and <strong>Modo desarrollador</strong>, which you’ll use in guide 5. Publishing itself is explained in guide 6.</p>
+      </section>
+    </article>
+  </div>
+
+  <nav class="g-pager" aria-label="Guides">
+    <a href="../01-atlas-64/index.html"><small>&lt;&lt;&lt; Previous</small><span>Meet Atlas 64</span></a>
+    <a class="is-next" href="../03-first-game/index.html"><small>Next &gt;&gt;&gt;</small><span>Your first game</span></a>
+  </nav>
+
+  <footer style="padding: 56px 40px; border-top: 1px solid #232323">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="../../index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

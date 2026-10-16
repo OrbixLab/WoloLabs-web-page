@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publicá en la tienda — Atlas Studio Guías — Wolo Labs</title>
+<meta name="description" content="De “Enviar a revisión” a todos los Atlas 64: controles automáticos, revisión humana, aprobación y actualizaciones.">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="icon" href="../../assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script>
+  // Same boot as the other pages: `wl-js` pins the nav; if main.js never runs, drop it.
+  (function (d) {
+    d.classList.add('wl-js');
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
+</head>
+<body>
+<div class="wl-page">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="../../index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="../../assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Abrir menú"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="../../index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Inicio</a>
+        <a href="../../products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Productos</a>
+        <a href="../../guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guías</a>
+        <a href="../../about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Nosotros</a>
+        <a href="../../contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contacto</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <header class="g-hero wl-worlds">
+    <div class="wl-worlds-sky" aria-hidden="true"></div>
+    <div class="g-hero-inner">
+      <div class="g-crumbs">
+        <span><a href="../../guides.html">Guías</a> / <span class="g-kicker">Guía 06 de 6</span></span>
+        <span class="g-lang"><a href="index.html" hreflang="en" lang="en">EN</a><span>ES</span></span>
+      </div>
+      <h1>Publicá en la tienda</h1>
+      <p class="g-lede">De “Enviar a revisión” a todos los Atlas 64: controles automáticos, revisión humana, aprobación y actualizaciones.</p>
+      <div class="g-meta"><span>9 min de lectura</span><span>Avanzado</span><span>Atlas Studio 0.2</span></div>
+      <nav class="g-progress" aria-label="Guías">
+        <a href="../01-atlas-64/es.html" class="is-done" aria-label="Conocé Atlas 64"></a>
+        <a href="../02-atlas-studio/es.html" class="is-done" aria-label="Conocé Atlas Studio"></a>
+        <a href="../03-first-game/es.html" class="is-done" aria-label="Tu primer juego"></a>
+        <a href="../04-testing-with-ai/es.html" class="is-done" aria-label="Testeo con IA"></a>
+        <a href="../05-test-on-your-phone/es.html" class="is-done" aria-label="Probalo en tu teléfono"></a>
+        <a href="../06-publish-to-the-store/es.html" class="is-current" aria-label="Publicá en la tienda" aria-current="page"></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="g-layout">
+    <nav class="g-toc" aria-label="En esta guía">
+      <span class="g-toc-title">En esta guía</span>
+      <a href="#overview">El camino a la tienda</a>
+      <a href="#before">Antes de enviarlo</a>
+      <a href="#send">Envialo</a>
+      <a href="#checks">Los controles automáticos</a>
+      <a href="#review">La revisión humana</a>
+      <a href="#result">Aprobado o rechazado</a>
+      <a href="#updates">Actualizaciones</a>
+      <a href="#panel">Después de publicar: el Panel</a>
+      <a href="#limits">Límites</a>
+    </nav>
+
+    <article class="g-article">
+<section id="overview">
+        <h2><span class="g-num">01</span>El camino a la tienda</h2>
+        <p>Publicar es un botón en Studio, <span class="g-ui">Enviar a revisión</span>, seguido de dos tipos de revisión: <strong>controles automáticos</strong> que tardan minutos, y una <strong>persona</strong> que juega tu juego. Cuando los dos dicen que sí, tu juego aparece en la tienda de todos los Atlas 64.</p>
+        <figure class="g-shot g-shot--bare">
+          <svg viewBox="0 0 760 250" role="img" aria-labelledby="pipe-t-es">
+            <title id="pipe-t-es">Enviado, después controles automáticos, después revisión humana, después aprobado y publicado. Cualquier revisión puede rechazar el juego; el motivo aparece en el Panel, lo arreglás y lo volvés a enviar.</title>
+            <rect width="760" height="250" rx="10" fill="#0f0f0f" stroke="#232323"/>
+            <g font-family="Archivo, sans-serif" text-anchor="middle">
+              <g transform="translate(24 50)">
+                <rect width="124" height="64" rx="8" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+                <text x="62" y="30" fill="#e6e6e6" font-size="14" font-weight="600">Enviado</text>
+                <text x="62" y="48" fill="#999" font-size="11">desde Studio</text>
+              </g>
+              <g transform="translate(172 50)">
+                <rect width="140" height="64" rx="8" fill="#1e1e1e" stroke="#8bd4df" stroke-width="2"/>
+                <text x="70" y="30" fill="#e6e6e6" font-size="12.5" font-weight="600">Controles automáticos</text>
+                <text x="70" y="48" fill="#999" font-size="11">5 compuertas · minutos</text>
+              </g>
+              <g transform="translate(336 50)">
+                <rect width="130" height="64" rx="8" fill="#1e1e1e" stroke="#8bd4df" stroke-width="2"/>
+                <text x="65" y="30" fill="#e6e6e6" font-size="14" font-weight="600">Revisión humana</text>
+                <text x="65" y="48" fill="#999" font-size="11">alguien lo juega</text>
+              </g>
+              <g transform="translate(490 50)">
+                <rect width="110" height="64" rx="8" fill="#1e1e1e" stroke="#f1ba41" stroke-width="2"/>
+                <text x="55" y="30" fill="#f1ba41" font-size="14" font-weight="600">Aprobado</text>
+                <text x="55" y="48" fill="#999" font-size="11">ficha lista</text>
+              </g>
+              <g transform="translate(624 50)">
+                <rect width="112" height="64" rx="8" fill="#90D700"/>
+                <text x="56" y="30" fill="#080808" font-size="14" font-weight="700">Publicado</text>
+                <text x="56" y="48" fill="#080808" font-size="11">en la tienda</text>
+              </g>
+              <g stroke="#4b4b4b" stroke-width="2">
+                <path d="M148 82 H172"/><path d="M312 82 H336"/><path d="M466 82 H490"/><path d="M600 82 H624"/>
+              </g>
+              <path d="M242 114 V170 H300 M401 114 V170 H340" stroke="#CD3F21" stroke-width="2" fill="none" stroke-dasharray="5 5"/>
+              <g transform="translate(250 160)">
+                <rect width="140" height="56" rx="8" fill="#1e1e1e" stroke="#CD3F21" stroke-width="2"/>
+                <text x="70" y="25" fill="#f0715a" font-size="14" font-weight="600">Rechazado</text>
+                <text x="70" y="43" fill="#999" font-size="11">motivo en Panel</text>
+              </g>
+              <path d="M250 196 H86 V114" stroke="#737373" stroke-width="1.5" fill="none" stroke-dasharray="3 5"/>
+              <text x="160" y="214" fill="#737373" font-size="11">arreglalo y envialo de nuevo</text>
+            </g>
+          </svg>
+          <figcaption>Cada envío hace este camino: la primera versión y cada actualización.</figcaption>
+        </figure>
+      </section>
+
+      <section id="before">
+        <h2><span class="g-num">02</span>Antes de enviarlo</h2>
+        <h3>El juego</h3>
+        <ul class="g-check">
+          <li>Pasa <span class="g-ui">Validar Proyecto</span> y lo jugaste en un tablero real (guía 5).</li>
+          <li>Explica sus reglas y cómo armar la mesa, en pantalla.</li>
+          <li>La <strong>versión</strong> en la <span class="g-ui">Ficha del Juego</span> es la que querés publicar. Muchos creadores usan <code>1.0.0</code> para la primera versión pública.</li>
+        </ul>
+        <h3>La ficha de la tienda</h3>
+        <p>Lo que muestra la tienda sale de la <span class="g-ui">Ficha del Juego</span>, y se publica cuando se aprueba el envío:</p>
+        <ul>
+          <li><strong>Descripción</strong>: qué es el juego y por qué es divertido, en pocas líneas.</li>
+          <li><strong>Categorías</strong>: hasta 3 entre Arcade, Estrategia, Puzzle, Memoria, Clásicos, Party, Deportes, Rol, Educativo.</li>
+          <li><strong>Tableros</strong>: el mínimo que necesita tu juego y el máximo que usa. La tienda lo muestra, como “2-3 tableros”.</li>
+          <li><strong>Portadas</strong>: una vertical de 320 × 440 y, si querés, una apaisada.</li>
+          <li><strong>Licencias</strong> de las imágenes, sonidos o fuentes que no hiciste vos (<span class="g-ui">Agregar licencia</span>, al final de la ficha).</li>
+        </ul>
+        <figure class="g-shot">
+          <img src="Assets/game-sheet.webp" alt="El diálogo Ficha del juego en Atlas Studio." width="976" height="873" loading="lazy">
+          <figcaption>La ficha del juego: lo que escribís acá es lo que van a leer los jugadores.</figcaption>
+        </figure>
+        <h3>El contenido</h3>
+        <div class="g-callout g-callout--note">
+          <span class="g-callout-title">Apto para todo público</span>
+          <p>Los juegos de Atlas son para todas las edades: nada de violencia explícita, contenido sexual, lenguaje ofensivo, apuestas ni consumo de sustancias. Y el nombre no puede ser igual ni parecido a Atlas, Wololo Studio o los juegos hechos por el equipo de Atlas.</p>
+        </div>
+      </section>
+
+      <section id="send">
+        <h2><span class="g-num">03</span>Envialo</h2>
+        <ol class="g-steps">
+          <li>
+            <h3>Abrí “Enviar a revisión”</h3>
+            <p>En la pestaña <span class="g-ui">Panel de Control</span>. Iniciá sesión con tu cuenta de creador si Studio te lo pide. El diálogo muestra el título, el identificador y la versión que va a mandar, tomados de la ficha del juego.</p>
+            <figure class="g-shot g-shot--narrow">
+              <img src="Assets/submit-dialog.webp" alt="El diálogo Enviar a revisión: Paint the Board, paint-the-board, v0.1.0, una explicación, el campo Backend, email y contraseña, y los botones Cerrar y Validar y enviar." width="700" height="643" loading="lazy">
+              <figcaption>“El pack que se publica lo compila el servidor a partir de esto, y después lo revisa una persona.”</figcaption>
+            </figure>
+          </li>
+          <li>
+            <h3>Tocá “Validar y enviar”</h3>
+            <p><span class="g-ui">Validar y enviar</span> corre primero el validador: un juego con errores nunca sale de tu PC, y ves en el momento qué arreglar. Después Studio empaqueta los archivos del juego (sin la caché ni las partes que ya pone Studio), los sube con una barra de progreso y empieza a seguir el estado.</p>
+          </li>
+          <li>
+            <h3>Cerralo si querés</h3>
+            <p>La revisión sigue sin Studio. El estado aparece en la lista de proyectos y en <span class="g-ui">Panel</span>.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="checks">
+        <h2><span class="g-num">04</span>Los controles automáticos</h2>
+        <p>En el servidor, tu juego pasa por cinco compuertas, en orden. Si una falla, el juego se rechaza ahí mismo, con el motivo y, cuando corresponde, el archivo y la línea.</p>
+        <ol>
+          <li><strong>Un paquete seguro.</strong> Sólo tipos de archivo permitidos, todo adentro de la carpeta de tu juego, nada ejecutable.</li>
+          <li><strong>La base oficial.</strong> El servidor reemplaza las partes técnicas que agrega Studio por su propia copia oficial, y revisa que la versión coincida.</li>
+          <li><strong>Un análisis de seguridad del código.</strong> Las mismas reglas que <span class="g-ui">Validar Proyecto</span>. Si validaste, esto pasa. Lo dudoso le llega a quien revisa como una nota.</li>
+          <li><strong>Una compilación aislada.</strong> El juego se compila aparte, sin internet. Si se cuelga o tarda demasiado, se rechaza.</li>
+          <li><strong>Verificación y firma.</strong> El juego terminado se abre exactamente como lo va a abrir AtlasHub, se revisa su tamaño y se firma para que los teléfonos puedan confiar en él.</li>
+        </ol>
+        <p>Por eso importa validar en Studio: corre las mismas reglas, así que acá las sorpresas son raras.</p>
+      </section>
+
+      <section id="review">
+        <h2><span class="g-num">05</span>La revisión humana</h2>
+        <p>Después, una persona del equipo de Atlas baja tu juego y <strong>lo juega</strong>, en el Simulador o en un tablero real. Todos los envíos los revisa una persona, y las primeras versiones de cada creador siempre.</p>
+        <p>Revisa que el juego funcione, que cumpla las reglas de contenido, que la ficha coincida con el juego, y lo que hayan marcado los controles automáticos.</p>
+        <div class="g-callout">
+          <span class="g-callout-title">Cuánto tarda</span>
+          <p>La estimación actual es <strong>entre una semana y dos meses</strong>, según cuántos juegos haya esperando. Es una estimación, no una promesa.</p>
+        </div>
+      </section>
+
+      <section id="result">
+        <h2><span class="g-num">06</span>Aprobado o rechazado</h2>
+        <div class="g-pair">
+          <div class="g-callout">
+            <span class="g-callout-title">Aprobado</span>
+            <p>Tu juego se publica con la descripción, las categorías, los tableros y las portadas de tu ficha, y aparece en la tienda de todos los Atlas 64.</p>
+            <p>El precio y los destacados los define el equipo de Atlas. Por ahora, los juegos se publican gratis.</p>
+          </div>
+          <div class="g-callout g-callout--limit">
+            <span class="g-callout-title">Rechazado</span>
+            <p>El motivo aparece en <span class="g-ui">Panel</span>: las notas escritas de quien revisó, o lo que encontró el control automático, con archivo y línea.</p>
+            <p>Arreglalo (el agente te puede ayudar: pegá el motivo en el chat) y volvé a enviarlo. Después de un rechazo podés reenviar la misma versión.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="updates">
+        <h2><span class="g-num">07</span>Actualizaciones</h2>
+        <p>Una actualización hace exactamente el mismo camino. Tres reglas:</p>
+        <ul>
+          <li><strong>Subí el número de versión</strong> en la ficha del juego. Una versión ya publicada no se puede volver a enviar: Studio te va a decir <em>“Esa versión ya está publicada; subí el número de versión”</em>.</li>
+          <li><strong>Un envío por versión a la vez.</strong> Cuando una versión está en revisión, queda bloqueada. Para cambiar algo, mandá una versión nueva.</li>
+          <li><strong>Los cambios de la ficha viajan con un envío.</strong> Una descripción o portada nueva se publica cuando se aprueba la próxima versión, después de la misma revisión.</li>
+        </ul>
+      </section>
+
+      <section id="panel">
+        <h2><span class="g-num">08</span>Después de publicar: el Panel</h2>
+        <p><span class="g-ui">Panel</span>, en la pestaña Panel de Control o en la lista de proyectos, muestra cómo le va a tu juego:</p>
+        <div class="g-pair">
+          <ul>
+            <li>La ficha, como aparece en la tienda.</li>
+            <li>Todas las versiones, y cuáles se retiraron.</li>
+            <li>Instalaciones: el total y los últimos 30 días.</li>
+            <li>Denuncias de los jugadores, agrupadas por motivo.</li>
+            <li>Todos los envíos, con el motivo de cada rechazo.</li>
+          </ul>
+          <figure class="g-shot g-shot--narrow">
+            <img src="Assets/creator-panel-dialog.webp" alt="El diálogo Panel antes de iniciar sesión: Backend, email, contraseña, Iniciar sesión y la nota Iniciá sesión con tu cuenta de creador para ver el panel." width="700" height="756" loading="lazy">
+            <figcaption>Iniciá sesión con tu cuenta de creador para verlo.</figcaption>
+          </figure>
+        </div>
+        <p>Muestra sólo números: nunca quién instaló tu juego ni quién lo denunció.</p>
+        <p>En la pantalla de inicio, la columna <strong>Estado</strong> resume el último envío de cada juego:</p>
+        <div class="g-table-wrap">
+          <table class="g-table">
+            <thead><tr><th>Estado</th><th>Significa</th></tr></thead>
+            <tbody>
+              <tr><td>En revisión</td><td>Pasando los controles automáticos o esperando a una persona.</td></tr>
+              <tr><td>En producción</td><td>Aprobado o publicado.</td></tr>
+              <tr><td>Revisión necesaria</td><td>El último envío se rechazó, aunque siga publicada una versión anterior.</td></tr>
+              <tr><td>Sin enviar</td><td>Nunca se envió.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="limits">
+        <h2><span class="g-num">09</span>Límites</h2>
+        <div class="g-table-wrap">
+          <table class="g-table">
+            <tbody>
+              <tr><td>Tamaño de lo que sube Studio</td><td>Hasta 200 MB, 5.000 archivos</td></tr>
+              <tr><td>Tamaño del juego terminado</td><td>Hasta 256 MB</td></tr>
+              <tr><td>Envíos</td><td>Hasta 10 por día por creador</td></tr>
+              <tr><td>Quién puede publicar</td><td>Cuentas de Atlas Developer con el acuerdo vigente aceptado</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ese es todo el camino: de una idea en la <a href="../01-atlas-64/es.html">guía 1</a> a un juego en todas las mesas. Andá a hacer algo alrededor de lo que la gente quiera juntarse.</p>
+      </section>
+    </article>
+  </div>
+
+  <nav class="g-pager" aria-label="Guías">
+    <a href="../05-test-on-your-phone/es.html"><small>&lt;&lt;&lt; Anterior</small><span>Probalo en tu teléfono</span></a>
+    <a class="is-next" href="../../guides.html"><small>Todas las guías &gt;&gt;&gt;</small><span>Volver a las guías</span></a>
+  </nav>
+
+  <footer style="padding: 56px 40px; border-top: 1px solid #232323">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="../../index.html" style="text-decoration: none">&lt;&lt;&lt; Volver al inicio</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

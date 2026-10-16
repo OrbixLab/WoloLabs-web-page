@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testing with AI — Atlas Studio Guides — Wolo Labs</title>
+<meta name="description" content="Let the agent play your game for you: it places pieces, reads the board, taps the screen and tells you what broke.">
+<link rel="alternate" hreflang="es" href="es.html">
+<link rel="icon" href="../../assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script>
+  // Same boot as the other pages: `wl-js` pins the nav; if main.js never runs, drop it.
+  (function (d) {
+    d.classList.add('wl-js');
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
+</head>
+<body>
+<div class="wl-page">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="../../index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="../../assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="../../index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="../../products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="../../guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="../../about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="../../contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <header class="g-hero wl-worlds">
+    <div class="wl-worlds-sky" aria-hidden="true"></div>
+    <div class="g-hero-inner">
+      <div class="g-crumbs">
+        <span><a href="../../guides.html">Guides</a> / <span class="g-kicker">Guide 04 of 6</span></span>
+        <span class="g-lang"><span>EN</span><a href="es.html" hreflang="es" lang="es">ES</a></span>
+      </div>
+      <h1>Testing with AI</h1>
+      <p class="g-lede">Let the agent play your game for you: it places pieces, reads the board, taps the screen and tells you what broke.</p>
+      <div class="g-meta"><span>9 min read</span><span>Intermediate</span><span>Atlas Studio 0.2</span></div>
+      <nav class="g-progress" aria-label="Guides">
+        <a href="../01-atlas-64/index.html" class="is-done" aria-label="Meet Atlas 64"></a>
+        <a href="../02-atlas-studio/index.html" class="is-done" aria-label="Meet Atlas Studio"></a>
+        <a href="../03-first-game/index.html" class="is-done" aria-label="Your first game"></a>
+        <a href="../04-testing-with-ai/index.html" class="is-current" aria-label="Testing with AI" aria-current="page"></a>
+        <a href="../05-test-on-your-phone/index.html" class="" aria-label="Test on your phone"></a>
+        <a href="../06-publish-to-the-store/index.html" class="" aria-label="Publish to the store"></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="g-layout">
+    <nav class="g-toc" aria-label="In this guide">
+      <span class="g-toc-title">In this guide</span>
+      <a href="#why">Why let the agent test</a>
+      <a href="#loop">The test loop</a>
+      <a href="#sees">What the agent sees</a>
+      <a href="#prompts">Ask for tests</a>
+      <a href="#point">Report a bug by pointing at it</a>
+      <a href="#conditions">Test real-world conditions</a>
+      <a href="#rules">The platform rules, in plain words</a>
+      <a href="#limits">What the Simulator can’t tell you</a>
+      <a href="#checklist">Before you take it to your phone</a>
+    </nav>
+
+    <article class="g-article">
+<section id="why">
+        <h2><span class="g-num">01</span>Why let the agent test</h2>
+        <p>Testing a board game by hand means placing the same pieces again and again, after every change. The agent in Studio can do that for you, and it doesn’t just look at the game: it <strong>reads</strong> it.</p>
+        <ul>
+          <li>It knows exactly which colour and brightness every cell is showing.</li>
+          <li>It reads every text and button on the phone screen, and can tap them.</li>
+          <li>It sees the game’s errors with the exact file and line, which you’d never see from the outside.</li>
+          <li>It can place and lift pieces, use Atlas Core, add modules and slow down the Bluetooth.</li>
+        </ul>
+        <p>So the best way to work is a split: <strong>the agent checks that the game does what you said; you check that it’s fun.</strong></p>
+      </section>
+
+      <section id="loop">
+        <h2><span class="g-num">02</span>The test loop</h2>
+        <p>Every change the agent makes goes through the same three steps. You can also run them yourself at any time.</p>
+        <ol class="g-steps">
+          <li>
+            <h3>Validate</h3>
+            <p><span class="g-ui">Validar Proyecto</span> <span class="g-tr">(validate project)</span>, in the Control Panel, checks the game against the <strong>same rules the store applies</strong>. If it passes here, the automatic checks of the store won’t reject it for those reasons.</p>
+            <figure class="g-shot">
+              <img src="Assets/validate-ok.webp" alt="The Panel de Control after pressing Validar Proyecto. At the bottom: Sin problemas, 6 archivos, reglas v3." width="1600" height="825" loading="lazy">
+              <figcaption>A clean result: <em>Sin problemas</em> <span class="g-tr">(no problems)</span>.</figcaption>
+            </figure>
+            <p>When something is wrong, it says where and why. For example, if a game tried to write files on the phone:</p>
+<pre class="g-console"><span class="err">✖ games/paint-the-board/main.gd:31  FileAccess no está disponible para los juegos  [gd.forbidden_identifier]</span>
+RECHAZADO — 1 errores, 0 advertencias, 6 archivos (reglas v3)</pre>
+            <p>You don’t need to understand that line. The agent does, and fixes it. What matters is that it was caught on your PC and not by the store a week later.</p>
+          </li>
+          <li>
+            <h3>Run</h3>
+            <p>The game restarts in the Simulator, with the pieces where they were. The agent waits until the game says it’s connected and reads anything it printed or any error it hit.</p>
+          </li>
+          <li>
+            <h3>Play and read</h3>
+            <p>The agent places pieces, taps buttons and then reads the board and the screen to compare them with what should have happened.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="sees">
+        <h2><span class="g-num">03</span>What the agent sees</h2>
+        <p>When the agent “looks” at the board, it gets something like this: a map of each module with the colour number of every lit cell. This is the heart from guide 3:</p>
+<pre class="g-console">Módulo 0  (x 0→7, y 0→7 hacia abajo)
+  ........
+  .11..11.
+  11111111
+  11131111
+  .111111.
+  ..1111..
+  ...11...
+  .3....3.
+<span class="dim">  (1,1) idx 1 brillo 12 #e61f1a
+  (3,3) idx 3 brillo 12 #f2ba40
+  …</span></pre>
+        <p>And when it checks what happened, it reads the Simulator’s log, piece by piece:</p>
+<pre class="g-console"><span class="dim">12:15:01</span> [comm] ficha_colocada  mod=1 (7,7)
+<span class="dim">12:15:02</span> [comm] ficha_levantada mod=1 (7,7)
+<span class="dim">12:15:02</span> [comm] ficha_colocada  mod=1 (4,2)</pre>
+        <p>That’s why “when I lift the piece, the cell should stay painted” is such a good request: the agent can place a piece, lift it, read the map and know for sure.</p>
+      </section>
+
+      <section id="prompts">
+        <h2><span class="g-num">04</span>Ask for tests</h2>
+        <p>You can ask for a test in your own words. A good test request says <strong>what to do</strong> and <strong>what should happen</strong>. Some to copy:</p>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Check one rule</span>
+          <p class="g-prompt-text">Test that a lifted piece leaves its cell painted: paint three cells in different colours, lift the pieces, and tell me what the board shows.</p>
+        </div>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Play a whole match</span>
+          <p class="g-prompt-text">Play a full match from start to end like a player would, tapping the buttons on screen. Tell me anything that looks wrong, any error, and anything confusing on the screen.</p>
+        </div>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Try to break it</span>
+          <p class="g-prompt-text">Try to break the game: place several pieces at once, lift them in a different order, tap buttons in the middle of a move, restart in the middle of a match. Tell me what happened in each case.</p>
+        </div>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Check the screen</span>
+          <p class="g-prompt-text">Take a screenshot of the phone and tell me whether everything fits, can be read, and whether any button is too small to tap.</p>
+        </div>
+      </section>
+
+      <section id="point">
+        <h2><span class="g-num">05</span>Report a bug by pointing at it</h2>
+        <p>When you find something wrong yourself, the fastest report is to show it:</p>
+        <ol>
+          <li>Press <span class="g-ui">Señalar</span> <span class="g-tr">(point)</span>, under the phone.</li>
+          <li>Click the button, text or cell that’s wrong. You can mark several.</li>
+          <li>Write one line: “this should be blue”, “this text gets cut off”, “this cell didn’t light up”.</li>
+        </ol>
+        <p>The agent receives exactly what you marked (which element of the screen, or which module and cell, with what it was showing) plus a picture with your selection in gold. No need to describe where it is.</p>
+      </section>
+
+      <section id="conditions">
+        <h2><span class="g-num">06</span>Test real-world conditions</h2>
+        <p>Your game will run on phones of all speeds, on boards set to any brightness, on tables arranged in different ways. The Simulator can reproduce all of that.</p>
+        <div class="g-pair">
+          <figure class="g-shot g-shot--narrow">
+            <img src="Assets/simulator-settings.webp" alt="The Ajustes popover with Bluetooth and brightness options." width="354" height="228" loading="lazy">
+            <figcaption><span class="g-ui">Ajustes</span>: Bluetooth <em>ideal</em>, <em>típico</em> or <em>lento</em>, and board brightness from 20% to 100%.</figcaption>
+          </figure>
+          <div>
+            <ul>
+              <li><strong>Slow Bluetooth.</strong> Lights reach the board later. If your game sends too many, they pile up and the board falls behind; the Simulator warns you.</li>
+              <li><strong>Brightness at 20%.</strong> Anything below brightness 8 disappears. Check that nothing important does.</li>
+            </ul>
+          </div>
+        </div>
+        <figure class="g-shot">
+          <img src="Assets/simulator-two-modules.webp" alt="Two modules in the Simulator, with a piece on Atlas Core." width="1050" height="680" loading="lazy">
+          <figcaption>More modules, moved and rotated, and a piece on Atlas Core.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>More or fewer modules.</strong> <span class="g-ui">Añadir</span> and <span class="g-ui">Quitar</span> change how many there are; drag and right-click to arrange them the way your game asks. What happens if a player has fewer than your minimum?</li>
+          <li><strong>Atlas Core.</strong> Drop a piece on it. In <span class="g-ui">Administrar fichas</span> you can turn a piece into “a different physical piece”, to test what your game does with a piece it has never seen.</li>
+        </ul>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Test it under pressure</span>
+          <p class="g-prompt-text">Set Bluetooth to slow and brightness to 20%, play a full match and tell me whether the board falls behind or anything stops being visible.</p>
+        </div>
+      </section>
+
+      <section id="rules">
+        <h2><span class="g-num">07</span>The platform rules, in plain words</h2>
+        <p>Your game runs inside AtlasHub, on other people’s phones. These rules protect them, and the validator enforces them. The agent already knows them; this is so you know why it sometimes says no.</p>
+        <div class="g-table-wrap">
+          <table class="g-table">
+            <thead><tr><th>Rule</th><th>Why</th></tr></thead>
+            <tbody>
+              <tr><td>No access to the phone’s files, system or internet</td><td>A game can’t read someone’s photos or send data anywhere. Saving progress goes through Atlas, up to 64 KB per game.</td></tr>
+              <tr><td>Everything inside the game’s own folder</td><td>Many games share one app; none can touch another’s files or AtlasHub itself.</td></tr>
+              <tr><td>Only images, sounds, fonts, text and game files</td><td>Nothing executable travels inside a game.</td></tr>
+              <tr><td>Two technical rules about how files refer to each other</td><td>So your game never collides with another one installed on the same phone. The agent handles this.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="limits">
+        <h2><span class="g-num">08</span>What the Simulator can’t tell you</h2>
+        <div class="g-callout g-callout--limit">
+          <span class="g-callout-title">Limits</span>
+          <ul>
+            <li><strong>Bluetooth timings are estimates.</strong> Real phones vary.</li>
+            <li><strong>Piece memory works only here.</strong> Reading and writing the memory of a piece on Atlas Core isn’t supported on the real board yet.</li>
+            <li><strong>Light on a real table looks different</strong> from light on a monitor, especially dark colours and low brightness.</li>
+            <li><strong>It can’t tell you if it’s fun.</strong> Only people at a table can.</li>
+          </ul>
+        </div>
+        <p>That’s what the next guide is for.</p>
+      </section>
+
+      <section id="checklist">
+        <h2><span class="g-num">09</span>Before you take it to your phone</h2>
+        <ul class="g-check">
+          <li><span class="g-ui">Validar Proyecto</span> says <em>Sin problemas</em>.</li>
+          <li>You’ve played a full match in the Simulator, and so has the agent.</li>
+          <li>It works with slow Bluetooth and 20% brightness.</li>
+          <li>The screen explains how to set up the table, if your game uses more than one module or Atlas Core.</li>
+          <li>The <span class="g-ui">Ficha del Juego</span> has a title, description and the right number of boards.</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+
+  <nav class="g-pager" aria-label="Guides">
+    <a href="../03-first-game/index.html"><small>&lt;&lt;&lt; Previous</small><span>Your first game</span></a>
+    <a class="is-next" href="../05-test-on-your-phone/index.html"><small>Next &gt;&gt;&gt;</small><span>Test on your phone</span></a>
+  </nav>
+
+  <footer style="padding: 56px 40px; border-top: 1px solid #232323">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="../../index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -34,7 +34,46 @@ assets/js/main.js     Drives motion.css: hero start, scroll reveals, ticker, her
 assets/img/           Logos, product shots, 3D pieces
 assets/img/Games/     Game covers (originals + .webp used by the site)
 assets/img/Founders/  Founder portraits (originals + .webp used by the site)
+assets/css/guide.css  Shared styles for the guide pages
+assets/js/guide.js    Guide pages: copy button on prompts, active entry in the contents
+Guides/NN-slug/       One folder per guide (see below)
 ```
+
+## Guides
+
+`guides.html` lists six step-by-step guides for Atlas Studio creators. Each one lives in
+its own folder, in English and Spanish, with its images next to it:
+
+```
+Guides/01-atlas-64/
+  index.html   English
+  es.html      Spanish (same sections, same ids)
+  Assets/      Everything that page shows: screenshots, photos
+```
+
+| Folder | Guide |
+| --- | --- |
+| `01-atlas-64` | Meet Atlas 64: modules, sensors, Atlas Core, design limits |
+| `02-atlas-studio` | Meet Atlas Studio: install, Simulator, the AI agent, creator account |
+| `03-first-game` | Your first game: Paint the Board, built by talking to the agent |
+| `04-testing-with-ai` | Testing with AI |
+| `05-test-on-your-phone` | Test on your phone with AtlasHub |
+| `06-publish-to-the-store` | Publish to the store: checks, review, updates |
+
+Unlike the other pages, guides use classes from `guide.css` instead of inline styles,
+since they are long text that keeps changing: `.g-steps` (numbered steps), `.g-prompt`
+(a message to paste into the agent chat, with a copy button), `.g-ui` (an on-screen label
+from Studio or AtlasHub, quoted in Spanish as it appears), `.g-callout` (`--note`,
+`--limit`), `.g-shot` (figures), `.g-annot` + `.g-pin` + `.g-legend` (numbered markers
+on a screenshot), `.g-pending` (a screenshot still to capture).
+
+The nav, hero, contents and prev/next are repeated in every guide page, as in the rest of
+the site. The contents list links to each `<section id>`, so a new section needs its link
+added in both languages.
+
+Screenshots come from Atlas Studio 0.2 running the `paint-the-board` game from guide 3.
+A few are still marked *Screenshot pending*: they need a signed-in creator account, a real
+agent conversation or the AtlasHub app on a phone.
 
 ## Motion
 

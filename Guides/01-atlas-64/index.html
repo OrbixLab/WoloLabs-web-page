@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet Atlas 64 — Atlas Studio Guides — Wolo Labs</title>
+<meta name="description" content="How the console works, what it can and can’t sense, and what Atlas Core is for. The ground rules for everything you’ll design.">
+<link rel="alternate" hreflang="es" href="es.html">
+<link rel="icon" href="../../assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script>
+  // Same boot as the other pages: `wl-js` pins the nav; if main.js never runs, drop it.
+  (function (d) {
+    d.classList.add('wl-js');
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
+</head>
+<body>
+<div class="wl-page">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="../../index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="../../assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="../../index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="../../products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="../../guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="../../about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="../../contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <header class="g-hero wl-worlds">
+    <div class="wl-worlds-sky" aria-hidden="true"></div>
+    <div class="g-hero-inner">
+      <div class="g-crumbs">
+        <span><a href="../../guides.html">Guides</a> / <span class="g-kicker">Guide 01 of 6</span></span>
+        <span class="g-lang"><span>EN</span><a href="es.html" hreflang="es" lang="es">ES</a></span>
+      </div>
+      <h1>Meet Atlas 64</h1>
+      <p class="g-lede">How the console works, what it can and can’t sense, and what Atlas Core is for. The ground rules for everything you’ll design.</p>
+      <div class="g-meta"><span>8 min read</span><span>Beginner</span><span>Atlas Studio 0.2</span></div>
+      <nav class="g-progress" aria-label="Guides">
+        <a href="../01-atlas-64/index.html" class="is-current" aria-label="Meet Atlas 64" aria-current="page"></a>
+        <a href="../02-atlas-studio/index.html" class="" aria-label="Meet Atlas Studio"></a>
+        <a href="../03-first-game/index.html" class="" aria-label="Your first game"></a>
+        <a href="../04-testing-with-ai/index.html" class="" aria-label="Testing with AI"></a>
+        <a href="../05-test-on-your-phone/index.html" class="" aria-label="Test on your phone"></a>
+        <a href="../06-publish-to-the-store/index.html" class="" aria-label="Publish to the store"></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="g-layout">
+    <nav class="g-toc" aria-label="In this guide">
+      <span class="g-toc-title">In this guide</span>
+      <a href="#what">What Atlas 64 is</a>
+      <a href="#system">How a game runs</a>
+      <a href="#modules">Modules and the table</a>
+      <a href="#pieces">How Atlas 64 sees a piece</a>
+      <a href="#core">Atlas Core: knowing which piece is which</a>
+      <a href="#limits">Limits worth designing around</a>
+      <a href="#glossary">Glossary</a>
+    </nav>
+
+    <article class="g-article">
+<section id="what">
+        <h2><span class="g-num">01</span>What Atlas 64 is</h2>
+        <p>Atlas 64 is a board game console: a real board, with real pieces and real people around a table, plus the one thing cardboard can’t do. <strong>Every cell can light up</strong>, and the board knows when a piece lands on a cell or leaves it.</p>
+        <p>One board is a <strong>module</strong> of 8 × 8 cells, 64 in all, hence the name. Each cell has its own coloured light and its own sensor. A game can use a single module or join several to make a bigger table.</p>
+        <figure class="g-shot g-shot--medium">
+          <img src="Assets/atlas-in-play.webp" alt="A hand placing a miniature on an Atlas 64 board. The cells glow blue and purple." width="911" height="911" loading="lazy">
+          <figcaption>A piece goes down, the board feels it, and the game answers with light.</figcaption>
+        </figure>
+        <p>If you’re going to design for Atlas, keep this in mind from the start: <strong>you’re designing a board game that happens to have a brain</strong>, not a video game with a board attached. The best Atlas games use the lights to remove friction (setup, bookkeeping, hidden information) and leave the table to the players.</p>
+      </section>
+
+      <section id="system">
+        <h2><span class="g-num">02</span>How a game runs</h2>
+        <p>The game doesn’t live inside the board. It runs on a <strong>phone</strong>, inside the <strong>AtlasHub</strong> app, and talks to the board over Bluetooth:</p>
+        <figure class="g-shot g-shot--bare">
+          <svg viewBox="0 0 760 300" role="img" aria-labelledby="sys-t">
+            <title id="sys-t">The phone runs the game in AtlasHub and talks over Bluetooth to module 0. Module 0 talks wirelessly to up to six more modules. Atlas Core attaches to the front of module 0.</title>
+            <rect x="0" y="0" width="760" height="300" rx="10" fill="#0f0f0f" stroke="#232323"/>
+            <!-- phone -->
+            <rect x="36" y="60" width="104" height="190" rx="18" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+            <rect x="48" y="80" width="80" height="150" rx="6" fill="#031526"/>
+            <text x="88" y="120" fill="#f1ba41" font-family="Archivo, sans-serif" font-size="12" font-weight="600" text-anchor="middle">AtlasHub</text>
+            <text x="88" y="140" fill="#c2c2c2" font-family="Archivo, sans-serif" font-size="11" text-anchor="middle">your game</text>
+            <rect x="60" y="160" width="56" height="10" rx="5" fill="#f1ba41" opacity=".8"/>
+            <rect x="60" y="178" width="56" height="10" rx="5" fill="#4b4b4b"/>
+            <text x="88" y="276" fill="#999" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">PHONE</text>
+            <!-- bluetooth link -->
+            <path d="M150 155 H240" stroke="#8bd4df" stroke-width="2" stroke-dasharray="6 6"/>
+            <text x="195" y="140" fill="#8bd4df" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">BLUETOOTH</text>
+            <text x="195" y="178" fill="#737373" font-family="Archivo, sans-serif" font-size="11" text-anchor="middle">lights ⟶ · ⟵ pieces</text>
+            <!-- module 0 -->
+            <g transform="translate(250 70)">
+              <rect width="150" height="150" rx="10" fill="#1e1e1e" stroke="#f1ba41" stroke-width="2"/>
+              <g fill="#333">
+                <rect x="12" y="12" width="126" height="126" rx="4" fill="#2a2a2a"/>
+              </g>
+              <g fill="#f1ba41">
+                <rect x="28" y="28" width="14" height="14" rx="2"/><rect x="60" y="44" width="14" height="14" rx="2" fill="#CD3F21"/><rect x="92" y="76" width="14" height="14" rx="2"/><rect x="44" y="92" width="14" height="14" rx="2" fill="#8bd4df"/><rect x="108" y="108" width="14" height="14" rx="2"/>
+              </g>
+              <text x="75" y="-12" fill="#f4f4f4" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">MODULE 0 · MASTER</text>
+            </g>
+            <!-- atlas core -->
+            <rect x="303" y="228" width="44" height="30" rx="6" fill="#1e1e1e" stroke="#90D700" stroke-width="2"/>
+            <text x="325" y="276" fill="#90D700" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">ATLAS CORE</text>
+            <!-- wireless to other modules -->
+            <path d="M412 145 q14 -10 0 -20 M424 150 q22 -15 0 -30 M436 155 q30 -20 0 -40" stroke="#8bd4df" stroke-width="2" fill="none" transform="translate(0 10)"/>
+            <g transform="translate(480 70)">
+              <rect width="104" height="104" rx="8" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+              <rect x="10" y="10" width="84" height="84" rx="3" fill="#2a2a2a"/>
+              <text x="52" y="-12" fill="#c2c2c2" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">MODULE 1</text>
+            </g>
+            <g transform="translate(608 70)">
+              <rect width="104" height="104" rx="8" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2" stroke-dasharray="5 5"/>
+              <text x="52" y="58" fill="#737373" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">… up to 6</text>
+              <text x="52" y="-12" fill="#737373" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">MORE</text>
+            </g>
+            <text x="596" y="200" fill="#737373" font-family="Archivo, sans-serif" font-size="11" text-anchor="middle">modules talk to each other wirelessly</text>
+          </svg>
+          <figcaption>The game runs on the phone. Module 0 is the one the phone talks to; the rest hang off it.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>The phone</strong> runs the game: it draws the screen (menus, scores, instructions) and decides which cells light up and in what colour.</li>
+          <li><strong>Module 0</strong>, the master, receives those lights over Bluetooth, passes them on to the other modules, and reports back every piece that is placed or lifted.</li>
+          <li><strong>The other modules</strong> connect to the master wirelessly. A game can use from 1 to 7 modules in total.</li>
+        </ul>
+        <p>That split shapes your game. The screen is for what players read; the board is for what they touch. A score, a rule, a card that only one player should see: phone. A move, a territory, a path: board.</p>
+      </section>
+
+      <section id="modules">
+        <h2><span class="g-num">03</span>Modules and the table</h2>
+        <p>Each module is a separate board with its own battery. Its <strong>front</strong> edge has the <strong>power button</strong> on the left, the <strong>USB-C</strong> port on the right and a row of <strong>magnetic contacts</strong> in the middle, where Atlas Core snaps on.</p>
+        <figure class="g-shot">
+          <img src="Assets/simulator-two-modules.webp" alt="Two modules side by side in the Atlas Studio Simulator. Module 0 shows a red heart; module 1 a cyan diagonal. A piece rests on the Atlas Core reader under module 0." width="1050" height="680" loading="lazy">
+          <figcaption>Two modules in the Atlas Studio Simulator. Each one shows its front (power button, USB-C) and Atlas Core is attached to module 0.</figcaption>
+        </figure>
+        <p>Modules can go <strong>anywhere on the table and in any orientation</strong>: side by side, stacked, in an L, rotated. The board doesn’t know how you arranged them. It only reports “module 1, cell 3,4”. So:</p>
+        <ul>
+          <li><strong>Your game has to tell players how to set up the table</strong>, on screen, before the match starts (“put module 1 below module 0”).</li>
+          <li>Leave the front of a module reachable if it might need its cable: a module with low battery may have to play plugged in.</li>
+          <li>If your game uses Atlas Core, keep the front of module 0 free and within reach of the players.</li>
+        </ul>
+      </section>
+
+      <section id="pieces">
+        <h2><span class="g-num">04</span>How Atlas 64 sees a piece</h2>
+        <p>Under every cell there’s a <strong>magnetic sensor</strong> (a Hall-effect sensor), and every Atlas piece carries a <strong>small magnet in its base</strong>. When a piece sits on a cell, the sensor feels the magnet.</p>
+        <figure class="g-shot g-shot--bare">
+          <svg viewBox="0 0 760 280" role="img" aria-labelledby="cell-t">
+            <title id="cell-t">Cross-section of a cell. The piece has a magnet and an NFC tag in its base. The cell has a light under its surface and a Hall-effect sensor below that feels the magnet.</title>
+            <rect x="0" y="0" width="760" height="280" rx="10" fill="#0f0f0f" stroke="#232323"/>
+            <!-- piece -->
+            <path d="M300 40 q30 -18 60 0 l6 50 h-72 z" fill="#4b4b4b"/>
+            <rect x="282" y="90" width="96" height="34" rx="8" fill="#2a2a2a" stroke="#737373"/>
+            <rect x="300" y="104" width="60" height="12" rx="3" fill="#CD3F21"/>
+            <rect x="290" y="96" width="80" height="5" rx="2" fill="#90D700"/>
+            <!-- board -->
+            <rect x="120" y="128" width="420" height="16" rx="3" fill="#e5e5e5" opacity=".9"/>
+            <rect x="120" y="144" width="420" height="80" fill="#1e1e1e" stroke="#333"/>
+            <rect x="190" y="150" width="280" height="10" rx="3" fill="#f1ba41" opacity=".9"/>
+            <rect x="305" y="186" width="50" height="22" rx="3" fill="#8bd4df"/>
+            <!-- field lines -->
+            <path d="M310 118 q-30 40 0 72 M350 118 q30 40 0 72" stroke="#CD3F21" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+            <!-- labels -->
+            <g font-family="Archivo, sans-serif" font-size="13" fill="#e6e6e6">
+              <line x1="378" y1="110" x2="580" y2="64" stroke="#4b4b4b"/><text x="586" y="60">Magnet in the base</text>
+              <line x1="370" y1="98" x2="580" y2="96" stroke="#4b4b4b"/><text x="586" y="100">NFC tag (read by Atlas Core)</text>
+              <line x1="470" y1="155" x2="580" y2="140" stroke="#4b4b4b"/><text x="586" y="144">Cell light (LED)</text>
+              <line x1="355" y1="197" x2="580" y2="190" stroke="#4b4b4b"/><text x="586" y="194">Hall sensor: feels the magnet</text>
+            </g>
+            <text x="60" y="258" fill="#737373" font-family="Space Mono, monospace" font-size="11">ONE CELL, SEEN FROM THE SIDE</text>
+          </svg>
+          <figcaption>Every piece carries a magnet (so cells can feel it) and an NFC tag (so Atlas Core can tell which piece it is).</figcaption>
+        </figure>
+        <p>From that, the board sends the game two kinds of events:</p>
+        <ul>
+          <li><strong>Piece placed</strong>: module, cell. Something just landed on module 0, cell 3,4.</li>
+          <li><strong>Piece lifted</strong>: module, cell. Whatever was on that cell is gone.</li>
+        </ul>
+        <div class="g-callout g-callout--note">
+          <span class="g-callout-title">The key idea</span>
+          <p>The board knows <strong>that</strong> a cell is occupied, <strong>not which piece</strong> is on it. A knight and a pawn look the same to a cell. If your game needs to know which piece moved, track it yourself (“the piece that left 2,2 is the one that just landed on 2,4”) or use Atlas Core.</p>
+        </div>
+        <p>The sensors are calibrated once and the board remembers it. If a cell ever starts misreading, the board can recalibrate: it takes 8 seconds and beeps once a second while it does.</p>
+      </section>
+
+      <section id="core">
+        <h2><span class="g-num">05</span>Atlas Core: knowing which piece is which</h2>
+        <div class="g-pair">
+          <figure class="g-shot">
+            <img src="Assets/atlas-core.webp" alt="Atlas Core, a small black reader with magnetic contacts on its side." width="480" height="480" loading="lazy">
+            <figcaption>Atlas Core snaps onto the magnetic contacts of module 0.</figcaption>
+          </figure>
+          <div>
+            <p><strong>Atlas Core</strong> is an NFC reader that snaps onto the front of <strong>module 0</strong>. Every Atlas piece has an <strong>NFC tag</strong> inside, with a unique ID set at the factory. Put a piece on Atlas Core and the game learns <strong>which piece</strong> it is.</p>
+            <p>Atlas Core is optional: plenty of games never use it. And it only works attached to module 0.</p>
+          </div>
+        </div>
+        <p>A few things to know before designing with it:</p>
+        <ul>
+          <li><strong>It tells you who, not where.</strong> A piece on Atlas Core is identified, but Atlas Core isn’t a cell, so there’s no position.</li>
+          <li><strong>IDs are unknown in advance.</strong> Every piece has a different ID and no two players own the same set, so a game can’t ship with a list of IDs. The usual pattern is to <strong>pair pieces once</strong>: “put the king on Atlas Core”. The game remembers that pairing for next time.</li>
+          <li><strong>Each piece has a little memory</strong> (144 bytes) that a game can read and write while the piece sits on Atlas Core: a character’s level, a potion’s charges. That memory belongs to the piece, so any game can see it. Today this works in the Studio Simulator; the real board will support it with a firmware update, so a game that uses it must keep working without it.</li>
+        </ul>
+        <p>Typical uses: character pieces that carry their identity from game to game, “scan to reveal” mechanics, or checking that the right piece is the one moving.</p>
+      </section>
+
+      <section id="limits">
+        <h2><span class="g-num">06</span>Limits worth designing around</h2>
+        <p>None of these will stop you making a great game, but each one is cheaper to plan for than to discover later.</p>
+        <div class="g-table-wrap">
+          <table class="g-table">
+            <thead><tr><th>Limit</th><th>What it means for your design</th></tr></thead>
+            <tbody>
+              <tr><td><strong>16 colours per game</strong></td><td>Each game picks a palette of 16 colours (one is “off”) and every cell uses one of them. Plenty for teams, terrain and states; not for gradients.</td></tr>
+              <tr><td><strong>Brightness 0–15</strong></td><td>Levels 1–3 don’t show on the real board, and players can dim it down to 20%, where anything below 8 disappears. For anything that must be seen, use 8 or more.</td></tr>
+              <tr><td><strong>About 24 updates per second</strong></td><td>Lights travel over Bluetooth. Change them when something happens, not continuously. Slow pulses work; fast animations don’t.</td></tr>
+              <tr><td><strong>Presence only</strong></td><td>Cells know a piece is there, not which one. Use Atlas Core or track moves in the game.</td></tr>
+              <tr><td><strong>Atlas Core on module 0 only</strong></td><td>One reader per table, at the front of module 0.</td></tr>
+              <tr><td><strong>1 to 7 modules</strong></td><td>Each game declares the minimum it needs and the maximum it uses. AtlasHub warns players who have fewer.</td></tr>
+              <tr><td><strong>One screen orientation</strong></td><td>The phone screen is 393 × 852, and each game is either portrait or landscape.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="glossary">
+        <h2><span class="g-num">07</span>Glossary</h2>
+        <dl class="g-glossary">
+          <dt>Module</dt><dd>One 8 × 8 board. Module 0 is the master, the one the phone talks to.</dd>
+          <dt>Cell</dt><dd>One of the 64 squares of a module, with its own light and sensor. Written x,y from the top-left corner (0,0 to 7,7).</dd>
+          <dt>Palette</dt><dd>The 16 colours a game uses on the board.</dd>
+          <dt>Piece</dt><dd>Anything with an Atlas magnet and NFC tag in its base: miniatures, tokens, pawns.</dd>
+          <dt>Atlas Core</dt><dd>The NFC reader that attaches to module 0 and identifies pieces.</dd>
+          <dt>AtlasHub</dt><dd>The phone app where players get, install and play Atlas games.</dd>
+          <dt>Atlas Studio</dt><dd>The free PC app where you make those games. That’s the next guide.</dd>
+        </dl>
+      </section>
+    </article>
+  </div>
+
+  <nav class="g-pager" aria-label="Guides">
+    <a href="../../guides.html"><small>&lt;&lt;&lt; All guides</small><span>Back to the guides</span></a>
+    <a class="is-next" href="../02-atlas-studio/index.html"><small>Next &gt;&gt;&gt;</small><span>Meet Atlas Studio</span></a>
+  </nav>
+
+  <footer style="padding: 56px 40px; border-top: 1px solid #232323">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="../../index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

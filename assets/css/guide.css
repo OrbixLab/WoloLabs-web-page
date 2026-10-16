@@ -1,0 +1,457 @@
+/* Wolo Labs — guide pages (Guides/NN-slug/index.html and es.html)
+   Loaded after base.css. Unlike the canvas-exported pages, guides use classes:
+   they are long-form text that people will keep editing. */
+
+:root {
+  /* Atlas palette (ATL_ManualdeMarca.pdf) */
+  --atlas-blackout:  #1e1e1e;
+  --atlas-gray-hint: #e5e5e5;
+  --atlas-gold:      #f1ba41;
+  --atlas-scarlet:   #CD3F21;
+
+  --g-surface:  #0f0f0f;
+  --g-border:   #232323;
+  --g-muted:    #a3a3a3;
+  --g-text:     #e6e6e6;
+}
+
+/* ---- Hero ---------------------------------------------------------------- */
+.g-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 40px 56px;
+  background: var(--atlas-navy);
+  border-bottom: 1px solid #0f2a40;
+}
+.g-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.g-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.g-crumbs a { color: var(--chinese-silver); text-decoration: none; }
+.g-crumbs a:hover { color: var(--spring-bud); }
+.g-kicker { color: var(--atlas-gold); }
+
+.g-lang { display: inline-flex; border: 1px solid #2b4560; border-radius: 999px; overflow: hidden; }
+.g-lang a, .g-lang span { display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; }
+.g-lang span { background: var(--atlas-gold); color: var(--authentic-black); font-weight: 700; }
+
+.g-hero h1 {
+  max-width: 18ch;
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: .95;
+  letter-spacing: -.03em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.g-lede { max-width: 62ch; font-size: 18px; line-height: 1.55; color: var(--chinese-silver); }
+.g-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #8fa6bb;
+}
+
+/* Six segments, one per guide; the current one and those before it are lit. */
+.g-progress { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; max-width: 420px; margin-top: 6px; }
+.g-progress a { height: 6px; border-radius: 999px; background: #1d3650; }
+.g-progress a.is-done { background: rgba(241, 186, 66, .45); }
+.g-progress a.is-current { background: var(--atlas-gold); }
+.g-progress a:hover { background: var(--spring-bud); }
+
+/* ---- Layout: table of contents + article --------------------------------- */
+.g-layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px 40px 32px;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.g-toc {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+.g-toc-title {
+  margin-bottom: 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--zen-gray);
+}
+.g-toc a {
+  display: block;
+  padding: 7px 0 7px 14px;
+  border-left: 2px solid var(--g-border);
+  color: var(--super-grey);
+  text-decoration: none;
+  line-height: 1.35;
+}
+.g-toc a:hover { color: var(--wild-sand); }
+.g-toc a.is-active { color: var(--atlas-gold); border-left-color: var(--atlas-gold); }
+
+/* ---- Article ------------------------------------------------------------- */
+.g-article { max-width: 760px; min-width: 0; color: var(--g-text); font-size: 17px; line-height: 1.7; }
+.g-article > * + * { margin-top: 20px; }
+.g-article section { scroll-margin-top: 100px; }
+.g-article section + section { margin-top: 72px; }
+.g-article section > * + * { margin-top: 18px; }
+
+.g-article h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--wild-sand);
+}
+.g-article h2 .g-num {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--spring-bud);
+}
+.g-article h3 { font-size: 20px; font-weight: 600; line-height: 1.25; color: var(--wild-sand); margin-top: 32px; }
+.g-article strong { color: var(--wild-sand); font-weight: 600; }
+.g-article ul, .g-article ol { margin: 0; padding-left: 22px; }
+.g-article li + li { margin-top: 8px; }
+.g-article li::marker { color: var(--atlas-gold); }
+.g-article code {
+  font-family: 'Space Mono', monospace;
+  font-size: .86em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--atlas-blackout);
+  color: var(--atlas-gray-hint);
+}
+
+/* An on-screen label from Studio or AtlasHub, quoted as it appears. */
+.g-ui {
+  display: inline-block;
+  padding: 0 8px;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  background: var(--atlas-blackout);
+  color: var(--atlas-gold);
+  font-weight: 600;
+  font-size: .92em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.g-tr { color: var(--super-grey); font-style: italic; }
+.g-path { white-space: normal; }
+
+/* ---- Figures ------------------------------------------------------------- */
+.g-shot { margin: 28px 0 0; }
+.g-shot img, .g-shot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--g-border);
+  border-radius: 10px;
+  background: var(--atlas-blackout);
+}
+.g-shot--narrow img { max-width: 420px; margin: 0 auto; }
+.g-shot--medium img { max-width: 520px; margin: 0 auto; }
+.g-shot--phone img { max-width: 260px; margin: 0 auto; border-radius: 18px; image-rendering: auto; }
+.g-shot--bare img, .g-shot--bare svg { border: 0; background: none; }
+.g-shot figcaption {
+  margin-top: 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--zen-gray);
+}
+.g-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.g-pair .g-shot { margin-top: 0; }
+.g-pair > div > * + * { margin-top: 14px; }
+
+/* Annotated screenshot: numbered pins over the image, legend below. */
+.g-annot { position: relative; }
+.g-pin {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--spring-bud);
+  color: var(--authentic-black);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 0 0 4px rgba(8, 8, 8, .65);
+}
+.g-legend { counter-reset: pin; list-style: none; padding: 0 !important; display: grid; gap: 10px; margin-top: 20px !important; }
+.g-legend li { counter-increment: pin; position: relative; padding-left: 40px; margin: 0 !important; }
+.g-legend li::before {
+  content: counter(pin);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+  border-radius: 999px;
+  background: var(--spring-bud);
+  color: var(--authentic-black);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Missing screenshot, still to capture. Visible on purpose. */
+.g-pending {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  min-height: 220px;
+  padding: 28px;
+  border: 1px dashed #4b4b4b;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: .04em;
+  color: var(--super-grey);
+}
+.g-pending strong { color: var(--atlas-gold); letter-spacing: .16em; text-transform: uppercase; }
+
+/* ---- Callouts ------------------------------------------------------------ */
+.g-callout {
+  padding: 20px 24px;
+  border: 1px solid var(--g-border);
+  border-left: 3px solid var(--spindrift);
+  border-radius: 8px;
+  background: var(--g-surface);
+  font-size: 16px;
+}
+.g-callout > * + * { margin-top: 10px; }
+.g-callout-title {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--spindrift);
+}
+.g-callout--limit { border-left-color: var(--atlas-scarlet); }
+.g-callout--limit .g-callout-title { color: #f0715a; }
+.g-callout--note { border-left-color: var(--atlas-gold); }
+.g-callout--note .g-callout-title { color: var(--atlas-gold); }
+
+/* ---- Numbered steps ------------------------------------------------------ */
+.g-steps { counter-reset: step; list-style: none; padding: 0 !important; }
+.g-steps > li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 8px 60px;
+  margin: 0 !important;
+}
+.g-steps > li + li { margin-top: 36px !important; }
+.g-steps > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--atlas-gold);
+  border-radius: 999px;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: var(--atlas-gold);
+}
+.g-steps > li > h3:first-child { margin-top: 6px; }
+.g-steps > li > * + * { margin-top: 12px; }
+
+/* ---- Prompt to paste into the agent chat --------------------------------- */
+.g-prompt {
+  position: relative;
+  padding: 22px 24px 22px;
+  border: 1px solid #3a3a3a;
+  border-left: 3px solid var(--atlas-gold);
+  border-radius: 8px;
+  background: var(--atlas-blackout);
+}
+.g-prompt-label {
+  display: block;
+  margin-bottom: 10px;
+  padding-right: 90px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--atlas-gold);
+}
+.g-prompt-text { margin: 0; white-space: pre-wrap; font-size: 16px; line-height: 1.6; color: var(--wild-sand); }
+.g-copy {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid #4b4b4b;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--wild-sand);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.g-copy:hover { border-color: var(--spring-bud); color: var(--spring-bud); }
+.g-copy.is-done { border-color: var(--spring-bud); background: var(--spring-bud); color: var(--authentic-black); }
+
+/* Console output, shown as the agent sees it. */
+.g-console {
+  margin: 0;
+  padding: 18px 20px;
+  overflow-x: auto;
+  border: 1px solid var(--g-border);
+  border-radius: 8px;
+  background: #050505;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #cfcfcf;
+}
+.g-console .ok { color: #22c55e; }
+.g-console .err { color: #ff6b6b; }
+.g-console .dim { color: var(--zen-gray); }
+
+/* ---- Small tables and checklists ----------------------------------------- */
+.g-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.g-table th, .g-table td { padding: 12px 14px; border-bottom: 1px solid var(--g-border); text-align: left; vertical-align: top; }
+.g-table th {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--zen-gray);
+}
+.g-table-wrap { overflow-x: auto; }
+
+.g-check { list-style: none; padding: 0 !important; }
+.g-check li { position: relative; padding-left: 32px; }
+.g-check li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--spring-bud);
+  border-radius: 4px;
+}
+
+.g-glossary { display: grid; grid-template-columns: max-content 1fr; gap: 12px 24px; margin: 0; }
+.g-glossary dt { font-weight: 600; color: var(--atlas-gold); }
+.g-glossary dd { margin: 0; }
+
+/* Optional detail for the curious. */
+.g-more { border: 1px solid var(--g-border); border-radius: 8px; background: var(--g-surface); }
+.g-more summary {
+  padding: 16px 20px;
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--chinese-silver);
+}
+.g-more summary:hover { color: var(--spring-bud); }
+.g-more > div { padding: 0 20px 20px; }
+.g-more > div > * + * { margin-top: 14px; }
+.g-more pre { margin: 0; overflow-x: auto; padding: 16px; border-radius: 6px; background: #050505; font-family: 'Space Mono', monospace; font-size: 12.5px; line-height: 1.55; color: #d4d4d4; }
+
+/* ---- Prev / next --------------------------------------------------------- */
+.g-pager {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 40px 88px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.g-pager a {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 28px;
+  border: 1px solid var(--g-border);
+  background: var(--g-surface);
+  color: var(--wild-sand);
+  text-decoration: none;
+  transition: border-color .25s ease;
+}
+.g-pager a:hover { border-color: var(--spring-bud); }
+.g-pager a.is-next { grid-column: 2; text-align: right; }
+.g-pager small {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--spring-bud);
+}
+.g-pager span { font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: -.01em; }
+
+/* ---- Responsive ---------------------------------------------------------- */
+@media (max-width: 960px) {
+  .g-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 40px; }
+  .g-toc { position: static; padding: 18px 20px; border: 1px solid var(--g-border); background: var(--g-surface); }
+  .g-pair { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .g-hero { padding: 56px 16px 44px; }
+  .g-layout { padding-left: 16px; padding-right: 16px; }
+  .g-pager { padding-left: 16px; padding-right: 16px; grid-template-columns: minmax(0, 1fr); }
+  .g-pager a.is-next { grid-column: auto; }
+  .g-article { font-size: 16px; }
+  .g-steps > li { padding-left: 52px; }
+  .g-pin { width: 22px; height: 22px; font-size: 11px; }
+  .g-glossary { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .g-glossary dd { margin-bottom: 12px; }
+  /* Diagrams keep a readable size and scroll sideways instead of shrinking. */
+  .g-shot--bare:has(svg) { overflow-x: auto; }
+  .g-shot--bare svg { min-width: 600px; }
+  .g-shot--bare figcaption { position: sticky; left: 0; }
+}

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probalo en tu teléfono — Atlas Studio Guías — Wolo Labs</title>
+<meta name="description" content="Instalá tu juego en tu propio teléfono con AtlasHub y jugalo en un Atlas 64 real. Para qué sirve y para qué no.">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="icon" href="../../assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script>
+  // Same boot as the other pages: `wl-js` pins the nav; if main.js never runs, drop it.
+  (function (d) {
+    d.classList.add('wl-js');
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
+</head>
+<body>
+<div class="wl-page">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="../../index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="../../assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Abrir menú"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="../../index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Inicio</a>
+        <a href="../../products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Productos</a>
+        <a href="../../guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guías</a>
+        <a href="../../about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Nosotros</a>
+        <a href="../../contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contacto</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <header class="g-hero wl-worlds">
+    <div class="wl-worlds-sky" aria-hidden="true"></div>
+    <div class="g-hero-inner">
+      <div class="g-crumbs">
+        <span><a href="../../guides.html">Guías</a> / <span class="g-kicker">Guía 05 de 6</span></span>
+        <span class="g-lang"><a href="index.html" hreflang="en" lang="en">EN</a><span>ES</span></span>
+      </div>
+      <h1>Probalo en tu teléfono</h1>
+      <p class="g-lede">Instalá tu juego en tu propio teléfono con AtlasHub y jugalo en un Atlas 64 real. Para qué sirve y para qué no.</p>
+      <div class="g-meta"><span>7 min de lectura</span><span>Intermedio</span><span>Atlas Studio 0.2</span></div>
+      <nav class="g-progress" aria-label="Guías">
+        <a href="../01-atlas-64/es.html" class="is-done" aria-label="Conocé Atlas 64"></a>
+        <a href="../02-atlas-studio/es.html" class="is-done" aria-label="Conocé Atlas Studio"></a>
+        <a href="../03-first-game/es.html" class="is-done" aria-label="Tu primer juego"></a>
+        <a href="../04-testing-with-ai/es.html" class="is-done" aria-label="Testeo con IA"></a>
+        <a href="../05-test-on-your-phone/es.html" class="is-current" aria-label="Probalo en tu teléfono" aria-current="page"></a>
+        <a href="../06-publish-to-the-store/es.html" class="" aria-label="Publicá en la tienda"></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="g-layout">
+    <nav class="g-toc" aria-label="En esta guía">
+      <span class="g-toc-title">En esta guía</span>
+      <a href="#why">Por qué probar en un tablero real</a>
+      <a href="#need">Qué necesitás</a>
+      <a href="#steps">Paso a paso</a>
+      <a href="#limits">Qué es una instalación de prueba y qué no</a>
+      <a href="#playtest">Sacale el jugo</a>
+      <a href="#trouble">Si algo sale mal</a>
+    </nav>
+
+    <article class="g-article">
+<section id="why">
+        <h2><span class="g-num">01</span>Por qué probar en un tablero real</h2>
+        <p>El Simulador te lleva muy lejos, pero hay cosas que sólo aparecen con lo real: cómo se ven los colores en una mesa con luz de día, cuánto tarda de verdad una jugada por Bluetooth, si los jugadores entienden la pantalla mientras tienen las manos ocupadas con fichas.</p>
+        <p><span class="g-ui">Probar en el teléfono</span> instala tu juego, tal como está ahora, en <strong>tu propio teléfono</strong>, dentro de la app AtlasHub real, para que lo juegues en un Atlas 64 real. Sin tienda y sin revisión.</p>
+        <figure class="g-shot g-shot--bare">
+          <svg viewBox="0 0 760 260" role="img" aria-labelledby="dev-t-es">
+            <title id="dev-t-es">Studio le pide al servidor de Atlas que autorice el build para tu teléfono y después lo sirve por tu Wi-Fi. AtlasHub, en el teléfono, lo baja y lo juega en el Atlas 64 por Bluetooth.</title>
+            <rect width="760" height="260" rx="10" fill="#0f0f0f" stroke="#232323"/>
+            <g font-family="Space Mono, monospace" font-size="11" text-anchor="middle">
+              <!-- PC -->
+              <rect x="40" y="96" width="150" height="96" rx="8" fill="#1e1e1e" stroke="#f1ba41" stroke-width="2"/>
+              <text x="115" y="136" fill="#f1ba41" font-family="Archivo, sans-serif" font-size="14" font-weight="600">Atlas Studio</text>
+              <text x="115" y="160" fill="#c2c2c2">TU PC</text>
+              <!-- server -->
+              <rect x="300" y="20" width="160" height="56" rx="8" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+              <text x="380" y="44" fill="#e6e6e6" font-family="Archivo, sans-serif" font-size="13" font-weight="600">Servidor de Atlas</text>
+              <text x="380" y="64" fill="#999">AUTORIZA · 72 H</text>
+              <path d="M190 118 L300 56" stroke="#4b4b4b" stroke-width="2"/>
+              <!-- phone -->
+              <rect x="350" y="112" width="70" height="120" rx="12" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+              <rect x="358" y="124" width="54" height="92" rx="4" fill="#031526"/>
+              <text x="385" y="168" fill="#f1ba41" font-family="Archivo, sans-serif" font-size="10" font-weight="600">AtlasHub</text>
+              <text x="385" y="184" fill="#90D700" font-size="9">DEV</text>
+              <path d="M190 160 H350" stroke="#8bd4df" stroke-width="2" stroke-dasharray="6 6"/>
+              <text x="270" y="150" fill="#8bd4df">MISMO WI-FI</text>
+              <text x="270" y="180" fill="#737373" font-family="Archivo, sans-serif" font-size="11">baja el juego</text>
+              <!-- board -->
+              <rect x="560" y="100" width="150" height="110" rx="8" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+              <rect x="572" y="112" width="126" height="86" rx="3" fill="#2a2a2a"/>
+              <rect x="590" y="126" width="14" height="14" rx="2" fill="#CD3F21"/><rect x="622" y="146" width="14" height="14" rx="2" fill="#f1ba41"/><rect x="654" y="166" width="14" height="14" rx="2" fill="#8bd4df"/>
+              <text x="635" y="234" fill="#c2c2c2">ATLAS 64</text>
+              <path d="M420 160 H560" stroke="#8bd4df" stroke-width="2" stroke-dasharray="6 6"/>
+              <text x="490" y="150" fill="#8bd4df">BLUETOOTH</text>
+            </g>
+          </svg>
+          <figcaption>Studio compila y autoriza; el teléfono lo baja por tu Wi-Fi y lo juega en el tablero.</figcaption>
+        </figure>
+      </section>
+
+      <section id="need">
+        <h2><span class="g-num">02</span>Qué necesitás</h2>
+        <ul class="g-check">
+          <li>Una <strong>cuenta de Atlas Developer</strong>, habilitada como explica la <a href="../02-atlas-studio/es.html#account">guía 2</a>.</li>
+          <li><strong>AtlasHub</strong> en tu teléfono, con sesión iniciada en esa misma cuenta.</li>
+          <li>Tu PC y tu teléfono en <strong>la misma red Wi-Fi</strong>.</li>
+          <li>Un <strong>Atlas 64</strong> encendido y conectado a AtlasHub.</li>
+          <li>Un juego que pase <span class="g-ui">Validar Proyecto</span>.</li>
+        </ul>
+      </section>
+
+      <section id="steps">
+        <h2><span class="g-num">03</span>Paso a paso</h2>
+        <ol class="g-steps">
+          <li>
+            <h3>Buscá el código de tu teléfono</h3>
+            <p>En AtlasHub: <span class="g-ui g-path">Configuración → Configuración de desarrollador → Modo desarrollador</span>. Debajo de <strong>Código de este teléfono</strong> hay un código como <code>8040-8791-BE9A</code>. Tocá <span class="g-ui">Copiar</span> o dejalo a la vista.</p>
+            <div class="g-pending"><strong>Captura pendiente</strong>AtlasHub · Modo desarrollador, con el código del teléfono y el campo de la dirección del pack</div>
+          </li>
+          <li>
+            <h3>Abrí “Probar en el teléfono” en Studio</h3>
+            <p>En la pestaña <span class="g-ui">Panel de Control</span>, tocá <span class="g-ui">Probar en el teléfono</span>. La primera vez, entrá con tu cuenta de creador (email y contraseña) y tocá <span class="g-ui">Iniciar sesión</span>. Dejá el campo <strong>Backend</strong> como está.</p>
+            <figure class="g-shot g-shot--narrow">
+              <img src="Assets/test-on-phone-dialog.webp" alt="El diálogo Probar en el teléfono: una explicación, el campo Backend, email y contraseña con Iniciar sesión, el campo del código del teléfono y los botones Cerrar y Compilar y autorizar." width="650" height="740" loading="lazy">
+              <figcaption>El diálogo lo explica en una línea: compila, autoriza para ese teléfono por 72 horas y lo sirve en tu red local.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <h3>Poné el código y compilá</h3>
+            <p>Escribí el código de tu teléfono en <strong>Código del teléfono</strong> y tocá <span class="g-ui">Compilar y autorizar</span>. Studio empaqueta tu juego, le pide al servidor de Atlas que autorice ese build exacto para ese teléfono y después muestra una dirección como <code>http://192.168.0.12:8080/paint-the-board.pck</code>.</p>
+          </li>
+          <li>
+            <h3>Instalalo desde AtlasHub</h3>
+            <p>De vuelta en <strong>Modo desarrollador</strong>, escribí esa dirección en <strong>Dirección del pack en tu PC</strong> y tocá <span class="g-ui">Instalar pack</span>. AtlasHub lo baja de tu PC, revisa la autorización y lo instala. Recuerda la última dirección que usaste.</p>
+          </li>
+          <li>
+            <h3>Jugá</h3>
+            <p>Tu juego aparece en tu biblioteca con la marca <strong>Desarrollo</strong>, y con <strong>DEV</strong> en la parte de arriba mientras jugás. La tarjeta también te dice cuánto le queda a la instalación, como “vence en 2 d 5 h”.</p>
+          </li>
+        </ol>
+        <div class="g-callout g-callout--note">
+          <span class="g-callout-title">¿Cambiaste algo?</span>
+          <p>Cada cambio es un build nuevo, y cada build necesita su propia autorización. Tocá <span class="g-ui">Compilar y autorizar</span> otra vez y reinstalá desde AtlasHub. La dirección suele ser la misma.</p>
+        </div>
+      </section>
+
+      <section id="limits">
+        <h2><span class="g-num">04</span>Qué es una instalación de prueba y qué no</h2>
+        <p>Una instalación de prueba es una herramienta para vos, que creás el juego. Está limitada a propósito para que no se convierta en una puerta trasera a la tienda.</p>
+        <div class="g-callout g-callout--limit">
+          <span class="g-callout-title">Límites</span>
+          <ul>
+            <li><strong>Dura 72 horas.</strong> Después vence y AtlasHub la borra sola. Para seguir probando, compilá y autorizá otra vez.</li>
+            <li><strong>Sólo funciona en tu teléfono.</strong> La autorización está atada al código de ese teléfono, a tu cuenta y a ese build exacto. No se puede pasar a otro teléfono ni a otra persona.</li>
+            <li><strong>No es para compartir.</strong> El acuerdo de creador pide que no compartas ni distribuyas los builds de prueba. Para que tu juego llegue a otras personas, publicalo (guía 6).</li>
+            <li><strong>Vive sólo de forma temporal en tu teléfono.</strong> No aparece en la tienda ni en la biblioteca de nadie más.</li>
+            <li><strong>Hasta 50 autorizaciones activas</strong> por cuenta, y packs de hasta 256 MB.</li>
+            <li><strong>La memoria de las fichas todavía no anda en el tablero real.</strong> Si tu juego lee o escribe la memoria de las fichas sobre Atlas Core, tiene que arreglárselas sin ella.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="playtest">
+        <h2><span class="g-num">05</span>Sacale el jugo</h2>
+        <p>Tu teléfono, tu tablero, tu mesa: es el momento de mirar a otros jugar. Podés pasarles el teléfono y las fichas a amigos sentados en tu mesa; lo que no podés es mandarles el juego.</p>
+        <ul>
+          <li><strong>No expliques las reglas antes.</strong> Si la pantalla y el tablero no las explican, ese es tu próximo cambio.</li>
+          <li><strong>Mirá las manos, no la pantalla.</strong> Si alguien duda antes de apoyar una ficha, casi siempre es porque el tablero no dice con claridad qué se puede hacer.</li>
+          <li><strong>Anotá lo que te sorprendió</strong>, y convertí cada nota en un mensaje para el agente cuando vuelvas a Studio.</li>
+          <li><strong>Probalo en un lugar con mucha luz</strong> y con el brillo del tablero bajado desde AtlasHub.</li>
+        </ul>
+      </section>
+
+      <section id="trouble">
+        <h2><span class="g-num">06</span>Si algo sale mal</h2>
+        <div class="g-table-wrap">
+          <table class="g-table">
+            <thead><tr><th>Ves</th><th>Probá esto</th></tr></thead>
+            <tbody>
+              <tr><td>“Revisá que la PC y el teléfono estén en la misma red…”</td><td>El teléfono no llega a tu PC. Fijate que los dos estén en el mismo Wi-Fi (y no el teléfono con datos móviles), y evitá las redes de invitados, que suelen aislar los dispositivos. Si Windows preguntó si permitir Atlas Studio en la red, permitilo en redes privadas.</td></tr>
+              <tr><td>“La autorización venció. Volvé a autorizar el pack desde el Studio.”</td><td>Pasaron las 72 horas, o instalaste un build anterior. Tocá <span class="g-ui">Compilar y autorizar</span> de nuevo.</td></tr>
+              <tr><td>Studio dice que tu cuenta no es de creador</td><td>Habilitala en AtlasHub (guía 2) y volvé a iniciar sesión en Studio.</td></tr>
+              <tr><td>El juego se instala pero no arranca</td><td>Fijate que tu Atlas 64 esté conectado y que tengas por lo menos la cantidad mínima de módulos que pide el juego.</td></tr>
+              <tr><td>La descarga se corta a la mitad</td><td>Dejá Studio abierto, con el diálogo mostrando la dirección, hasta que AtlasHub termine de instalar: Studio es el que sirve el archivo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <nav class="g-pager" aria-label="Guías">
+    <a href="../04-testing-with-ai/es.html"><small>&lt;&lt;&lt; Anterior</small><span>Testeo con IA</span></a>
+    <a class="is-next" href="../06-publish-to-the-store/es.html"><small>Siguiente &gt;&gt;&gt;</small><span>Publicá en la tienda</span></a>
+  </nav>
+
+  <footer style="padding: 56px 40px; border-top: 1px solid #232323">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="../../index.html" style="text-decoration: none">&lt;&lt;&lt; Volver al inicio</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conocé Atlas 64 — Atlas Studio Guías — Wolo Labs</title>
+<meta name="description" content="Cómo funciona la consola, qué puede detectar y qué no, y para qué sirve Atlas Core. Las reglas de base para todo lo que vas a diseñar.">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="icon" href="../../assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script>
+  // Same boot as the other pages: `wl-js` pins the nav; if main.js never runs, drop it.
+  (function (d) {
+    d.classList.add('wl-js');
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
+</head>
+<body>
+<div class="wl-page">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="../../index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="../../assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Abrir menú"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="../../index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Inicio</a>
+        <a href="../../products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Productos</a>
+        <a href="../../guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guías</a>
+        <a href="../../about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Nosotros</a>
+        <a href="../../contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contacto</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <header class="g-hero wl-worlds">
+    <div class="wl-worlds-sky" aria-hidden="true"></div>
+    <div class="g-hero-inner">
+      <div class="g-crumbs">
+        <span><a href="../../guides.html">Guías</a> / <span class="g-kicker">Guía 01 de 6</span></span>
+        <span class="g-lang"><a href="index.html" hreflang="en" lang="en">EN</a><span>ES</span></span>
+      </div>
+      <h1>Conocé Atlas 64</h1>
+      <p class="g-lede">Cómo funciona la consola, qué puede detectar y qué no, y para qué sirve Atlas Core. Las reglas de base para todo lo que vas a diseñar.</p>
+      <div class="g-meta"><span>8 min de lectura</span><span>Inicial</span><span>Atlas Studio 0.2</span></div>
+      <nav class="g-progress" aria-label="Guías">
+        <a href="../01-atlas-64/es.html" class="is-current" aria-label="Conocé Atlas 64" aria-current="page"></a>
+        <a href="../02-atlas-studio/es.html" class="" aria-label="Conocé Atlas Studio"></a>
+        <a href="../03-first-game/es.html" class="" aria-label="Tu primer juego"></a>
+        <a href="../04-testing-with-ai/es.html" class="" aria-label="Testeo con IA"></a>
+        <a href="../05-test-on-your-phone/es.html" class="" aria-label="Probalo en tu teléfono"></a>
+        <a href="../06-publish-to-the-store/es.html" class="" aria-label="Publicá en la tienda"></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="g-layout">
+    <nav class="g-toc" aria-label="En esta guía">
+      <span class="g-toc-title">En esta guía</span>
+      <a href="#what">Qué es Atlas 64</a>
+      <a href="#system">Cómo corre un juego</a>
+      <a href="#modules">Los módulos y la mesa</a>
+      <a href="#pieces">Cómo ve Atlas 64 una ficha</a>
+      <a href="#core">Atlas Core: saber qué ficha es cuál</a>
+      <a href="#limits">Límites para tener en cuenta al diseñar</a>
+      <a href="#glossary">Glosario</a>
+    </nav>
+
+    <article class="g-article">
+<section id="what">
+        <h2><span class="g-num">01</span>Qué es Atlas 64</h2>
+        <p>Atlas 64 es una consola de juegos de mesa: un tablero real, con fichas reales y gente real alrededor de una mesa, más lo único que el cartón no puede hacer. <strong>Cada casilla se ilumina</strong>, y el tablero sabe cuándo una ficha llega a una casilla o se va.</p>
+        <p>Un tablero es un <strong>módulo</strong> de 8 × 8 casillas, 64 en total: de ahí el nombre. Cada casilla tiene su propia luz de color y su propio sensor. Un juego puede usar un solo módulo o juntar varios para armar una mesa más grande.</p>
+        <figure class="g-shot g-shot--medium">
+          <img src="Assets/atlas-in-play.webp" alt="Una mano apoya una miniatura sobre un tablero Atlas 64. Las casillas brillan en azul y violeta." width="911" height="911" loading="lazy">
+          <figcaption>Se apoya una ficha, el tablero la siente y el juego responde con luz.</figcaption>
+        </figure>
+        <p>Si vas a diseñar para Atlas, tenelo presente desde el principio: <strong>estás diseñando un juego de mesa que tiene cerebro</strong>, no un videojuego con un tablero pegado. Los mejores juegos de Atlas usan las luces para sacar fricción (el armado, las cuentas, la información oculta) y le dejan la mesa a los jugadores.</p>
+      </section>
+
+      <section id="system">
+        <h2><span class="g-num">02</span>Cómo corre un juego</h2>
+        <p>El juego no vive adentro del tablero. Corre en un <strong>teléfono</strong>, dentro de la app <strong>AtlasHub</strong>, y le habla al tablero por Bluetooth:</p>
+        <figure class="g-shot g-shot--bare">
+          <svg viewBox="0 0 760 300" role="img" aria-labelledby="sys-t-es">
+            <title id="sys-t-es">El teléfono corre el juego en AtlasHub y habla por Bluetooth con el módulo 0. El módulo 0 habla sin cables con hasta seis módulos más. Atlas Core se engancha en el frente del módulo 0.</title>
+            <rect x="0" y="0" width="760" height="300" rx="10" fill="#0f0f0f" stroke="#232323"/>
+            <!-- phone -->
+            <rect x="36" y="60" width="104" height="190" rx="18" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+            <rect x="48" y="80" width="80" height="150" rx="6" fill="#031526"/>
+            <text x="88" y="120" fill="#f1ba41" font-family="Archivo, sans-serif" font-size="12" font-weight="600" text-anchor="middle">AtlasHub</text>
+            <text x="88" y="140" fill="#c2c2c2" font-family="Archivo, sans-serif" font-size="11" text-anchor="middle">tu juego</text>
+            <rect x="60" y="160" width="56" height="10" rx="5" fill="#f1ba41" opacity=".8"/>
+            <rect x="60" y="178" width="56" height="10" rx="5" fill="#4b4b4b"/>
+            <text x="88" y="276" fill="#999" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">TELÉFONO</text>
+            <!-- bluetooth link -->
+            <path d="M150 155 H240" stroke="#8bd4df" stroke-width="2" stroke-dasharray="6 6"/>
+            <text x="195" y="140" fill="#8bd4df" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">BLUETOOTH</text>
+            <text x="195" y="178" fill="#737373" font-family="Archivo, sans-serif" font-size="11" text-anchor="middle">luces ⟶ · ⟵ fichas</text>
+            <!-- module 0 -->
+            <g transform="translate(250 70)">
+              <rect width="150" height="150" rx="10" fill="#1e1e1e" stroke="#f1ba41" stroke-width="2"/>
+              <g fill="#333">
+                <rect x="12" y="12" width="126" height="126" rx="4" fill="#2a2a2a"/>
+              </g>
+              <g fill="#f1ba41">
+                <rect x="28" y="28" width="14" height="14" rx="2"/><rect x="60" y="44" width="14" height="14" rx="2" fill="#CD3F21"/><rect x="92" y="76" width="14" height="14" rx="2"/><rect x="44" y="92" width="14" height="14" rx="2" fill="#8bd4df"/><rect x="108" y="108" width="14" height="14" rx="2"/>
+              </g>
+              <text x="75" y="-12" fill="#f4f4f4" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">MÓDULO 0 · MÁSTER</text>
+            </g>
+            <!-- atlas core -->
+            <rect x="303" y="228" width="44" height="30" rx="6" fill="#1e1e1e" stroke="#90D700" stroke-width="2"/>
+            <text x="325" y="276" fill="#90D700" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">ATLAS CORE</text>
+            <!-- wireless to other modules -->
+            <path d="M412 145 q14 -10 0 -20 M424 150 q22 -15 0 -30 M436 155 q30 -20 0 -40" stroke="#8bd4df" stroke-width="2" fill="none" transform="translate(0 10)"/>
+            <g transform="translate(480 70)">
+              <rect width="104" height="104" rx="8" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2"/>
+              <rect x="10" y="10" width="84" height="84" rx="3" fill="#2a2a2a"/>
+              <text x="52" y="-12" fill="#c2c2c2" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">MÓDULO 1</text>
+            </g>
+            <g transform="translate(608 70)">
+              <rect width="104" height="104" rx="8" fill="#1e1e1e" stroke="#4b4b4b" stroke-width="2" stroke-dasharray="5 5"/>
+              <text x="52" y="58" fill="#737373" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">… hasta 6</text>
+              <text x="52" y="-12" fill="#737373" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">MÁS</text>
+            </g>
+            <text x="596" y="200" fill="#737373" font-family="Archivo, sans-serif" font-size="11" text-anchor="middle">los módulos se hablan sin cables</text>
+          </svg>
+          <figcaption>El juego corre en el teléfono. El módulo 0 es el que habla con el teléfono; los demás se cuelgan de él.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>El teléfono</strong> corre el juego: dibuja la pantalla (menús, puntajes, instrucciones) y decide qué casillas se encienden y de qué color.</li>
+          <li><strong>El módulo 0</strong>, el máster, recibe esas luces por Bluetooth, se las pasa a los demás módulos y avisa cada ficha que se apoya o se levanta.</li>
+          <li><strong>Los otros módulos</strong> se conectan al máster sin cables. Un juego puede usar de 1 a 7 módulos en total.</li>
+        </ul>
+        <p>Esa división le da forma a tu juego. La pantalla es para lo que los jugadores leen; el tablero, para lo que tocan. Un puntaje, una regla, una carta que sólo un jugador debe ver: teléfono. Un movimiento, un territorio, un camino: tablero.</p>
+      </section>
+
+      <section id="modules">
+        <h2><span class="g-num">03</span>Los módulos y la mesa</h2>
+        <p>Cada módulo es un tablero suelto con su propia batería. Su <strong>frente</strong> tiene el <strong>botón de encendido</strong> a la izquierda, el puerto <strong>USB-C</strong> a la derecha y una fila de <strong>contactos magnéticos</strong> en el medio, donde se engancha Atlas Core.</p>
+        <figure class="g-shot">
+          <img src="Assets/simulator-two-modules.webp" alt="Dos módulos uno al lado del otro en el Simulador de Atlas Studio. El módulo 0 muestra un corazón rojo; el módulo 1, una diagonal celeste. Una ficha descansa sobre el lector Atlas Core, debajo del módulo 0." width="1050" height="680" loading="lazy">
+          <figcaption>Dos módulos en el Simulador de Atlas Studio. Cada uno muestra su frente (botón y USB-C) y Atlas Core está pegado al módulo 0.</figcaption>
+        </figure>
+        <p>Los módulos pueden ir <strong>en cualquier lugar de la mesa y en cualquier orientación</strong>: uno al lado del otro, apilados, en L, girados. El tablero no sabe cómo los acomodaste. Sólo informa “módulo 1, casilla 3,4”. Entonces:</p>
+        <ul>
+          <li><strong>Tu juego tiene que explicarles a los jugadores cómo armar la mesa</strong>, en pantalla, antes de empezar (“poné el módulo 1 debajo del módulo 0”).</li>
+          <li>Dejá a mano el frente de un módulo que pueda necesitar su cable: uno con poca batería quizás tenga que jugar enchufado.</li>
+          <li>Si tu juego usa Atlas Core, dejá libre el frente del módulo 0 y al alcance de los jugadores.</li>
+        </ul>
+      </section>
+
+      <section id="pieces">
+        <h2><span class="g-num">04</span>Cómo ve Atlas 64 una ficha</h2>
+        <p>Debajo de cada casilla hay un <strong>sensor magnético</strong> (un sensor de efecto Hall), y cada ficha de Atlas lleva un <strong>pequeño imán en la base</strong>. Cuando una ficha está sobre una casilla, el sensor siente el imán.</p>
+        <figure class="g-shot g-shot--bare">
+          <svg viewBox="0 0 760 280" role="img" aria-labelledby="cell-t">
+            <title id="cell-t">Corte de una casilla. La ficha tiene un imán y un tag NFC en la base. La casilla tiene una luz bajo la superficie y, debajo, un sensor de efecto Hall que siente el imán.</title>
+            <rect x="0" y="0" width="760" height="280" rx="10" fill="#0f0f0f" stroke="#232323"/>
+            <!-- piece -->
+            <path d="M300 40 q30 -18 60 0 l6 50 h-72 z" fill="#4b4b4b"/>
+            <rect x="282" y="90" width="96" height="34" rx="8" fill="#2a2a2a" stroke="#737373"/>
+            <rect x="300" y="104" width="60" height="12" rx="3" fill="#CD3F21"/>
+            <rect x="290" y="96" width="80" height="5" rx="2" fill="#90D700"/>
+            <!-- board -->
+            <rect x="120" y="128" width="420" height="16" rx="3" fill="#e5e5e5" opacity=".9"/>
+            <rect x="120" y="144" width="420" height="80" fill="#1e1e1e" stroke="#333"/>
+            <rect x="190" y="150" width="280" height="10" rx="3" fill="#f1ba41" opacity=".9"/>
+            <rect x="305" y="186" width="50" height="22" rx="3" fill="#8bd4df"/>
+            <!-- field lines -->
+            <path d="M310 118 q-30 40 0 72 M350 118 q30 40 0 72" stroke="#CD3F21" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+            <!-- labels -->
+            <g font-family="Archivo, sans-serif" font-size="13" fill="#e6e6e6">
+              <line x1="378" y1="110" x2="580" y2="64" stroke="#4b4b4b"/><text x="586" y="60">Imán en la base</text>
+              <line x1="370" y1="98" x2="580" y2="96" stroke="#4b4b4b"/><text x="586" y="100">Tag NFC (lo lee Atlas Core)</text>
+              <line x1="470" y1="155" x2="580" y2="140" stroke="#4b4b4b"/><text x="586" y="144">Luz de la casilla (LED)</text>
+              <line x1="355" y1="197" x2="580" y2="190" stroke="#4b4b4b"/><text x="586" y="194">Sensor Hall: siente el imán</text>
+            </g>
+            <text x="60" y="258" fill="#737373" font-family="Space Mono, monospace" font-size="11">UNA CASILLA, VISTA DE COSTADO</text>
+          </svg>
+          <figcaption>Cada ficha lleva un imán (para que las casillas la sientan) y un tag NFC (para que Atlas Core sepa cuál es).</figcaption>
+        </figure>
+        <p>Con eso, el tablero le manda al juego dos tipos de eventos:</p>
+        <ul>
+          <li><strong>Ficha apoyada</strong>: módulo, casilla. Algo acaba de caer en el módulo 0, casilla 3,4.</li>
+          <li><strong>Ficha levantada</strong>: módulo, casilla. Lo que había en esa casilla ya no está.</li>
+        </ul>
+        <div class="g-callout g-callout--note">
+          <span class="g-callout-title">La idea clave</span>
+          <p>El tablero sabe <strong>que</strong> una casilla está ocupada, <strong>no qué ficha</strong> hay en ella. Para una casilla, un caballo y un peón son lo mismo. Si tu juego necesita saber qué ficha se movió, llevá la cuenta en el juego (“la que salió de 2,2 es la que acaba de caer en 2,4”) o usá Atlas Core.</p>
+        </div>
+        <p>Los sensores se calibran una vez y el tablero lo recuerda. Si alguna casilla empieza a leer mal, el tablero se puede recalibrar: tarda 8 segundos y hace un pitido por segundo mientras tanto.</p>
+      </section>
+
+      <section id="core">
+        <h2><span class="g-num">05</span>Atlas Core: saber qué ficha es cuál</h2>
+        <div class="g-pair">
+          <figure class="g-shot">
+            <img src="Assets/atlas-core.webp" alt="Atlas Core, un lector negro pequeño con contactos magnéticos en un costado." width="480" height="480" loading="lazy">
+            <figcaption>Atlas Core se engancha en los contactos magnéticos del módulo 0.</figcaption>
+          </figure>
+          <div>
+            <p><strong>Atlas Core</strong> es un lector NFC que se engancha en el frente del <strong>módulo 0</strong>. Cada ficha de Atlas tiene adentro un <strong>tag NFC</strong> con un identificador único de fábrica. Apoyás una ficha en Atlas Core y el juego sabe <strong>qué ficha</strong> es.</p>
+            <p>Atlas Core es opcional: muchos juegos no lo usan nunca. Y sólo funciona pegado al módulo 0.</p>
+          </div>
+        </div>
+        <p>Algunas cosas para saber antes de diseñar con él:</p>
+        <ul>
+          <li><strong>Te dice quién, no dónde.</strong> Una ficha sobre Atlas Core queda identificada, pero Atlas Core no es una casilla: no hay posición.</li>
+          <li><strong>Los identificadores no se conocen de antemano.</strong> Cada ficha tiene uno distinto y no hay dos jugadores con el mismo juego de fichas, así que un juego no puede traer una lista. Lo habitual es <strong>asociar las fichas una vez</strong>: “apoyá el rey en Atlas Core”. El juego recuerda esa asociación para la próxima.</li>
+          <li><strong>Cada ficha tiene una pequeña memoria</strong> (144 bytes) que un juego puede leer y escribir mientras la ficha está sobre Atlas Core: el nivel de un personaje, las cargas de una poción. Esa memoria es de la ficha, así que cualquier juego la ve. Hoy funciona en el Simulador de Studio; el tablero real lo va a soportar con una actualización de firmware, así que un juego que la use tiene que seguir andando sin ella.</li>
+        </ul>
+        <p>Usos típicos: personajes que llevan su identidad de un juego a otro, mecánicas de “escaneá para revelar”, o comprobar que la ficha que se mueve es la correcta.</p>
+      </section>
+
+      <section id="limits">
+        <h2><span class="g-num">06</span>Límites para tener en cuenta al diseñar</h2>
+        <p>Ninguno te va a impedir hacer un gran juego, pero cada uno sale más barato planearlo que descubrirlo después.</p>
+        <div class="g-table-wrap">
+          <table class="g-table">
+            <thead><tr><th>Límite</th><th>Qué significa para tu diseño</th></tr></thead>
+            <tbody>
+              <tr><td><strong>16 colores por juego</strong></td><td>Cada juego elige una paleta de 16 colores (uno es “apagado”) y cada casilla usa uno de ellos. Alcanza para equipos, terrenos y estados; no para degradés.</td></tr>
+              <tr><td><strong>Brillo de 0 a 15</strong></td><td>Los niveles 1 a 3 no se ven en el tablero real, y el jugador puede bajar el brillo hasta el 20%, donde todo lo que esté por debajo de 8 desaparece. Para lo que tiene que verse siempre, usá 8 o más.</td></tr>
+              <tr><td><strong>Unas 24 actualizaciones por segundo</strong></td><td>Las luces viajan por Bluetooth. Cambialas cuando pasa algo, no todo el tiempo. Un pulso lento anda; una animación rápida, no.</td></tr>
+              <tr><td><strong>Sólo presencia</strong></td><td>Las casillas saben que hay una ficha, no cuál. Usá Atlas Core o seguí los movimientos en el juego.</td></tr>
+              <tr><td><strong>Atlas Core sólo en el módulo 0</strong></td><td>Un lector por mesa, en el frente del módulo 0.</td></tr>
+              <tr><td><strong>De 1 a 7 módulos</strong></td><td>Cada juego declara el mínimo que necesita y el máximo que usa. AtlasHub avisa a quien tenga menos.</td></tr>
+              <tr><td><strong>Una orientación de pantalla</strong></td><td>La pantalla del teléfono es de 393 × 852, y cada juego es vertical u horizontal.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="glossary">
+        <h2><span class="g-num">07</span>Glosario</h2>
+        <dl class="g-glossary">
+          <dt>Módulo</dt><dd>Un tablero de 8 × 8. El módulo 0 es el máster, el que habla con el teléfono.</dd>
+          <dt>Casilla</dt><dd>Uno de los 64 cuadrados de un módulo, con su propia luz y su sensor. Se escribe x,y desde la esquina de arriba a la izquierda (de 0,0 a 7,7).</dd>
+          <dt>Paleta</dt><dd>Los 16 colores que un juego usa en el tablero.</dd>
+          <dt>Ficha</dt><dd>Todo lo que tenga en la base el imán y el tag NFC de Atlas: miniaturas, fichas, peones.</dd>
+          <dt>Atlas Core</dt><dd>El lector NFC que se pega al módulo 0 e identifica fichas.</dd>
+          <dt>AtlasHub</dt><dd>La app del teléfono donde los jugadores consiguen, instalan y juegan los juegos de Atlas.</dd>
+          <dt>Atlas Studio</dt><dd>El programa gratuito para PC donde hacés esos juegos. Es la próxima guía.</dd>
+        </dl>
+      </section>
+    </article>
+  </div>
+
+  <nav class="g-pager" aria-label="Guías">
+    <a href="../../guides.html"><small>&lt;&lt;&lt; Todas las guías</small><span>Volver a las guías</span></a>
+    <a class="is-next" href="../02-atlas-studio/es.html"><small>Siguiente &gt;&gt;&gt;</small><span>Conocé Atlas Studio</span></a>
+  </nav>
+
+  <footer style="padding: 56px 40px; border-top: 1px solid #232323">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="../../index.html" style="text-decoration: none">&lt;&lt;&lt; Volver al inicio</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

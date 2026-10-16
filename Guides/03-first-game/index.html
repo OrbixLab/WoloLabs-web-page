@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your first game — Atlas Studio Guides — Wolo Labs</title>
+<meta name="description" content="Paint the Board, step by step: put a piece on a cell and it lights up in the colour you picked. Built by talking, not coding.">
+<link rel="alternate" hreflang="es" href="es.html">
+<link rel="icon" href="../../assets/img/isotipo-w.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/guide.css">
+<script>
+  // Same boot as the other pages: `wl-js` pins the nav; if main.js never runs, drop it.
+  (function (d) {
+    d.classList.add('wl-js');
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.__wlMotion) d.classList.remove('wl-js', 'wl-motion');
+    });
+  })(document.documentElement);
+</script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/guide.js" defer></script>
+</head>
+<body>
+<div class="wl-page">
+
+  <!-- NAV -->
+  <div style="position: relative; overflow: hidden; background: #0a0a0a; padding: 24px 24px 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(130% 320% at 76% -80%, #2a2a2a 0%, #141414 45%, #080808 100%)"></div>
+    <div class="wl-nav-spacer" aria-hidden="true"></div>
+    <header class="wl-nav" style="position: relative; z-index: 5; max-width: 1140px; margin: 0 auto; background: rgba(12, 12, 12, 0.72); border: 1px solid #3a3a3a; border-radius: 999px; padding: 10px 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; box-sizing: border-box">
+      <a href="../../index.html" style="display: flex; align-items: center; min-height: 44px; text-decoration: none">
+        <img src="../../assets/img/logo-wololabs.svg" alt="Wolo Labs" style="height: 20px; width: auto; filter: invert(1)">
+      </a>
+      <button class="wl-menu-btn" type="button" aria-expanded="false" aria-controls="wl-menu" aria-label="Open menu"><span></span><span></span></button>
+      <nav id="wl-menu" class="wl-menu" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 36px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase">
+        <a href="../../index.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Home</a>
+        <a href="../../products.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Products</a>
+        <a href="../../guides.html" style="color: #90D700; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Guides</a>
+        <a href="../../about.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">About</a>
+        <a href="../../contact.html" style="color: #f4f4f4; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px">Contact</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <header class="g-hero wl-worlds">
+    <div class="wl-worlds-sky" aria-hidden="true"></div>
+    <div class="g-hero-inner">
+      <div class="g-crumbs">
+        <span><a href="../../guides.html">Guides</a> / <span class="g-kicker">Guide 03 of 6</span></span>
+        <span class="g-lang"><span>EN</span><a href="es.html" hreflang="es" lang="es">ES</a></span>
+      </div>
+      <h1>Your first game</h1>
+      <p class="g-lede">Paint the Board, step by step: put a piece on a cell and it lights up in the colour you picked. Built by talking, not coding.</p>
+      <div class="g-meta"><span>12 min read</span><span>Beginner</span><span>Atlas Studio 0.2</span></div>
+      <nav class="g-progress" aria-label="Guides">
+        <a href="../01-atlas-64/index.html" class="is-done" aria-label="Meet Atlas 64"></a>
+        <a href="../02-atlas-studio/index.html" class="is-done" aria-label="Meet Atlas Studio"></a>
+        <a href="../03-first-game/index.html" class="is-current" aria-label="Your first game" aria-current="page"></a>
+        <a href="../04-testing-with-ai/index.html" class="" aria-label="Testing with AI"></a>
+        <a href="../05-test-on-your-phone/index.html" class="" aria-label="Test on your phone"></a>
+        <a href="../06-publish-to-the-store/index.html" class="" aria-label="Publish to the store"></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="g-layout">
+    <nav class="g-toc" aria-label="In this guide">
+      <span class="g-toc-title">In this guide</span>
+      <a href="#goal">What we’re building</a>
+      <a href="#create">Create the project</a>
+      <a href="#ask">Ask the agent</a>
+      <a href="#try">Play it</a>
+      <a href="#sheet">Fill in the game sheet</a>
+      <a href="#next">Keep going</a>
+      <a href="#code">Under the hood</a>
+    </nav>
+
+    <article class="g-article">
+<section id="goal">
+        <h2><span class="g-num">01</span>What we’re building</h2>
+        <p><strong>Paint the Board</strong> is about the smallest game that still uses everything Atlas has: the phone screen, the lights and the pieces.</p>
+        <ul>
+          <li>The phone shows <strong>8 colour buttons</strong>. You pick one.</li>
+          <li>You put any piece on any cell, and <strong>the cell lights up in that colour</strong>.</li>
+          <li>You lift the piece and <strong>the cell stays painted</strong>.</li>
+        </ul>
+        <div class="g-pair">
+          <figure class="g-shot">
+            <img src="Assets/paint-the-board-simulator.webp" alt="Paint the Board running in the Simulator: a red heart painted on the board, two yellow cells, and the phone with the colour buttons." width="1600" height="825" loading="lazy">
+            <figcaption>Where we’ll end up: a heart painted one piece at a time.</figcaption>
+          </figure>
+          <figure class="g-shot g-shot--phone">
+            <img src="Assets/paint-the-board-phone.webp" alt="The phone screen of Paint the Board: the title, a mirror of the board, the text Painted 6,7 yellow and eight colour buttons." width="198" height="429" loading="lazy">
+            <figcaption>The phone screen.</figcaption>
+          </figure>
+        </div>
+        <p>You’ll need Atlas Studio installed and an AI agent connected, both covered in <a href="../02-atlas-studio/index.html">guide 2</a>. No Atlas 64 needed: everything happens in the Simulator.</p>
+      </section>
+
+      <section id="create">
+        <h2><span class="g-num">02</span>Create the project</h2>
+        <ol class="g-steps">
+          <li>
+            <h3>Add a project</h3>
+            <p>On the home screen, press <span class="g-ui">Agregar proyecto</span> <span class="g-tr">(add project)</span> → <span class="g-ui">Nuevo juego</span> <span class="g-tr">(new game)</span>. In <strong>Empezar desde</strong> <span class="g-tr">(start from)</span>, leave <span class="g-ui">Juego vacío</span> <span class="g-tr">(empty game)</span>.</p>
+          </li>
+          <li>
+            <h3>Name it and pick the orientation</h3>
+            <p><strong>Título</strong> <span class="g-tr">(title)</span>: <code>Paint the Board</code>. The <strong>Identificador</strong> <span class="g-tr">(identifier)</span> fills itself in as <code>paint-the-board</code>: it’s the game’s folder and its name in the store. <strong>Orientación</strong>: <span class="g-ui">Vertical (393×852)</span>. Press <span class="g-ui">Crear</span> <span class="g-tr">(create)</span>.</p>
+          </li>
+          <li>
+            <h3>It opens in the Simulator</h3>
+            <p>A new game isn’t empty: it comes with a starter that already works. Press <span class="g-ui">Ejecutar</span> <span class="g-tr">(run)</span> and drag a piece from <span class="g-ui">Fichas</span> onto the board: the cell lights up while the piece is there and turns off when you take it away. We’ll change exactly that.</p>
+            <figure class="g-shot">
+              <img src="Assets/simulator-empty.webp" alt="A freshly created project in the Simulator: an empty board, the phone saying Ejecuta el juego para verlo aquí, and the WOLO IA chat waiting to connect." width="1600" height="825" loading="lazy">
+              <figcaption>The new project, before running it.</figcaption>
+            </figure>
+          </li>
+        </ol>
+      </section>
+
+      <section id="ask">
+        <h2><span class="g-num">03</span>Ask the agent</h2>
+        <ol class="g-steps">
+          <li>
+            <h3>Connect your agent</h3>
+            <p>In the WOLO IA chat, pick your agent and press <span class="g-ui">Conectar</span>. If it’s your first time, guide 2 walks you through it.</p>
+          </li>
+          <li>
+            <h3>Paste this message</h3>
+            <p>Describe the game the way you’d explain it to a friend: what’s on the screen, what happens on the board, and how you’ll know it works.</p>
+            <div class="g-prompt">
+              <span class="g-prompt-label">Message for the agent</span>
+              <p class="g-prompt-text">Let’s make a game called Paint the Board, for one module.
+
+On the phone screen: the title, a small picture of the board, and 8 colour buttons (red, orange, yellow, green, cyan, blue, purple, white). The selected colour has a white border.
+
+On the board: when a piece is placed on a cell, that cell lights up in the selected colour. When the piece is lifted, the cell stays painted. A piece on a painted cell repaints it with the current colour.
+
+Use a brightness that stays visible even if the board is dimmed. When you’re done, test it in the Simulator: paint a few cells, lift the pieces, change colour, and tell me how it went.</p>
+            </div>
+          </li>
+          <li>
+            <h3>Let it work</h3>
+            <p>The agent reads the project, changes the game’s screen and logic, checks it against the platform rules, runs it in the Simulator, places pieces on its own to test it and then tells you what it did, in plain words. You’ll see the board and the phone change while it works.</p>
+            <div class="g-pending"><strong>Screenshot pending</strong>The WOLO IA chat with the agent’s reply after building Paint the Board</div>
+          </li>
+        </ol>
+        <div class="g-callout g-callout--note">
+          <span class="g-callout-title">If it doesn’t come out right</span>
+          <p>Don’t start over: say what’s wrong. “The colour buttons are too small”, “lifting the piece turns the cell off, it should stay”. If it’s something you can see, press <span class="g-ui">Señalar</span> and click it first.</p>
+        </div>
+      </section>
+
+      <section id="try">
+        <h2><span class="g-num">04</span>Play it</h2>
+        <p>Now check it yourself, the way a player would:</p>
+        <ul class="g-check">
+          <li>Drag a piece from <span class="g-ui">Fichas</span> onto a cell. It lights up red, the first colour.</li>
+          <li>Drag the piece off the board, or right-click it. The cell stays red.</li>
+          <li>Click the blue button on the phone. Place a piece on the same cell: it turns blue.</li>
+          <li>Leave a piece sitting on a cell and paint around it. Pieces and paint live together.</li>
+        </ul>
+        <p>Then paint something. The heart in the screenshot is 30 cells, about two minutes of placing and lifting.</p>
+      </section>
+
+      <section id="sheet">
+        <h2><span class="g-num">05</span>Fill in the game sheet</h2>
+        <p>Everything the store will show about your game lives in the <span class="g-ui">Ficha del Juego</span> <span class="g-tr">(game sheet)</span>, in the <span class="g-ui">Panel de Control</span> tab. It’s worth filling in now, while the idea is fresh:</p>
+        <figure class="g-shot">
+          <img src="Assets/game-sheet.webp" alt="The Ficha del juego dialog: identifier paint-the-board, title, version 0.1.0, minimum app version, SDK 1.3, entry scene, orientation Vertical, players 1 to 1, boards 1 to 1, difficulty." width="976" height="873" loading="lazy">
+          <figcaption>The game sheet. Scroll down for the description, categories and covers.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>Título</strong> and <strong>Versión</strong> <span class="g-tr">(title, version)</span>: leave 0.1.0 until you publish.</li>
+          <li><strong>Jugadores</strong> and <strong>Tableros</strong> <span class="g-tr">(players, boards)</span>: 1 to 1 here. A game for bigger tables sets the minimum it needs and the maximum it uses.</li>
+          <li><strong>Descripción</strong> and up to three <strong>categorías</strong> <span class="g-tr">(description, categories)</span>, from the store’s list.</li>
+          <li><strong>Portadas</strong> <span class="g-tr">(covers)</span>: a vertical one of 320 × 440 and an optional landscape one. Studio puts a placeholder until you add yours.</li>
+        </ul>
+        <p>Press <span class="g-ui">Guardar</span> <span class="g-tr">(save)</span>. Nothing goes to the store yet; that happens in guide 6.</p>
+      </section>
+
+      <section id="next">
+        <h2><span class="g-num">06</span>Keep going</h2>
+        <p>Each of these is one more message to the agent. Send one, try it, then the next.</p>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Add a clear button</span>
+          <p class="g-prompt-text">Add a “Clear” button under the colours that turns off every cell of the board.</p>
+        </div>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Add an eraser</span>
+          <p class="g-prompt-text">Add a ninth button, the eraser. With it selected, placing a piece on a cell turns that cell off.</p>
+        </div>
+        <div class="g-prompt">
+          <span class="g-prompt-label">Give it an ending</span>
+          <p class="g-prompt-text">When all 64 cells are painted, show the end-of-game screen with how long it took, and let me play again.</p>
+        </div>
+        <p>That last one already makes it a game: a goal, a measure and a reason to try again. Next guide: how to let the agent test all of this for you.</p>
+      </section>
+
+      <section id="code">
+        <h2><span class="g-num">07</span>Under the hood</h2>
+        <p>You don’t need to read this. But if you’re curious, this is the whole logic of Paint the Board, as it ended up. The screen (title, board mirror, buttons) lives in a separate scene file that Studio’s editor shows visually.</p>
+        <details class="g-more">
+          <summary>Show main.gd (70 lines)</summary>
+          <div>
+            <p>Three things to notice: the palette of 16 colours sent to the board, the colour buttons calling <code>_select</code>, and <code>_on_piece_placed</code>, which paints the cell. There’s no code for lifting a piece: doing nothing is what keeps the cell painted.</p>
+<pre>extends Control
+
+## Paint the Board
+##
+## Pick a colour on the screen; every piece placed on the board paints its cell with that colour.
+## Lifting the piece leaves the cell painted.
+
+## Palette index 0 is &quot;off&quot;. Indexes 1-8 are the colours the player can pick.
+const PALETTE_COLORS: Array[Color] = [
+	Color(0.0, 0.0, 0.0),      # 0 off
+	Color(0.90, 0.12, 0.10),   # 1 red
+	Color(1.00, 0.45, 0.05),   # 2 orange
+	Color(0.95, 0.73, 0.25),   # 3 yellow
+	Color(0.25, 0.85, 0.20),   # 4 green
+	Color(0.10, 0.80, 0.85),   # 5 cyan
+	Color(0.15, 0.30, 0.95),   # 6 blue
+	Color(0.65, 0.20, 0.90),   # 7 purple
+	Color(1.00, 1.00, 1.00),   # 8 white
+]
+const COLOR_NAMES := [&quot;&quot;, &quot;Red&quot;, &quot;Orange&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;Cyan&quot;, &quot;Blue&quot;, &quot;Purple&quot;, &quot;White&quot;]
+## Brightness 0-15. 8 or more stays visible even when the player dims the board.
+const BRIGHT := 12
+
+var _selected := 1
+
+@onready var _status: Label = %Status
+@onready var _swatches: GridContainer = %Swatches
+
+
+func _ready() -&gt; void:
+	var palette: Array = PALETTE_COLORS.duplicate()
+	palette.resize(16)
+	for i in range(PALETTE_COLORS.size(), 16):
+		palette[i] = Color.BLACK
+	Atlas.board.set_palette(palette)
+
+	for i in _swatches.get_child_count():
+		var swatch: Button = _swatches.get_child(i)
+		swatch.pressed.connect(_select.bind(i + 1))
+
+	Atlas.pieces.placed.connect(_on_piece_placed)
+
+	await Atlas.board.refresh_modules()
+	Atlas.board.clear()
+	_select(1)
+
+
+func _select(index: int) -&gt; void:
+	_selected = index
+	for i in _swatches.get_child_count():
+		_style_swatch(_swatches.get_child(i), i + 1 == index, PALETTE_COLORS[i + 1])
+	_show(&quot;Colour: %s. Place a piece on any cell.&quot; % COLOR_NAMES[index])
+
+
+func _on_piece_placed(module: int, cell: Vector2i, _global_cell: Vector2i) -&gt; void:
+	Atlas.board.set_pixel(module, cell.x, cell.y, _selected, BRIGHT)
+	_show(&quot;Painted %d,%d %s&quot; % [cell.x, cell.y, COLOR_NAMES[_selected].to_lower()])
+
+
+func _style_swatch(swatch: Button, selected: bool, color: Color) -&gt; void:
+	var box := StyleBoxFlat.new()
+	box.bg_color = color
+	box.set_corner_radius_all(14)
+	box.set_border_width_all(4 if selected else 0)
+	box.border_color = Atlas.ui.color(&amp;&quot;text&quot;)
+	for state in [&quot;normal&quot;, &quot;hover&quot;, &quot;pressed&quot;, &quot;focus&quot;]:
+		swatch.add_theme_stylebox_override(state, box)
+
+
+func _show(text: String) -&gt; void:
+	_status.text = text
+	print(text)</pre>
+          </div>
+        </details>
+      </section>
+    </article>
+  </div>
+
+  <nav class="g-pager" aria-label="Guides">
+    <a href="../02-atlas-studio/index.html"><small>&lt;&lt;&lt; Previous</small><span>Meet Atlas Studio</span></a>
+    <a class="is-next" href="../04-testing-with-ai/index.html"><small>Next &gt;&gt;&gt;</small><span>Testing with AI</span></a>
+  </nav>
+
+  <footer style="padding: 56px 40px; border-top: 1px solid #232323">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #737373">
+      <a href="../../index.html" style="text-decoration: none">&lt;&lt;&lt; Back to home</a>
+      <span>© 2026 Wolo Labs · @wololabs</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
