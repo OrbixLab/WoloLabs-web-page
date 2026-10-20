@@ -37,6 +37,9 @@ assets/img/Founders/  Founder portraits (originals + .webp used by the site)
 assets/css/guide.css  Shared styles for the guide pages
 assets/js/guide.js    Guide pages: copy button on prompts, active entry in the contents
 Guides/NN-slug/       One folder per guide (see below)
+llms.txt              Site summary and links for LLMs (llmstxt.org)
+llms-full.txt         llms.txt + the six English guides as Markdown (generated)
+tools/llms_full.py    Regenerates llms-full.txt from the guide pages
 ```
 
 ## Guides
@@ -70,6 +73,15 @@ on a screenshot), `.g-pending` (a screenshot still to capture).
 The nav, hero, contents and prev/next are repeated in every guide page, as in the rest of
 the site. The contents list links to each `<section id>`, so a new section needs its link
 added in both languages.
+
+**After changing a guide** (or `llms.txt`), regenerate the LLM version:
+
+```bash
+python tools/llms_full.py
+```
+
+`llms.txt` is written by hand: if you add, rename or remove a page, update its links there.
+Both files use absolute URLs on `https://wololabs.com` and must stay at the site root.
 
 Screenshots come from Atlas Studio 0.2 running the `paint-the-board` game from guide 3.
 A few are still marked *Screenshot pending*: they need a signed-in creator account, a real

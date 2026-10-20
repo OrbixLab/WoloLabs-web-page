@@ -1,0 +1,889 @@
+# Wolo Labs
+
+> Wolo Labs makes Atlas 64, a tabletop game console whose 64-cell board lights up and senses pieces, and Atlas Studio, the free PC app where anyone can build games for it (by talking to an AI agent, without coding) and publish them to the Atlas 64 store. Based in Mendoza, Argentina.
+
+Key facts:
+
+- **Atlas 64** is a board game console. One board is a *module* of 8 × 8 cells; each cell has a coloured light and a magnetic (Hall-effect) sensor. Pieces carry a magnet and an NFC tag in their base. A game uses 1 to 7 modules.
+- Games run on a phone, inside the **AtlasHub** app, which talks to module 0 over Bluetooth. The board knows *that* a cell is occupied, not *which* piece is on it.
+- **Atlas Core** is the optional NFC reader that snaps onto module 0 and identifies which piece is which.
+- **Atlas Studio** is free, for Windows (Mac and Linux to be confirmed), built on the Godot engine. It has a board and phone Simulator, an AI agent chat (the creator brings their own Claude, ChatGPT/Codex or Gemini account), a validator, test installs on the creator's own phone, and submission to the store.
+- Games reach the store through automatic checks plus human review. Atlas 64 is coming to Kickstarter.
+- The store is at https://atlas-64.com. Guides exist in English and Spanish; Studio's interface is in Spanish.
+
+## Main pages
+
+- [Home](https://wololabs.com/index.html): What Wolo Labs does: Atlas 64, Atlas Studio, the store, the Kickstarter waitlist.
+- [Products](https://wololabs.com/products.html): Atlas 64 (the console) and Atlas Studio (the creator platform), and how they connect.
+- [Guides](https://wololabs.com/guides.html): Index of the step-by-step creator guides.
+- [About](https://wololabs.com/about.html): Mission, vision, values and the team.
+- [Contact](https://wololabs.com/contact.html): Kickstarter waitlist and contact (atlas@wololabs.com).
+
+## Creator guides (English)
+
+- [01 · Meet Atlas 64](https://wololabs.com/Guides/01-atlas-64/index.html): How the console works, how cells sense pieces, what Atlas Core is for, and the limits to design around (16 colours, brightness, ~24 updates per second, presence only).
+- [02 · Meet Atlas Studio](https://wololabs.com/Guides/02-atlas-studio/index.html): Install it, tour the Simulator and Control Panel, connect an AI agent, what the agent can and can't do, and how to activate an Atlas Developer account in AtlasHub.
+- [03 · Your first game](https://wololabs.com/Guides/03-first-game/index.html): Build "Paint the Board" step by step by talking to the agent, play it in the Simulator, fill in the game sheet.
+- [04 · Testing with AI](https://wololabs.com/Guides/04-testing-with-ai/index.html): The validate–run–play loop, what the agent reads from the board, test prompts, reporting bugs by pointing, real-world conditions, the platform rules.
+- [05 · Test on your phone](https://wololabs.com/Guides/05-test-on-your-phone/index.html): Install a game on your own phone through AtlasHub's developer mode and play it on a real Atlas 64. Limits: 72 hours, your phone only, not shareable.
+- [06 · Publish to the store](https://wololabs.com/Guides/06-publish-to-the-store/index.html): What to prepare, sending for review, the five automatic checks, human review, approval or rejection, updates and the creator Panel.
+
+## Guías para creadores (español)
+
+- [01 · Conocé Atlas 64](https://wololabs.com/Guides/01-atlas-64/es.html)
+- [02 · Conocé Atlas Studio](https://wololabs.com/Guides/02-atlas-studio/es.html)
+- [03 · Tu primer juego](https://wololabs.com/Guides/03-first-game/es.html)
+- [04 · Testeo con IA](https://wololabs.com/Guides/04-testing-with-ai/es.html)
+- [05 · Probalo en tu teléfono](https://wololabs.com/Guides/05-test-on-your-phone/es.html)
+- [06 · Publicá en la tienda](https://wololabs.com/Guides/06-publish-to-the-store/es.html)
+
+## Optional
+
+- [Full text for LLMs](https://wololabs.com/llms-full.txt): The site summary and all six English guides in one Markdown file.
+- [Atlas 64 store](https://atlas-64.com): Games available for Atlas 64.
+- [YouTube](https://www.youtube.com/@wololabs): Matches, behind the scenes and Atlas Studio tutorials.
+
+---
+
+# Creator guides, full text
+
+The six Atlas Studio guides in English, in order. Each one is also published in Spanish (same URL with es.html instead of index.html). On-screen labels from Atlas Studio and AtlasHub are quoted in Spanish, as they appear in the app.
+
+---
+
+# Meet Atlas 64
+
+Source: https://wololabs.com/Guides/01-atlas-64/index.html
+
+> How the console works, what it can and can’t sense, and what Atlas Core is for. The ground rules for everything you’ll design.
+
+*8 min read · Beginner · Atlas Studio 0.2*
+
+## What Atlas 64 is
+
+Atlas 64 is a board game console: a real board, with real pieces and real people around a table, plus the one thing cardboard can’t do. **Every cell can light up**, and the board knows when a piece lands on a cell or leaves it.
+
+One board is a **module** of 8 × 8 cells, 64 in all, hence the name. Each cell has its own coloured light and its own sensor. A game can use a single module or join several to make a bigger table.
+
+![A hand placing a miniature on an Atlas 64 board. The cells glow blue and purple.](https://wololabs.com/Guides/01-atlas-64/Assets/atlas-in-play.webp)
+*A piece goes down, the board feels it, and the game answers with light.*
+
+If you’re going to design for Atlas, keep this in mind from the start: **you’re designing a board game that happens to have a brain**, not a video game with a board attached. The best Atlas games use the lights to remove friction (setup, bookkeeping, hidden information) and leave the table to the players.
+
+## How a game runs
+
+The game doesn’t live inside the board. It runs on a **phone**, inside the **AtlasHub** app, and talks to the board over Bluetooth:
+
+*Diagram:* The phone runs the game in AtlasHub and talks over Bluetooth to module 0. Module 0 talks wirelessly to up to six more modules. Atlas Core attaches to the front of module 0.
+*The game runs on the phone. Module 0 is the one the phone talks to; the rest hang off it.*
+
+- **The phone** runs the game: it draws the screen (menus, scores, instructions) and decides which cells light up and in what colour.
+- **Module 0**, the master, receives those lights over Bluetooth, passes them on to the other modules, and reports back every piece that is placed or lifted.
+- **The other modules** connect to the master wirelessly. A game can use from 1 to 7 modules in total.
+
+That split shapes your game. The screen is for what players read; the board is for what they touch. A score, a rule, a card that only one player should see: phone. A move, a territory, a path: board.
+
+## Modules and the table
+
+Each module is a separate board with its own battery. Its **front** edge has the **power button** on the left, the **USB-C** port on the right and a row of **magnetic contacts** in the middle, where Atlas Core snaps on.
+
+![Two modules side by side in the Atlas Studio Simulator. Module 0 shows a red heart; module 1 a cyan diagonal. A piece rests on the Atlas Core reader under module 0.](https://wololabs.com/Guides/01-atlas-64/Assets/simulator-two-modules.webp)
+*Two modules in the Atlas Studio Simulator. Each one shows its front (power button, USB-C) and Atlas Core is attached to module 0.*
+
+Modules can go **anywhere on the table and in any orientation**: side by side, stacked, in an L, rotated. The board doesn’t know how you arranged them. It only reports “module 1, cell 3,4”. So:
+
+- **Your game has to tell players how to set up the table**, on screen, before the match starts (“put module 1 below module 0”).
+- Leave the front of a module reachable if it might need its cable: a module with low battery may have to play plugged in.
+- If your game uses Atlas Core, keep the front of module 0 free and within reach of the players.
+
+## How Atlas 64 sees a piece
+
+Under every cell there’s a **magnetic sensor** (a Hall-effect sensor), and every Atlas piece carries a **small magnet in its base**. When a piece sits on a cell, the sensor feels the magnet.
+
+*Diagram:* Cross-section of a cell. The piece has a magnet and an NFC tag in its base. The cell has a light under its surface and a Hall-effect sensor below that feels the magnet.
+*Every piece carries a magnet (so cells can feel it) and an NFC tag (so Atlas Core can tell which piece it is).*
+
+From that, the board sends the game two kinds of events:
+
+- **Piece placed**: module, cell. Something just landed on module 0, cell 3,4.
+- **Piece lifted**: module, cell. Whatever was on that cell is gone.
+
+> **The key idea.** The board knows **that** a cell is occupied, **not which piece** is on it. A knight and a pawn look the same to a cell. If your game needs to know which piece moved, track it yourself (“the piece that left 2,2 is the one that just landed on 2,4”) or use Atlas Core.
+
+The sensors are calibrated once and the board remembers it. If a cell ever starts misreading, the board can recalibrate: it takes 8 seconds and beeps once a second while it does.
+
+## Atlas Core: knowing which piece is which
+
+![Atlas Core, a small black reader with magnetic contacts on its side.](https://wololabs.com/Guides/01-atlas-64/Assets/atlas-core.webp)
+*Atlas Core snaps onto the magnetic contacts of module 0.*
+
+**Atlas Core** is an NFC reader that snaps onto the front of **module 0**. Every Atlas piece has an **NFC tag** inside, with a unique ID set at the factory. Put a piece on Atlas Core and the game learns **which piece** it is.
+
+Atlas Core is optional: plenty of games never use it. And it only works attached to module 0.
+
+A few things to know before designing with it:
+
+- **It tells you who, not where.** A piece on Atlas Core is identified, but Atlas Core isn’t a cell, so there’s no position.
+- **IDs are unknown in advance.** Every piece has a different ID and no two players own the same set, so a game can’t ship with a list of IDs. The usual pattern is to **pair pieces once**: “put the king on Atlas Core”. The game remembers that pairing for next time.
+- **Each piece has a little memory** (144 bytes) that a game can read and write while the piece sits on Atlas Core: a character’s level, a potion’s charges. That memory belongs to the piece, so any game can see it. Today this works in the Studio Simulator; the real board will support it with a firmware update, so a game that uses it must keep working without it.
+
+Typical uses: character pieces that carry their identity from game to game, “scan to reveal” mechanics, or checking that the right piece is the one moving.
+
+## Limits worth designing around
+
+None of these will stop you making a great game, but each one is cheaper to plan for than to discover later.
+
+| Limit | What it means for your design |
+|---|---|
+| **16 colours per game** | Each game picks a palette of 16 colours (one is “off”) and every cell uses one of them. Plenty for teams, terrain and states; not for gradients. |
+| **Brightness 0–15** | Levels 1–3 don’t show on the real board, and players can dim it down to 20%, where anything below 8 disappears. For anything that must be seen, use 8 or more. |
+| **About 24 updates per second** | Lights travel over Bluetooth. Change them when something happens, not continuously. Slow pulses work; fast animations don’t. |
+| **Presence only** | Cells know a piece is there, not which one. Use Atlas Core or track moves in the game. |
+| **Atlas Core on module 0 only** | One reader per table, at the front of module 0. |
+| **1 to 7 modules** | Each game declares the minimum it needs and the maximum it uses. AtlasHub warns players who have fewer. |
+| **One screen orientation** | The phone screen is 393 × 852, and each game is either portrait or landscape. |
+
+## Glossary
+
+- **Module**: One 8 × 8 board. Module 0 is the master, the one the phone talks to.
+- **Cell**: One of the 64 squares of a module, with its own light and sensor. Written x,y from the top-left corner (0,0 to 7,7).
+- **Palette**: The 16 colours a game uses on the board.
+- **Piece**: Anything with an Atlas magnet and NFC tag in its base: miniatures, tokens, pawns.
+- **Atlas Core**: The NFC reader that attaches to module 0 and identifies pieces.
+- **AtlasHub**: The phone app where players get, install and play Atlas games.
+- **Atlas Studio**: The free PC app where you make those games. That’s the next guide.
+
+---
+
+# Meet Atlas Studio
+
+Source: https://wololabs.com/Guides/02-atlas-studio/index.html
+
+> Install it, find your way around the Simulator, talk to an AI agent and activate your Atlas Developer account.
+
+*10 min read · Beginner · Atlas Studio 0.2*
+
+## What Atlas Studio is
+
+**Atlas Studio** is the free PC app where Atlas games are made. It does four things, in this order:
+
+1. **Create** a game project that already follows every Atlas rule.
+2. **Simulate** the board and the phone, so you can play your game without any hardware.
+3. **Check** your game with the same rules the store will apply.
+4. **Send** it to your phone for real-board testing, and to the store when it’s ready.
+
+You don’t need to know how to program. You describe what you want to an **AI agent** inside Studio, and it writes and tests the game for you. Studio is built on the Godot game engine, so if you do know how to code, everything is there when you need it.
+
+> **About the language.** Studio’s interface is in Spanish today. In these guides every on-screen label appears exactly as you’ll see it, like “Simulador”, followed by its translation in (italics) the first time.
+
+## Install it
+
+1. **Download the installer**
+
+   Get `AtlasStudioSetup` from the [Atlas Studio page](https://wololabs.com/products.html#atlas-studio). It’s for Windows; Mac and Linux are still to be confirmed.
+
+2. **Run it**
+
+   It installs for your user only, without administrator rights, and adds Atlas Studio to the Start menu and the desktop. The installer isn’t signed yet, so the first time Windows may show *“Windows protected your PC”*: click *More info* → *Run anyway*.
+
+3. **Open Atlas Studio**
+
+   The first launch takes a moment while it prepares itself. Updating later is just running a newer installer: your settings, session and projects stay.
+
+> **Tip.** Keep your projects in a folder that **isn’t synced by OneDrive** or similar. Studio writes many small cache files while you work, and syncing them at the same time slows everything down.
+
+## Your projects
+
+Studio opens on **Gestión de proyectos** (project management), the list of your games. Every game is its own project, in its own folder.
+
+![The Atlas Studio home screen: a table of projects with name, version, status, last update and the actions Abrir, Panel and delete.](https://wololabs.com/Guides/02-atlas-studio/Assets/home-projects.webp)
+*Home: search, filter by store status, and open any of your games.*
+
+- “Agregar proyecto” (add project) creates a new game, from scratch or from an example like **Memoria**, or adds one you already have.
+- “Abrir” (open) opens a game. “Panel” shows how it’s doing in the store.
+- The **Estado** (status) column shows where each game is: not sent, in review, published or needing changes. It needs you to be signed in.
+- Deleting a project sends its folder to the Recycle Bin, so you can still get it back.
+
+## The Simulator
+
+When you open a game, Studio goes straight to the “Simulador” (Simulator) tab: a virtual Atlas 64 next to a virtual phone, with the AI agent on the right.
+
+![The Simulator tab with a game running: a board with a red heart painted on it, the phone screen showing the same board and colour buttons, and the WOLO IA chat on the right.](https://wololabs.com/Guides/02-atlas-studio/Assets/simulator-tour.webp)
+*Paint the Board, the game from guide 3, running in the Simulator.*
+
+1. **Tool rail.** “Ejecutar” / “Detener” (run / stop), “Reiniciar” (restart), “Fichas” (pieces), “Añadir” / “Quitar” (add / remove a module), “Ajustar” (fit to view) and, at the bottom, “Ajustes” (settings).
+2. **The board.** Drag pieces onto cells, lift them off, drag a module to move it, right-click to rotate it, scroll to zoom.
+3. **Atlas Core.** Attached to module 0. Drop a piece on it and the game reads it, just like the real one.
+4. **The phone.** Your game’s screen, live. You can tap its buttons with the mouse.
+5. “Señalar” (point). Click something on the phone or a cell on the board to show it to the agent.
+6. **WOLO IA**, the chat with your AI agent.
+7. **Basic and advanced mode.** Basic shows only what you need; advanced opens the full editor.
+8. **Run controls**: play, pause and stop the game.
+
+![The Fichas palette open over the board: eight numbered pieces in different colours, tips, and an Administrar fichas button.](https://wololabs.com/Guides/02-atlas-studio/Assets/simulator-pieces.webp)
+*“Fichas”: drag a piece onto a cell or onto Atlas Core. “Administrar fichas” renames them, gives them pictures and shows each one’s NFC memory.*
+
+![The settings popover: Bluetooth típico (~30 ms) and Brillo 100%.](https://wololabs.com/Guides/02-atlas-studio/Assets/simulator-settings.webp)
+*“Ajustes”: simulate a slower phone (Bluetooth delay) or a dimmed board (brightness), to see your game the way players will.*
+
+### Basic and advanced mode
+
+Projects open in “Modo base” (basic mode): board, phone and chat. “Modo avanzado” (advanced mode) adds the scene tree, the files, the inspector, the log and the **2D** and **Script** tabs, for when you want to see or change what the agent built. You can switch at any time; nothing is lost.
+
+![The same game in advanced mode: scene tree and file system on the left, the simulator in the middle, chat and inspector on the right, and a log of piece events below the board.](https://wololabs.com/Guides/02-atlas-studio/Assets/advanced-mode.webp)
+*Advanced mode: the same Simulator, plus the editor around it.*
+
+## The Control Panel
+
+The other tab, “Panel de Control” (control panel), has everything about your game that isn’t playing it:
+
+![The Panel de Control tab for Paint the Board, with the workflow cards: Ficha del Juego, Validar Proyecto, Probar en el teléfono, Enviar a revisión and Panel.](https://wololabs.com/Guides/02-atlas-studio/Assets/control-panel.webp)
+*Each card is one step of the way from your PC to the store.*
+
+|  |  |
+|---|---|
+| “Ficha del Juego” (game sheet) | Title, version, description, categories, number of boards and players, covers. What the store will show. |
+| “Validar Proyecto” (validate) | Checks the game against the platform rules. Covered in guide 4. |
+| “Probar en el teléfono” (test on phone) | Installs the game on your own phone to play it on a real board. Guide 5. |
+| “Enviar a revisión” (send for review) | Sends the game to the store. Guide 6. |
+| “Panel” | After publishing: versions, installs, reports and review results. |
+
+## Talking to the agent
+
+The chat on the right, **WOLO IA**, is where you make the game. You write what you want in plain words (“when a piece lands on a cell, paint it red”) and the agent changes the game, runs it in the Simulator and tells you how to try it.
+
+Studio doesn’t come with its own AI. **You bring the one you already use**, and the account and its cost are yours:
+
+- **Claude**: a Claude Pro or Max account, with Claude Code.
+- **ChatGPT (Codex)**: a ChatGPT account, with Codex.
+- **Gemini**: a Gemini API key from Google AI Studio.
+
+![The WOLO IA chat panel with Claude selected, a message box that says Describe una mecánica, un efecto o una idea, and the Conectar button.](https://wololabs.com/Guides/02-atlas-studio/Assets/agent-chat.webp)
+*Pick the agent at the bottom left and press “Conectar”.*
+
+### The first time
+
+1. Pick your agent in the list at the bottom of the chat.
+2. If your PC doesn’t have **Node.js** (a free program agents need), the chat shows “Descargar Node.js”. Install it and come back.
+3. Press “Instalar Claude” (or the agent you chose). It’s a one-time install shared by all your projects.
+4. Press “Conectar” (connect) and sign in with your account, or paste your key for Gemini. Then choose a model if you want, and start writing.
+
+### How to ask well
+
+- **One change at a time.** “Add a timer” works better than a page of rules. Build, try, then ask for the next thing.
+- **Say how you’ll know it works.** “When I lift the piece, the cell should stay painted” gives the agent something to test.
+- **Point instead of describing.** Press “Señalar”, click the button or cell you mean, then write “make this bigger” or “this cell should be blue”. The agent gets a picture with your selection marked in gold.
+- **Talk like a designer.** You don’t need technical words. The agent is told that you design board games and to answer in plain language, without showing code unless you ask.
+
+Every conversation is saved with the project. The clock icon at the top of the chat reopens an earlier one; “Nueva conversación” starts fresh. “Uso del modelo” shows how much of your plan you’ve used.
+
+## What the agent can and can’t do
+
+> **The agent can.** - Create and change your game: rules, screens, colours, sounds.
+> - Check it against the platform rules.
+> - Run it in the Simulator and read its errors.
+> - Place and lift pieces, use Atlas Core and add or move modules.
+> - Read what every cell of the board is showing.
+> - Look at the phone screen, take screenshots and tap buttons.
+
+> **Only you can.** - Fill in and save the “Ficha del Juego”.
+> - Test on your phone.
+> - Send the game to the store.
+> - Decide whether the game is fun.
+>
+> The first three need your Atlas account, so the agent will ask you to do them.
+
+Actions on your Atlas game are allowed without asking. Anything else the agent wants to do on your PC asks for your permission first.
+
+## Activate your Atlas Developer account
+
+You can make and simulate games without an account. To **test on your phone** and **publish**, you need an Atlas account with the creator option turned on. It’s activated from the **AtlasHub** app on your phone:
+
+1. **Sign in to AtlasHub with email and password**
+
+   An anonymous account on the device can’t become a creator account.
+
+2. **Open the developer settings**
+
+   “Configuración → Configuración de desarrollador” (Settings → Developer settings).
+
+3. **Tap “Habilitar cuenta de creador”**
+
+   “Habilitar cuenta de creador” (enable creator account). If you haven’t entered your date of birth, AtlasHub asks for it first.
+
+4. **Read and accept the agreement**
+
+   Tap “Acepto el acuerdo” (I accept the agreement). If you’re under 18 you need the authorization of a parent or legal guardian, and you confirm it with “Tengo esa autorización” (I have that authorization).
+
+5. **Sign in to Studio with the same account**
+
+   Studio asks for it the first time you use “Probar en el teléfono”, “Enviar a revisión” or “Panel”. If the account isn’t a creator account, Studio tells you and points you back to AtlasHub.
+
+Once it’s enabled, the same screen in AtlasHub shows **Cuenta de creador** and **Modo desarrollador**, which you’ll use in guide 5. Publishing itself is explained in guide 6.
+
+---
+
+# Your first game
+
+Source: https://wololabs.com/Guides/03-first-game/index.html
+
+> Paint the Board, step by step: put a piece on a cell and it lights up in the colour you picked. Built by talking, not coding.
+
+*12 min read · Beginner · Atlas Studio 0.2*
+
+## What we’re building
+
+**Paint the Board** is about the smallest game that still uses everything Atlas has: the phone screen, the lights and the pieces.
+
+- The phone shows **8 colour buttons**. You pick one.
+- You put any piece on any cell, and **the cell lights up in that colour**.
+- You lift the piece and **the cell stays painted**.
+
+![Paint the Board running in the Simulator: a red heart painted on the board, two yellow cells, and the phone with the colour buttons.](https://wololabs.com/Guides/03-first-game/Assets/paint-the-board-simulator.webp)
+*Where we’ll end up: a heart painted one piece at a time.*
+
+![The phone screen of Paint the Board: the title, a mirror of the board, the text Painted 6,7 yellow and eight colour buttons.](https://wololabs.com/Guides/03-first-game/Assets/paint-the-board-phone.webp)
+*The phone screen.*
+
+You’ll need Atlas Studio installed and an AI agent connected, both covered in [guide 2](https://wololabs.com/Guides/02-atlas-studio/index.html). No Atlas 64 needed: everything happens in the Simulator.
+
+## Create the project
+
+1. **Add a project**
+
+   On the home screen, press “Agregar proyecto” (add project) → “Nuevo juego” (new game). In **Empezar desde** (start from), leave “Juego vacío” (empty game).
+
+2. **Name it and pick the orientation**
+
+   **Título** (title): `Paint the Board`. The **Identificador** (identifier) fills itself in as `paint-the-board`: it’s the game’s folder and its name in the store. **Orientación**: “Vertical (393×852)”. Press “Crear” (create).
+
+3. **It opens in the Simulator**
+
+   A new game isn’t empty: it comes with a starter that already works. Press “Ejecutar” (run) and drag a piece from “Fichas” onto the board: the cell lights up while the piece is there and turns off when you take it away. We’ll change exactly that.
+
+   ![A freshly created project in the Simulator: an empty board, the phone saying Ejecuta el juego para verlo aquí, and the WOLO IA chat waiting to connect.](https://wololabs.com/Guides/03-first-game/Assets/simulator-empty.webp)
+   *The new project, before running it.*
+
+## Ask the agent
+
+1. **Connect your agent**
+
+   In the WOLO IA chat, pick your agent and press “Conectar”. If it’s your first time, guide 2 walks you through it.
+
+2. **Paste this message**
+
+   Describe the game the way you’d explain it to a friend: what’s on the screen, what happens on the board, and how you’ll know it works.
+
+   **Message for the agent** (message to paste into the agent chat):
+
+   > Let’s make a game called Paint the Board, for one module.
+   >
+   > On the phone screen: the title, a small picture of the board, and 8 colour buttons (red, orange, yellow, green, cyan, blue, purple, white). The selected colour has a white border.
+   >
+   > On the board: when a piece is placed on a cell, that cell lights up in the selected colour. When the piece is lifted, the cell stays painted. A piece on a painted cell repaints it with the current colour.
+   >
+   > Use a brightness that stays visible even if the board is dimmed. When you’re done, test it in the Simulator: paint a few cells, lift the pieces, change colour, and tell me how it went.
+
+3. **Let it work**
+
+   The agent reads the project, changes the game’s screen and logic, checks it against the platform rules, runs it in the Simulator, places pieces on its own to test it and then tells you what it did, in plain words. You’ll see the board and the phone change while it works.
+
+> **If it doesn’t come out right.** Don’t start over: say what’s wrong. “The colour buttons are too small”, “lifting the piece turns the cell off, it should stay”. If it’s something you can see, press “Señalar” and click it first.
+
+## Play it
+
+Now check it yourself, the way a player would:
+
+- Drag a piece from “Fichas” onto a cell. It lights up red, the first colour.
+- Drag the piece off the board, or right-click it. The cell stays red.
+- Click the blue button on the phone. Place a piece on the same cell: it turns blue.
+- Leave a piece sitting on a cell and paint around it. Pieces and paint live together.
+
+Then paint something. The heart in the screenshot is 30 cells, about two minutes of placing and lifting.
+
+## Fill in the game sheet
+
+Everything the store will show about your game lives in the “Ficha del Juego” (game sheet), in the “Panel de Control” tab. It’s worth filling in now, while the idea is fresh:
+
+![The Ficha del juego dialog: identifier paint-the-board, title, version 0.1.0, minimum app version, SDK 1.3, entry scene, orientation Vertical, players 1 to 1, boards 1 to 1, difficulty.](https://wololabs.com/Guides/03-first-game/Assets/game-sheet.webp)
+*The game sheet. Scroll down for the description, categories and covers.*
+
+- **Título** and **Versión** (title, version): leave 0.1.0 until you publish.
+- **Jugadores** and **Tableros** (players, boards): 1 to 1 here. A game for bigger tables sets the minimum it needs and the maximum it uses.
+- **Descripción** and up to three **categorías** (description, categories), from the store’s list.
+- **Portadas** (covers): a vertical one of 320 × 440 and an optional landscape one. Studio puts a placeholder until you add yours.
+
+Press “Guardar” (save). Nothing goes to the store yet; that happens in guide 6.
+
+## Keep going
+
+Each of these is one more message to the agent. Send one, try it, then the next.
+
+**Add a clear button** (message to paste into the agent chat):
+
+> Add a “Clear” button under the colours that turns off every cell of the board.
+
+**Add an eraser** (message to paste into the agent chat):
+
+> Add a ninth button, the eraser. With it selected, placing a piece on a cell turns that cell off.
+
+**Give it an ending** (message to paste into the agent chat):
+
+> When all 64 cells are painted, show the end-of-game screen with how long it took, and let me play again.
+
+That last one already makes it a game: a goal, a measure and a reason to try again. Next guide: how to let the agent test all of this for you.
+
+## Under the hood
+
+You don’t need to read this. But if you’re curious, this is the whole logic of Paint the Board, as it ended up. The screen (title, board mirror, buttons) lives in a separate scene file that Studio’s editor shows visually.
+
+**Show main.gd (70 lines)**
+
+Three things to notice: the palette of 16 colours sent to the board, the colour buttons calling `_select`, and `_on_piece_placed`, which paints the cell. There’s no code for lifting a piece: doing nothing is what keeps the cell painted.
+
+```
+extends Control
+
+## Paint the Board
+##
+## Pick a colour on the screen; every piece placed on the board paints its cell with that colour.
+## Lifting the piece leaves the cell painted.
+
+## Palette index 0 is "off". Indexes 1-8 are the colours the player can pick.
+const PALETTE_COLORS: Array[Color] = [
+	Color(0.0, 0.0, 0.0),      # 0 off
+	Color(0.90, 0.12, 0.10),   # 1 red
+	Color(1.00, 0.45, 0.05),   # 2 orange
+	Color(0.95, 0.73, 0.25),   # 3 yellow
+	Color(0.25, 0.85, 0.20),   # 4 green
+	Color(0.10, 0.80, 0.85),   # 5 cyan
+	Color(0.15, 0.30, 0.95),   # 6 blue
+	Color(0.65, 0.20, 0.90),   # 7 purple
+	Color(1.00, 1.00, 1.00),   # 8 white
+]
+const COLOR_NAMES := ["", "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White"]
+## Brightness 0-15. 8 or more stays visible even when the player dims the board.
+const BRIGHT := 12
+
+var _selected := 1
+
+@onready var _status: Label = %Status
+@onready var _swatches: GridContainer = %Swatches
+
+
+func _ready() -> void:
+	var palette: Array = PALETTE_COLORS.duplicate()
+	palette.resize(16)
+	for i in range(PALETTE_COLORS.size(), 16):
+		palette[i] = Color.BLACK
+	Atlas.board.set_palette(palette)
+
+	for i in _swatches.get_child_count():
+		var swatch: Button = _swatches.get_child(i)
+		swatch.pressed.connect(_select.bind(i + 1))
+
+	Atlas.pieces.placed.connect(_on_piece_placed)
+
+	await Atlas.board.refresh_modules()
+	Atlas.board.clear()
+	_select(1)
+
+
+func _select(index: int) -> void:
+	_selected = index
+	for i in _swatches.get_child_count():
+		_style_swatch(_swatches.get_child(i), i + 1 == index, PALETTE_COLORS[i + 1])
+	_show("Colour: %s. Place a piece on any cell." % COLOR_NAMES[index])
+
+
+func _on_piece_placed(module: int, cell: Vector2i, _global_cell: Vector2i) -> void:
+	Atlas.board.set_pixel(module, cell.x, cell.y, _selected, BRIGHT)
+	_show("Painted %d,%d %s" % [cell.x, cell.y, COLOR_NAMES[_selected].to_lower()])
+
+
+func _style_swatch(swatch: Button, selected: bool, color: Color) -> void:
+	var box := StyleBoxFlat.new()
+	box.bg_color = color
+	box.set_corner_radius_all(14)
+	box.set_border_width_all(4 if selected else 0)
+	box.border_color = Atlas.ui.color(&"text")
+	for state in ["normal", "hover", "pressed", "focus"]:
+		swatch.add_theme_stylebox_override(state, box)
+
+
+func _show(text: String) -> void:
+	_status.text = text
+	print(text)
+```
+
+---
+
+# Testing with AI
+
+Source: https://wololabs.com/Guides/04-testing-with-ai/index.html
+
+> Let the agent play your game for you: it places pieces, reads the board, taps the screen and tells you what broke.
+
+*9 min read · Intermediate · Atlas Studio 0.2*
+
+## Why let the agent test
+
+Testing a board game by hand means placing the same pieces again and again, after every change. The agent in Studio can do that for you, and it doesn’t just look at the game: it **reads** it.
+
+- It knows exactly which colour and brightness every cell is showing.
+- It reads every text and button on the phone screen, and can tap them.
+- It sees the game’s errors with the exact file and line, which you’d never see from the outside.
+- It can place and lift pieces, use Atlas Core, add modules and slow down the Bluetooth.
+
+So the best way to work is a split: **the agent checks that the game does what you said; you check that it’s fun.**
+
+## The test loop
+
+Every change the agent makes goes through the same three steps. You can also run them yourself at any time.
+
+1. **Validate**
+
+   “Validar Proyecto” (validate project), in the Control Panel, checks the game against the **same rules the store applies**. If it passes here, the automatic checks of the store won’t reject it for those reasons.
+
+   ![The Panel de Control after pressing Validar Proyecto. At the bottom: Sin problemas, 6 archivos, reglas v3.](https://wololabs.com/Guides/04-testing-with-ai/Assets/validate-ok.webp)
+   *A clean result: *Sin problemas* (no problems).*
+
+   When something is wrong, it says where and why. For example, if a game tried to write files on the phone:
+
+   ```
+   ✖ games/paint-the-board/main.gd:31  FileAccess no está disponible para los juegos  [gd.forbidden_identifier]
+   RECHAZADO — 1 errores, 0 advertencias, 6 archivos (reglas v3)
+   ```
+
+   You don’t need to understand that line. The agent does, and fixes it. What matters is that it was caught on your PC and not by the store a week later.
+
+2. **Run**
+
+   The game restarts in the Simulator, with the pieces where they were. The agent waits until the game says it’s connected and reads anything it printed or any error it hit.
+
+3. **Play and read**
+
+   The agent places pieces, taps buttons and then reads the board and the screen to compare them with what should have happened.
+
+## What the agent sees
+
+When the agent “looks” at the board, it gets something like this: a map of each module with the colour number of every lit cell. This is the heart from guide 3:
+
+```
+Módulo 0  (x 0→7, y 0→7 hacia abajo)
+  ........
+  .11..11.
+  11111111
+  11131111
+  .111111.
+  ..1111..
+  ...11...
+  .3....3.
+  (1,1) idx 1 brillo 12 #e61f1a
+  (3,3) idx 3 brillo 12 #f2ba40
+  …
+```
+
+And when it checks what happened, it reads the Simulator’s log, piece by piece:
+
+```
+12:15:01 [comm] ficha_colocada  mod=1 (7,7)
+12:15:02 [comm] ficha_levantada mod=1 (7,7)
+12:15:02 [comm] ficha_colocada  mod=1 (4,2)
+```
+
+That’s why “when I lift the piece, the cell should stay painted” is such a good request: the agent can place a piece, lift it, read the map and know for sure.
+
+## Ask for tests
+
+You can ask for a test in your own words. A good test request says **what to do** and **what should happen**. Some to copy:
+
+**Check one rule** (message to paste into the agent chat):
+
+> Test that a lifted piece leaves its cell painted: paint three cells in different colours, lift the pieces, and tell me what the board shows.
+
+**Play a whole match** (message to paste into the agent chat):
+
+> Play a full match from start to end like a player would, tapping the buttons on screen. Tell me anything that looks wrong, any error, and anything confusing on the screen.
+
+**Try to break it** (message to paste into the agent chat):
+
+> Try to break the game: place several pieces at once, lift them in a different order, tap buttons in the middle of a move, restart in the middle of a match. Tell me what happened in each case.
+
+**Check the screen** (message to paste into the agent chat):
+
+> Take a screenshot of the phone and tell me whether everything fits, can be read, and whether any button is too small to tap.
+
+## Report a bug by pointing at it
+
+When you find something wrong yourself, the fastest report is to show it:
+
+1. Press “Señalar” (point), under the phone.
+2. Click the button, text or cell that’s wrong. You can mark several.
+3. Write one line: “this should be blue”, “this text gets cut off”, “this cell didn’t light up”.
+
+The agent receives exactly what you marked (which element of the screen, or which module and cell, with what it was showing) plus a picture with your selection in gold. No need to describe where it is.
+
+## Test real-world conditions
+
+Your game will run on phones of all speeds, on boards set to any brightness, on tables arranged in different ways. The Simulator can reproduce all of that.
+
+![The Ajustes popover with Bluetooth and brightness options.](https://wololabs.com/Guides/04-testing-with-ai/Assets/simulator-settings.webp)
+*“Ajustes”: Bluetooth *ideal*, *típico* or *lento*, and board brightness from 20% to 100%.*
+
+- **Slow Bluetooth.** Lights reach the board later. If your game sends too many, they pile up and the board falls behind; the Simulator warns you.
+- **Brightness at 20%.** Anything below brightness 8 disappears. Check that nothing important does.
+
+![Two modules in the Simulator, with a piece on Atlas Core.](https://wololabs.com/Guides/04-testing-with-ai/Assets/simulator-two-modules.webp)
+*More modules, moved and rotated, and a piece on Atlas Core.*
+
+- **More or fewer modules.** “Añadir” and “Quitar” change how many there are; drag and right-click to arrange them the way your game asks. What happens if a player has fewer than your minimum?
+- **Atlas Core.** Drop a piece on it. In “Administrar fichas” you can turn a piece into “a different physical piece”, to test what your game does with a piece it has never seen.
+
+**Test it under pressure** (message to paste into the agent chat):
+
+> Set Bluetooth to slow and brightness to 20%, play a full match and tell me whether the board falls behind or anything stops being visible.
+
+## The platform rules, in plain words
+
+Your game runs inside AtlasHub, on other people’s phones. These rules protect them, and the validator enforces them. The agent already knows them; this is so you know why it sometimes says no.
+
+| Rule | Why |
+|---|---|
+| No access to the phone’s files, system or internet | A game can’t read someone’s photos or send data anywhere. Saving progress goes through Atlas, up to 64 KB per game. |
+| Everything inside the game’s own folder | Many games share one app; none can touch another’s files or AtlasHub itself. |
+| Only images, sounds, fonts, text and game files | Nothing executable travels inside a game. |
+| Two technical rules about how files refer to each other | So your game never collides with another one installed on the same phone. The agent handles this. |
+
+## What the Simulator can’t tell you
+
+> **Limits.** - **Bluetooth timings are estimates.** Real phones vary.
+> - **Piece memory works only here.** Reading and writing the memory of a piece on Atlas Core isn’t supported on the real board yet.
+> - **Light on a real table looks different** from light on a monitor, especially dark colours and low brightness.
+> - **It can’t tell you if it’s fun.** Only people at a table can.
+
+That’s what the next guide is for.
+
+## Before you take it to your phone
+
+- “Validar Proyecto” says *Sin problemas*.
+- You’ve played a full match in the Simulator, and so has the agent.
+- It works with slow Bluetooth and 20% brightness.
+- The screen explains how to set up the table, if your game uses more than one module or Atlas Core.
+- The “Ficha del Juego” has a title, description and the right number of boards.
+
+---
+
+# Test on your phone
+
+Source: https://wololabs.com/Guides/05-test-on-your-phone/index.html
+
+> Install your game on your own phone with AtlasHub and play it on a real Atlas 64. What it’s for and what it isn’t.
+
+*7 min read · Intermediate · Atlas Studio 0.2*
+
+## Why test on a real board
+
+The Simulator gets you very far, but some things only show up on the real thing: how the colours look on a table in daylight, how long a move really takes over Bluetooth, whether players understand the screen while their hands are busy with pieces.
+
+“Probar en el teléfono” (test on phone) installs your game, as it is right now, on **your own phone**, inside the real AtlasHub app, so you can play it on a real Atlas 64. No store, no review.
+
+*Diagram:* Studio asks the Atlas server to authorize the build for your phone, then serves it over your Wi-Fi. AtlasHub on the phone downloads it and plays it on the Atlas 64 over Bluetooth.
+*Studio builds and authorizes; the phone downloads over your Wi-Fi and plays on the board.*
+
+## What you need
+
+- An **Atlas Developer account**, enabled as explained in [guide 2](https://wololabs.com/Guides/02-atlas-studio/index.html#account).
+- **AtlasHub** on your phone, signed in with that same account.
+- Your PC and your phone on **the same Wi-Fi network**.
+- An **Atlas 64**, switched on and connected to AtlasHub.
+- A game that passes “Validar Proyecto”.
+
+## Step by step
+
+1. **Get your phone’s code**
+
+   In AtlasHub: “Configuración → Configuración de desarrollador → Modo desarrollador” (Settings → Developer settings → Developer mode). Under **Código de este teléfono** (this phone’s code) there’s a code like `8040-8791-BE9A`. Tap “Copiar” or keep it in view.
+
+2. **Open “Probar en el teléfono” in Studio**
+
+   In the “Panel de Control” tab, press “Probar en el teléfono”. The first time, sign in with your creator account (email and password) and press “Iniciar sesión” (sign in). Leave the **Backend** field as it is.
+
+   ![The Probar en el teléfono dialog: an explanation, the Backend field, email and password with Iniciar sesión, the phone code field, and the buttons Cerrar and Compilar y autorizar.](https://wololabs.com/Guides/05-test-on-your-phone/Assets/test-on-phone-dialog.webp)
+   *The dialog explains it in one line: build, authorize for that phone for 72 hours, serve on your local network.*
+
+3. **Enter the code and build**
+
+   Type your phone’s code in **Código del teléfono** and press “Compilar y autorizar” (build and authorize). Studio packs your game, asks the Atlas server to authorize that exact build for that phone, and then shows an address like `http://192.168.0.12:8080/paint-the-board.pck`.
+
+4. **Install it from AtlasHub**
+
+   Back in **Modo desarrollador**, type that address in **Dirección del pack en tu PC** (pack address on your PC) and tap “Instalar pack” (install pack). AtlasHub downloads it from your PC, checks the authorization and installs it. It remembers the last address you used.
+
+5. **Play**
+
+   Your game appears in your library with a **Desarrollo** (development) badge, and a **DEV** mark in its header while you play. The card also tells you how long the install has left, like “vence en 2 d 5 h” (expires in 2 d 5 h).
+
+> **Changed something?.** Every change is a new build, and every build needs its own authorization. Press “Compilar y autorizar” again and reinstall from AtlasHub. The address usually stays the same.
+
+## What a test install is, and what it isn’t
+
+A test install is a tool for you, the creator. It’s deliberately limited so it can’t become a back door to the store.
+
+> **Limits.** - **It lasts 72 hours.** Then it expires and AtlasHub removes it on its own. To keep testing, build and authorize again.
+> - **It only works on your phone.** The authorization is tied to that phone’s code, your account and that exact build. It can’t be passed to another phone or another person.
+> - **It’s not for sharing.** The creator agreement asks you not to share or distribute test builds. To put your game in other people’s hands, publish it (guide 6).
+> - **It lives only temporarily on your phone.** It doesn’t appear in the store or in anyone else’s library.
+> - **Up to 50 active authorizations** per account, and packs up to 256 MB.
+> - **Piece memory doesn’t work on the real board yet.** If your game reads or writes the memory of pieces on Atlas Core, it has to cope with that being unavailable.
+
+## Make the most of it
+
+Your phone, your board, your table: this is the moment to watch people play. You can hand the phone and the pieces to friends sitting at your table; what you can’t do is send them the game.
+
+- **Don’t explain the rules first.** If the screen and the board can’t explain them, that’s your next change.
+- **Watch the hands, not the screen.** Hesitation before placing a piece usually means the board isn’t saying clearly enough what’s allowed.
+- **Note what surprised you**, then turn each note into one message for the agent back in Studio.
+- **Try it in a bright room** and with the board dimmed from AtlasHub.
+
+## If something goes wrong
+
+| You see | Try this |
+|---|---|
+| “Revisá que la PC y el teléfono estén en la misma red…” | The phone can’t reach your PC. Check both are on the same Wi-Fi (not the phone on mobile data), and avoid guest networks, which often keep devices apart. If Windows asked whether to allow Atlas Studio on the network, allow it on private networks. |
+| “La autorización venció. Volvé a autorizar el pack desde el Studio.” | The 72 hours are up, or you installed an older build. Press “Compilar y autorizar” again. |
+| Studio says your account isn’t a creator account | Enable it in AtlasHub (guide 2) and sign in to Studio again. |
+| The game installs but doesn’t start | Check that your Atlas 64 is connected and that you have at least the minimum number of modules the game asks for. |
+| The download stops halfway | Keep Studio open, with the dialog showing the address, until AtlasHub finishes installing: Studio is the one serving the file. |
+
+---
+
+# Publish to the store
+
+Source: https://wololabs.com/Guides/06-publish-to-the-store/index.html
+
+> From “Enviar a revisión” to every Atlas 64 out there: automatic checks, human review, approval and updates.
+
+*9 min read · Advanced · Atlas Studio 0.2*
+
+## The road to the store
+
+Publishing is one button in Studio, “Enviar a revisión” (send for review), followed by two kinds of review: **automatic checks** that take minutes, and a **person** who plays your game. When both say yes, your game appears in the store of every Atlas 64.
+
+*Diagram:* Sent, then automatic checks, then human review, then approved and published. Any review can reject the game; the reason appears in the Panel, you fix it and send it again.
+*Every submission takes this path, the first version and every update.*
+
+## Before you send it
+
+### The game
+
+- It passes “Validar Proyecto” and you’ve played it on a real board (guide 5).
+- It explains its own rules and how to set up the table, on screen.
+- The **version** in the “Ficha del Juego” is the one you want to publish. Many creators use `1.0.0` for the first public version.
+
+### The listing
+
+What the store shows comes from the “Ficha del Juego”, and goes live when the submission is approved:
+
+- **Description**: what the game is and why it’s fun, in a few lines.
+- **Categories**: up to 3 of Arcade, Estrategia, Puzzle, Memoria, Clásicos, Party, Deportes, Rol, Educativo.
+- **Boards**: the minimum your game needs and the maximum it uses. The store shows it, like “2–3 boards”.
+- **Covers**: a vertical cover of 320 × 440 and, optionally, a landscape one.
+- **Licences** for any images, sounds or fonts you didn’t make yourself (“Agregar licencia”, at the end of the sheet).
+
+![The Ficha del juego dialog in Atlas Studio.](https://wololabs.com/Guides/06-publish-to-the-store/Assets/game-sheet.webp)
+*The game sheet: what you write here is what players will read.*
+
+### The content
+
+> **Suitable for everyone.** Atlas games are for all ages: no explicit violence, sexual content, offensive language, gambling or drug use. And the name can’t be the same as or similar to Atlas, Wololo Studio or the games made by the Atlas team.
+
+## Send it
+
+1. **Open “Enviar a revisión”**
+
+   In the “Panel de Control” tab. Sign in with your creator account if Studio asks. The dialog shows the title, identifier and version it will send, taken from the game sheet.
+
+   ![The Enviar a revisión dialog: Paint the Board, paint-the-board, v0.1.0, an explanation, the Backend field, email and password, and the buttons Cerrar and Validar y enviar.](https://wololabs.com/Guides/06-publish-to-the-store/Assets/submit-dialog.webp)
+   *“The server builds the published pack from this, and then a person reviews it.”*
+
+2. **Press “Validar y enviar”**
+
+   “Validar y enviar” (validate and send) runs the validator first: a game with errors never leaves your PC, and you see what to fix right away. Then Studio packs the game’s files (not the cache or the parts Studio already provides), uploads them with a progress bar, and starts following the status.
+
+3. **Close it if you like**
+
+   The review keeps going without Studio. The status appears in the project list and in “Panel”.
+
+## The automatic checks
+
+On the server, your game goes through five gates, in order. If one fails, the game is rejected right there, with the reason and, when it applies, the file and line.
+
+1. **A safe package.** Only allowed file types, everything inside your game’s folder, nothing executable.
+2. **The official base.** The server replaces the technical parts that Studio adds with its own official copy, and checks that the version matches.
+3. **A code safety scan.** The same rules as “Validar Proyecto”. If you validated, this passes. Anything doubtful goes to the reviewer as a note.
+4. **A sealed build.** The game is built in isolation, without internet. If it crashes or takes too long, it’s rejected.
+5. **Verification and signature.** The finished game is opened exactly the way AtlasHub will open it, checked for size, and signed so phones can trust it.
+
+This is why validating in Studio matters: it runs the same rules, so surprises here are rare.
+
+## Human review
+
+Then a person from the Atlas team downloads your game and **plays it**, in the Simulator or on a real board. Every submission is reviewed by a person, and a creator’s first versions always are.
+
+They check that the game works, that it follows the content rules, that the listing matches the game, and anything the automatic checks flagged.
+
+> **How long it takes.** The current estimate is **between one week and two months**, depending on how many games are waiting. It’s an estimate, not a promise.
+
+## Approved or rejected
+
+> **Approved.** Your game is published with the description, categories, boards and covers from your game sheet, and appears in the store for every Atlas 64.
+>
+> The price and featured spots are set by the Atlas team. For now, games are published for free.
+
+> **Rejected.** The reason appears in “Panel”: the reviewer’s written notes, or what the automatic check found, with the file and line.
+>
+> Fix it (the agent can help: paste the reason in the chat) and send it again. After a rejection you can resend the same version.
+
+## Updates
+
+An update takes exactly the same path. Three rules:
+
+- **Raise the version number** in the game sheet. A version that’s already published can’t be sent again: Studio will say *“Esa versión ya está publicada; subí el número de versión”* (that version is already published; raise the version number).
+- **One submission at a time per version.** Once a version is in review it’s locked. To change something, send a new version.
+- **Listing changes travel with a submission.** A new description or cover goes live when the next version is approved, after the same review.
+
+## After publishing: the Panel
+
+“Panel”, in the Control Panel tab or in the project list, shows how your game is doing:
+
+- The listing, as it appears in the store.
+- Every version, and which ones were withdrawn.
+- Installs: total and last 30 days.
+- Reports from players, grouped by reason.
+- Every submission, with the reason for any rejection.
+
+![The Panel dialog before signing in: Backend, email, password, Iniciar sesión and the note Iniciá sesión con tu cuenta de creador para ver el panel.](https://wololabs.com/Guides/06-publish-to-the-store/Assets/creator-panel-dialog.webp)
+*Sign in with your creator account to see it.*
+
+It shows numbers only: never who installed your game or who reported it.
+
+In the home screen, the **Estado** column summarises each game’s latest submission:
+
+| Status | Means |
+|---|---|
+| En revisión (in review) | Going through the automatic checks or waiting for a person. |
+| En producción (live) | Approved or published. |
+| Revisión necesaria (changes needed) | The latest submission was rejected, even if an earlier version is still published. |
+| Sin enviar (not sent) | Never submitted. |
+
+## Limits
+
+|  |  |
+|---|---|
+| Size of what Studio uploads | Up to 200 MB, 5,000 files |
+| Size of the finished game | Up to 256 MB |
+| Submissions | Up to 10 per day per creator |
+| Who can publish | Atlas Developer accounts with the current agreement accepted |
+
+That’s the whole path: from an idea in [guide 1](https://wololabs.com/Guides/01-atlas-64/index.html) to a game on every table. Go make something people will gather around.

@@ -1,0 +1,44 @@
+# Wolo Labs
+
+> Wolo Labs makes Atlas 64, a tabletop game console whose 64-cell board lights up and senses pieces, and Atlas Studio, the free PC app where anyone can build games for it (by talking to an AI agent, without coding) and publish them to the Atlas 64 store. Based in Mendoza, Argentina.
+
+Key facts:
+
+- **Atlas 64** is a board game console. One board is a *module* of 8 × 8 cells; each cell has a coloured light and a magnetic (Hall-effect) sensor. Pieces carry a magnet and an NFC tag in their base. A game uses 1 to 7 modules.
+- Games run on a phone, inside the **AtlasHub** app, which talks to module 0 over Bluetooth. The board knows *that* a cell is occupied, not *which* piece is on it.
+- **Atlas Core** is the optional NFC reader that snaps onto module 0 and identifies which piece is which.
+- **Atlas Studio** is free, for Windows (Mac and Linux to be confirmed), built on the Godot engine. It has a board and phone Simulator, an AI agent chat (the creator brings their own Claude, ChatGPT/Codex or Gemini account), a validator, test installs on the creator's own phone, and submission to the store.
+- Games reach the store through automatic checks plus human review. Atlas 64 is coming to Kickstarter.
+- The store is at https://atlas-64.com. Guides exist in English and Spanish; Studio's interface is in Spanish.
+
+## Main pages
+
+- [Home](https://wololabs.com/index.html): What Wolo Labs does: Atlas 64, Atlas Studio, the store, the Kickstarter waitlist.
+- [Products](https://wololabs.com/products.html): Atlas 64 (the console) and Atlas Studio (the creator platform), and how they connect.
+- [Guides](https://wololabs.com/guides.html): Index of the step-by-step creator guides.
+- [About](https://wololabs.com/about.html): Mission, vision, values and the team.
+- [Contact](https://wololabs.com/contact.html): Kickstarter waitlist and contact (atlas@wololabs.com).
+
+## Creator guides (English)
+
+- [01 · Meet Atlas 64](https://wololabs.com/Guides/01-atlas-64/index.html): How the console works, how cells sense pieces, what Atlas Core is for, and the limits to design around (16 colours, brightness, ~24 updates per second, presence only).
+- [02 · Meet Atlas Studio](https://wololabs.com/Guides/02-atlas-studio/index.html): Install it, tour the Simulator and Control Panel, connect an AI agent, what the agent can and can't do, and how to activate an Atlas Developer account in AtlasHub.
+- [03 · Your first game](https://wololabs.com/Guides/03-first-game/index.html): Build "Paint the Board" step by step by talking to the agent, play it in the Simulator, fill in the game sheet.
+- [04 · Testing with AI](https://wololabs.com/Guides/04-testing-with-ai/index.html): The validate–run–play loop, what the agent reads from the board, test prompts, reporting bugs by pointing, real-world conditions, the platform rules.
+- [05 · Test on your phone](https://wololabs.com/Guides/05-test-on-your-phone/index.html): Install a game on your own phone through AtlasHub's developer mode and play it on a real Atlas 64. Limits: 72 hours, your phone only, not shareable.
+- [06 · Publish to the store](https://wololabs.com/Guides/06-publish-to-the-store/index.html): What to prepare, sending for review, the five automatic checks, human review, approval or rejection, updates and the creator Panel.
+
+## Guías para creadores (español)
+
+- [01 · Conocé Atlas 64](https://wololabs.com/Guides/01-atlas-64/es.html)
+- [02 · Conocé Atlas Studio](https://wololabs.com/Guides/02-atlas-studio/es.html)
+- [03 · Tu primer juego](https://wololabs.com/Guides/03-first-game/es.html)
+- [04 · Testeo con IA](https://wololabs.com/Guides/04-testing-with-ai/es.html)
+- [05 · Probalo en tu teléfono](https://wololabs.com/Guides/05-test-on-your-phone/es.html)
+- [06 · Publicá en la tienda](https://wololabs.com/Guides/06-publish-to-the-store/es.html)
+
+## Optional
+
+- [Full text for LLMs](https://wololabs.com/llms-full.txt): The site summary and all six English guides in one Markdown file.
+- [Atlas 64 store](https://atlas-64.com): Games available for Atlas 64.
+- [YouTube](https://www.youtube.com/@wololabs): Matches, behind the scenes and Atlas Studio tutorials.
